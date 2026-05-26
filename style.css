@@ -579,6 +579,57 @@ h3 {
   animation: profileFloat 5.8s ease-in-out infinite;
 }
 
+.lpsk-logo-float {
+  position: absolute;
+  top: 28px;
+  right: 20px;
+  z-index: 5;
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 24px;
+  box-shadow: 0 20px 55px rgba(24, 21, 18, 0.16);
+  backdrop-filter: blur(16px);
+  animation: lpskLogoFloat 5.6s ease-in-out infinite;
+}
+
+.lpsk-logo-float::before,
+.lpsk-logo-float::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(28, 118, 143, 0.2);
+  border-radius: 30px;
+  animation: lpskLogoPulse 2.8s ease-out infinite;
+}
+
+.lpsk-logo-float::after {
+  animation-delay: 1.4s;
+}
+
+.lpsk-logo-float span {
+  position: absolute;
+  inset: -18px;
+  border-radius: 34px;
+  background: conic-gradient(from 180deg, rgba(28, 118, 143, 0), rgba(28, 118, 143, 0.35), rgba(250, 153, 28, 0.28), rgba(28, 118, 143, 0));
+  opacity: 0.52;
+  filter: blur(10px);
+  animation: orbitSpin 8s linear infinite;
+}
+
+.lpsk-logo-float img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(24, 21, 18, 0.14));
+}
+
 .profile-photo-card::before {
   content: "";
   position: absolute;
@@ -1831,6 +1882,27 @@ h3 {
   }
 }
 
+@keyframes lpskLogoFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-2deg);
+  }
+}
+
+@keyframes lpskLogoPulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.82);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.26);
+  }
+}
+
 @keyframes meterFlow {
   0%,
   100% {
@@ -2023,6 +2095,15 @@ h3 {
 
   .profile-photo-card {
     width: min(282px, 78vw);
+  }
+
+  .lpsk-logo-float {
+    top: 16px;
+    right: 14px;
+    width: 68px;
+    height: 68px;
+    padding: 11px;
+    border-radius: 18px;
   }
 
   .profile-badge {
