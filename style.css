@@ -103,9 +103,7 @@ a {
 }
 
 .ambient-line {
-  width: 1px;
-  height: 340px;
-  background: linear-gradient(180deg, transparent, rgba(59, 40, 31, 0.28), transparent);
+  display: none;
 }
 
 .line-a {
@@ -426,11 +424,14 @@ h3 {
   position: relative;
   min-height: 620px;
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
   align-items: center;
 }
 
 .portfolio-device {
   position: relative;
+  grid-column: 1 / -1;
   width: min(100%, 520px);
   margin-left: auto;
   overflow: hidden;
@@ -468,9 +469,7 @@ h3 {
 .device-screen {
   position: relative;
   padding: 26px;
-  background:
-    linear-gradient(135deg, rgba(255, 250, 242, 0.96), rgba(246, 237, 223, 0.86)),
-    url("assets/projects/lpsk-reporting.jpg") center/cover;
+  background: linear-gradient(135deg, rgba(255, 250, 242, 0.98), rgba(246, 237, 223, 0.9));
 }
 
 .screen-header {
@@ -578,14 +577,12 @@ h3 {
 }
 
 .profile-mini-card {
-  position: absolute;
-  left: 4px;
-  bottom: 18px;
+  position: relative;
   display: grid;
   grid-template-columns: 72px 1fr;
   gap: 14px;
   align-items: center;
-  width: min(330px, 72%);
+  width: auto;
   padding: 12px;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--line);
@@ -614,8 +611,8 @@ h3 {
 }
 
 .floating-note {
-  position: absolute;
-  width: min(260px, 60%);
+  position: relative;
+  width: auto;
   padding: 18px;
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid var(--line);
@@ -625,13 +622,11 @@ h3 {
 }
 
 .note-one {
-  top: 74px;
-  left: -6px;
+  inset: auto;
 }
 
 .note-two {
-  right: -8px;
-  bottom: 118px;
+  inset: auto;
   animation-delay: -1.8s;
 }
 
