@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reporting-demo.css">
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"></div>
@@ -104,44 +105,67 @@
       <div class="container">
         <div class="section-heading centered reveal">
           <p class="eyebrow">Featured Demo</p>
-          <h2>Live preview of the Web-Based Reporting Application.</h2>
+          <h2>Interactive preview of the Web-Based Reporting Application.</h2>
           <p>
-            Area ini disiapkan untuk menampilkan demo website pelaporan yang sudah dideploy. Setelah URL demo
-            dimasukkan, pengunjung bisa melihat tampilan sistem langsung dari portfolio tanpa meninggalkan halaman.
+            Demo pelaporan ini dibuat langsung di dalam portfolio agar pengunjung bisa mencoba alur menu,
+            monitoring, daftar data, arsip, dan tampilan admin tanpa login dan tanpa backend.
           </p>
         </div>
 
-        <div class="demo-stage reveal">
-          <div class="demo-copy">
-            <span class="project-category">Main Showcase | LPSK Reporting System</span>
-            <h3>Aplikasi Pelaporan Berbasis Website</h3>
+        <div class="reporting-showcase reveal">
+          <div class="reporting-note">
+            <span class="project-category">Interactive Static Demo | No Database</span>
             <p>
-              Demo ini menampilkan konsep sistem pelaporan internal dengan alur reporting, monitoring, approval,
-              archive, upload dokumen, role-based access control, dan dashboard monitoring. Section ini menjadi
-              showcase utama sebelum pengalaman, project pendukung, skill, dan sertifikat.
+              Demo ini berjalan langsung di portfolio dengan data dummy. Semua tombol dibuat aktif untuk preview
+              tampilan dan flow, tetapi perubahan tidak disimpan permanen.
             </p>
-            <div class="demo-actions">
-              <a class="btn btn-primary demo-live-link" href="#" target="_blank" rel="noopener" aria-disabled="true">Open Live Demo</a>
-              <a class="btn btn-secondary" href="#lpsk">Read Case Summary</a>
-            </div>
           </div>
 
-          <div class="demo-browser tilt-card" data-demo-url="">
-            <div class="browser-bar">
-              <span></span>
-              <span></span>
-              <span></span>
-              <p>reporting-demo.vercel.app</p>
-            </div>
-            <div class="demo-placeholder">
-              <div class="demo-skeleton">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+          <div class="rp-app" id="reportingDemoApp" aria-label="Demo aplikasi pelaporan">
+            <aside class="rp-sidebar">
+              <div class="rp-sidebar-header">
+                <span class="rp-logo">
+                  <img src="assets/icons/logo-lpsk-ui.png" alt="Logo LPSK">
+                </span>
+                <strong>PELAPORAN</strong>
               </div>
-              <h3>Demo URL Ready</h3>
-              <p>Kirim URL deploy web pelaporan, lalu area ini akan saya ubah menjadi live embedded preview.</p>
+              <nav class="rp-menu" aria-label="Menu demo pelaporan">
+                <button class="rp-nav active" data-view="home"><span>⌂</span>Beranda</button>
+                <div class="rp-group open">
+                  <button class="rp-group-title" type="button"><span>▦</span>Kelola Kegiatan</button>
+                  <button class="rp-nav sub" data-view="monitoring-st">Monitoring ST</button>
+                  <button class="rp-nav sub" data-view="penugasan">Daftar Penugasan</button>
+                  <button class="rp-nav sub" data-view="arsip-penugasan">Arsip Penugasan</button>
+                </div>
+                <div class="rp-group open">
+                  <button class="rp-group-title" type="button"><span>◫</span>Kelola Tim</button>
+                  <button class="rp-nav sub" data-view="monitoring-sk">Monitoring SK</button>
+                  <button class="rp-nav sub" data-view="penetapan">Daftar Penetapan</button>
+                  <button class="rp-nav sub" data-view="arsip-penetapan">Arsip Penetapan</button>
+                </div>
+                <div class="rp-group open">
+                  <button class="rp-group-title" type="button"><span>⚙</span>Administrator</button>
+                  <button class="rp-nav sub" data-view="admin">Tampilan Admin</button>
+                </div>
+              </nav>
+            </aside>
+
+            <div class="rp-shell">
+              <header class="rp-topbar">
+                <div class="rp-year">
+                  <span>Tahun</span>
+                  <select aria-label="Tahun aktif demo">
+                    <option>2026</option>
+                    <option>2025</option>
+                  </select>
+                </div>
+                <div class="rp-user">
+                  <span>Halo, Admin</span>
+                  <strong>rafi</strong>
+                  <i aria-hidden="true">●</i>
+                </div>
+              </header>
+              <main class="rp-content" id="reportingDemoContent" tabindex="-1"></main>
             </div>
           </div>
         </div>
@@ -409,5 +433,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="reporting-demo.js"></script>
 </body>
 </html>
