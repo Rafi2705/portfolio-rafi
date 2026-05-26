@@ -7,6 +7,7 @@ const progressBar = document.querySelector(".scroll-progress");
 const counters = document.querySelectorAll("[data-count]");
 const tiltCards = document.querySelectorAll(".tilt-card");
 const ambientLayer = document.querySelector(".ambient-layer");
+const cursorSpotlight = document.querySelector(".cursor-spotlight");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -58,6 +59,17 @@ const updateScrollState = () => {
 
 window.addEventListener("scroll", updateScrollState, { passive: true });
 window.addEventListener("load", updateScrollState);
+
+if (!prefersReducedMotion && cursorSpotlight) {
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      document.documentElement.style.setProperty("--cursor-x", `${event.clientX}px`);
+      document.documentElement.style.setProperty("--cursor-y", `${event.clientY}px`);
+    },
+    { passive: true }
+  );
+}
 
 const animateCounter = (element) => {
   const target = Number(element.dataset.count);
