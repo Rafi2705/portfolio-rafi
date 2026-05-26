@@ -516,11 +516,11 @@ h3 {
 
 .profile-scene {
   position: relative;
-  width: min(100%, 430px);
-  height: 450px;
+  width: min(100%, 500px);
+  height: 575px;
   margin-left: auto;
   display: grid;
-  place-items: center;
+  place-items: start center;
   isolation: isolate;
 }
 
@@ -544,7 +544,7 @@ h3 {
 }
 
 .orbit-one {
-  inset: 28px 18px 46px 20px;
+  inset: 72px 20px 82px 22px;
   border-radius: 44% 56% 48% 52%;
   background:
     linear-gradient(var(--cream-soft), var(--cream-soft)) padding-box,
@@ -554,16 +554,24 @@ h3 {
 }
 
 .orbit-two {
-  inset: 82px 58px 82px 52px;
+  inset: 126px 70px 134px 64px;
   border-radius: 58% 42% 54% 46%;
   border-color: rgba(169, 132, 95, 0.28);
   transform: rotate(-14deg);
   animation: orbitFloat 6s ease-in-out infinite;
 }
 
-.profile-photo-card {
+.photo-stack {
   position: relative;
-  width: min(300px, 76vw);
+  width: min(390px, 82vw);
+  height: 458px;
+  margin-top: 72px;
+  perspective: 1100px;
+}
+
+.profile-photo-card {
+  position: absolute;
+  width: min(292px, 68vw);
   aspect-ratio: 4 / 5;
   padding: 10px;
   overflow: hidden;
@@ -575,23 +583,38 @@ h3 {
   box-shadow:
     0 30px 90px rgba(24, 21, 18, 0.18),
     inset 0 0 0 1px rgba(255, 255, 255, 0.42);
-  transform: rotate(-2deg);
-  animation: profileFloat 5.8s ease-in-out infinite;
+}
+
+.photo-card-back {
+  top: 0;
+  right: 8px;
+  z-index: 1;
+  opacity: 0.94;
+  transform: rotate(5deg) translate3d(0, 0, -20px);
+  animation: backCardFloat 6.4s ease-in-out infinite;
+}
+
+.photo-card-front {
+  top: 58px;
+  left: 8px;
+  z-index: 3;
+  transform: rotate(-3deg);
+  animation: frontCardFloat 5.8s ease-in-out infinite;
 }
 
 .lpsk-logo-float {
   position: absolute;
-  top: 46px;
-  right: 46px;
-  z-index: 5;
-  width: 66px;
-  height: 66px;
+  top: 88px;
+  right: 42px;
+  z-index: 6;
+  width: 62px;
+  height: 62px;
   display: grid;
   place-items: center;
-  padding: 7px;
+  padding: 6px;
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.88);
-  border-radius: 18px;
+  border-radius: 17px;
   box-shadow: 0 16px 40px rgba(24, 21, 18, 0.14);
   backdrop-filter: blur(16px);
   animation: lpskLogoFloat 5.6s ease-in-out infinite;
@@ -668,6 +691,12 @@ h3 {
   filter: saturate(0.96) contrast(1.03);
 }
 
+.lpsk-photo img {
+  object-position: 45% center;
+  transform: scale(1.08);
+  filter: saturate(0.9) contrast(1.02);
+}
+
 .profile-scan {
   position: absolute;
   inset: 10px;
@@ -719,19 +748,22 @@ h3 {
 }
 
 .badge-role {
-  top: 58px;
-  left: 0;
+  top: 4px;
+  left: 18px;
+  max-width: 230px;
 }
 
 .badge-stack {
-  right: 0;
-  bottom: 88px;
+  right: 10px;
+  bottom: 44px;
+  max-width: 220px;
   animation-delay: -1.8s;
 }
 
 .badge-focus {
-  left: 28px;
-  bottom: 30px;
+  left: 20px;
+  bottom: 18px;
+  max-width: 230px;
   color: var(--paper);
   background: rgba(37, 33, 29, 0.92);
   border-color: rgba(255, 255, 255, 0.12);
@@ -1851,6 +1883,26 @@ h3 {
   }
 }
 
+@keyframes frontCardFloat {
+  0%,
+  100% {
+    transform: rotate(-3deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-2deg) translateY(-9px);
+  }
+}
+
+@keyframes backCardFloat {
+  0%,
+  100% {
+    transform: rotate(5deg) translate3d(0, 0, -20px);
+  }
+  50% {
+    transform: rotate(4deg) translate3d(0, -7px, -20px);
+  }
+}
+
 @keyframes profileShine {
   0%,
   44% {
@@ -2089,21 +2141,38 @@ h3 {
   .profile-scene {
     width: 100%;
     height: auto;
-    min-height: 470px;
-    padding: 18px 0 120px;
+    min-height: 610px;
+    padding: 0 0 132px;
+  }
+
+  .photo-stack {
+    width: min(340px, 92vw);
+    height: 420px;
+    margin-top: 82px;
   }
 
   .profile-photo-card {
-    width: min(282px, 78vw);
+    width: min(248px, 64vw);
+    padding: 8px;
+  }
+
+  .photo-card-back {
+    top: 0;
+    right: 4px;
+  }
+
+  .photo-card-front {
+    top: 62px;
+    left: 4px;
   }
 
   .lpsk-logo-float {
-    top: 30px;
+    top: 98px;
     right: 28px;
-    width: 58px;
-    height: 58px;
-    padding: 6px;
-    border-radius: 16px;
+    width: 52px;
+    height: 52px;
+    padding: 5px;
+    border-radius: 15px;
   }
 
   .profile-badge {
@@ -2112,25 +2181,27 @@ h3 {
   }
 
   .badge-role {
-    top: 4px;
+    top: 0;
     left: 8px;
+    max-width: min(230px, 72vw);
   }
 
   .badge-stack {
-    right: 8px;
-    bottom: 102px;
+    right: 0;
+    bottom: 74px;
+    width: min(218px, 52vw);
   }
 
   .badge-focus {
-    left: 50%;
-    bottom: 18px;
-    transform: translateX(-50%);
-    width: min(290px, 86vw);
+    left: 0;
+    bottom: 0;
+    width: min(238px, 58vw);
+    transform: none;
   }
 
   .badge-focus,
   .badge-focus:hover {
-    animation-name: badgeFloatMobile;
+    animation-name: badgeFloat;
   }
 
   .profile-command-panel {
