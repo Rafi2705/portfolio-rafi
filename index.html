@@ -51,6 +51,10 @@
     <section class="hero section" id="home">
       <div class="container hero-grid">
         <div class="hero-content reveal">
+          <div class="hero-status-row" aria-label="Profile status">
+            <span class="status-pill live">Open to Work</span>
+            <span class="status-pill">LPSK Reporting System Focus</span>
+          </div>
           <p class="eyebrow">Information Systems | Web Development</p>
           <h1>Muhamad Rafi Yulian</h1>
           <p class="hero-headline">Information Systems Graduate focused on web-based reporting systems and IT operations support.</p>
@@ -62,6 +66,22 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="#demo">View Reporting Demo</a>
             <a class="btn btn-secondary" href="assets/cv/CV-Muhamad-Rafi-Yulian.pdf" download>Download CV</a>
+          </div>
+          <div class="hero-marquee" aria-label="Core strengths">
+            <div class="marquee-track">
+              <span>Laravel</span>
+              <span>MySQL</span>
+              <span>RBAC</span>
+              <span>Black Box Testing</span>
+              <span>Documentation</span>
+              <span>System Analysis</span>
+              <span>Laravel</span>
+              <span>MySQL</span>
+              <span>RBAC</span>
+              <span>Black Box Testing</span>
+              <span>Documentation</span>
+              <span>System Analysis</span>
+            </div>
           </div>
           <div class="hero-proof" aria-label="Portfolio highlights">
             <div>
@@ -80,22 +100,50 @@
         </div>
 
         <div class="hero-showcase reveal">
-          <div class="portrait-card tilt-card">
-            <div class="portrait-media">
-              <img src="assets/profile/profile.jpg" alt="Portrait placeholder of Muhamad Rafi Yulian">
+          <div class="profile-scene tilt-card">
+            <div class="profile-orbit orbit-one" aria-hidden="true"></div>
+            <div class="profile-orbit orbit-two" aria-hidden="true"></div>
+            <div class="profile-glow" aria-hidden="true"></div>
+
+            <div class="profile-photo-card">
+              <div class="profile-photo">
+                <img src="assets/profile/profile.jpg" alt="Profile photo of Muhamad Rafi Yulian">
+              </div>
+              <div class="profile-scan" aria-hidden="true"></div>
             </div>
-            <div class="portrait-caption">
+
+            <div class="profile-badge badge-role">
+              <span>Role</span>
+              <strong>Information Systems & IT Support</strong>
+            </div>
+            <div class="profile-badge badge-stack">
+              <span>Stack</span>
+              <strong>Laravel, MySQL, RBAC</strong>
+            </div>
+            <div class="profile-badge badge-focus">
               <span>Primary Focus</span>
-              <strong>Web Development, Information Systems, and LPSK Reporting Application</strong>
+              <strong>LPSK Reporting Application</strong>
             </div>
           </div>
-          <div class="floating-note note-one tilt-card">
-            <span>Role</span>
-            <strong>Information Systems & Technology Governance</strong>
-          </div>
-          <div class="floating-note note-two tilt-card">
-            <span>Stack</span>
-            <strong>Laravel, MySQL, Bootstrap, RBAC</strong>
+
+          <div class="profile-command-panel tilt-card">
+            <div class="command-top">
+              <span></span>
+              <span></span>
+              <span></span>
+              <strong>profile.ready</strong>
+            </div>
+            <div class="command-line">
+              <span>Focus</span>
+              <strong>Web-based reporting systems</strong>
+            </div>
+            <div class="command-line">
+              <span>Strength</span>
+              <strong>Structured analysis, testing, and documentation</strong>
+            </div>
+            <div class="command-meter" aria-hidden="true">
+              <i></i>
+            </div>
           </div>
         </div>
       </div>
@@ -130,21 +178,21 @@
                 <strong>PELAPORAN</strong>
               </div>
               <nav class="rp-menu" aria-label="Menu demo pelaporan">
-                <button class="rp-nav active" data-view="home"><span>⌂</span>Beranda</button>
+                <button class="rp-nav active" data-view="home"><span>H</span>Beranda</button>
                 <div class="rp-group open">
-                  <button class="rp-group-title" type="button"><span>▦</span>Kelola Kegiatan</button>
+                  <button class="rp-group-title" type="button"><span>ST</span>Kelola Kegiatan</button>
                   <button class="rp-nav sub" data-view="monitoring-st">Monitoring ST</button>
                   <button class="rp-nav sub" data-view="penugasan">Daftar Penugasan</button>
                   <button class="rp-nav sub" data-view="arsip-penugasan">Arsip Penugasan</button>
                 </div>
                 <div class="rp-group open">
-                  <button class="rp-group-title" type="button"><span>◫</span>Kelola Tim</button>
+                  <button class="rp-group-title" type="button"><span>SK</span>Kelola Tim</button>
                   <button class="rp-nav sub" data-view="monitoring-sk">Monitoring SK</button>
                   <button class="rp-nav sub" data-view="penetapan">Daftar Penetapan</button>
                   <button class="rp-nav sub" data-view="arsip-penetapan">Arsip Penetapan</button>
                 </div>
                 <div class="rp-group open">
-                  <button class="rp-group-title" type="button"><span>⚙</span>Administrator</button>
+                  <button class="rp-group-title" type="button"><span>AD</span>Administrator</button>
                   <button class="rp-nav sub" data-view="admin">Tampilan Admin</button>
                 </div>
               </nav>
@@ -162,7 +210,7 @@
                 <div class="rp-user">
                   <span>Halo, Admin</span>
                   <strong>rafi</strong>
-                  <i aria-hidden="true">●</i>
+                  <i aria-hidden="true"></i>
                 </div>
               </header>
               <main class="rp-content" id="reportingDemoContent" tabindex="-1"></main>
