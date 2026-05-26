@@ -8,6 +8,8 @@ const counters = document.querySelectorAll("[data-count]");
 const tiltCards = document.querySelectorAll(".tilt-card");
 const ambientLayer = document.querySelector(".ambient-layer");
 const cursorSpotlight = document.querySelector(".cursor-spotlight");
+const demoBrowser = document.querySelector(".demo-browser");
+const demoLiveLink = document.querySelector(".demo-live-link");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -69,6 +71,31 @@ if (!prefersReducedMotion && cursorSpotlight) {
     },
     { passive: true }
   );
+}
+
+if (demoBrowser) {
+  const demoUrl = demoBrowser.dataset.demoUrl?.trim();
+  if (demoUrl) {
+    const iframe = document.createElement("iframe");
+    iframe.src = demoUrl;
+    iframe.title = "Live demo of web-based reporting application";
+    iframe.loading = "lazy";
+    iframe.referrerPolicy = "no-referrer-when-downgrade";
+    iframe.setAttribute("allowfullscreen", "");
+    iframe.className = "demo-iframe";
+
+    const placeholder = demoBrowser.querySelector(".demo-placeholder");
+    if (placeholder) {
+      placeholder.replaceWith(iframe);
+    } else {
+      demoBrowser.appendChild(iframe);
+    }
+
+    if (demoLiveLink) {
+      demoLiveLink.href = demoUrl;
+      demoLiveLink.removeAttribute("aria-disabled");
+    }
+  }
 }
 
 const animateCounter = (element) => {
