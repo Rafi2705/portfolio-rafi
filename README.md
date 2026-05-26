@@ -40,7 +40,7 @@ Website juga bisa dibuka langsung dengan double click `index.html`, tetapi Live 
 
 ## Catatan Edit Konten
 
-- Foto profil berada di `assets/profile/profile.jpg`.
+- Foto profil berada di `assets/profile/profile.png`.
 - Gambar project berada di `assets/projects/`.
 - Gambar sertifikat berada di `assets/certificates/`.
 - File CV terbaru berada di `assets/cv/CV-Muhamad-Rafi-Yulian.pdf`.

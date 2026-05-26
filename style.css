@@ -597,12 +597,22 @@ h3 {
   border-radius: 26px 26px 86px 26px;
 }
 
+.profile-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 34%, transparent 42%, rgba(37, 33, 29, 0.08) 100%),
+    linear-gradient(180deg, transparent 58%, rgba(24, 21, 18, 0.14));
+  pointer-events: none;
+}
+
 .profile-photo img {
   height: 100%;
   object-fit: cover;
-  object-position: center top;
-  transform: scale(1.02);
-  filter: saturate(1.02) contrast(1.02);
+  object-position: center center;
+  transform: scale(1.005);
+  filter: saturate(0.96) contrast(1.03);
 }
 
 .profile-scan {
