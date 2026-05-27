@@ -1223,7 +1223,7 @@ h3 {
     linear-gradient(#ffffff, #ffffff) padding-box,
     linear-gradient(135deg, rgba(198, 40, 40, 0.72), rgba(250, 153, 28, 0.58), rgba(28, 118, 143, 0.45)) border-box;
   border: 1px solid transparent;
-  box-shadow: 0 16px 36px rgba(198, 40, 40, 0.13);
+  box-shadow: 0 12px 28px rgba(24, 21, 18, 0.08);
   overflow: visible;
 }
 
@@ -1234,7 +1234,7 @@ h3 {
   background: radial-gradient(circle, #ffffff 0 36%, #c62828 38% 100%);
   border: 1px solid rgba(198, 40, 40, 0.24);
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.26), 0 0 18px rgba(198, 40, 40, 0.2);
+  box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.26);
   animation: liveBeacon 1.7s ease-out infinite;
 }
 
@@ -2026,14 +2026,14 @@ h3 {
 
 @keyframes liveBeacon {
   0% {
-    box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.32), 0 0 18px rgba(198, 40, 40, 0.18);
+    box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.28);
     transform: scale(1);
   }
   48% {
     transform: scale(1.08);
   }
   100% {
-    box-shadow: 0 0 0 14px rgba(198, 40, 40, 0), 0 0 24px rgba(198, 40, 40, 0.22);
+    box-shadow: 0 0 0 14px rgba(198, 40, 40, 0);
     transform: scale(1);
   }
 }
