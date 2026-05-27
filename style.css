@@ -1283,20 +1283,20 @@ h3 {
 .demo-lpsk-mark::after {
   content: "";
   position: absolute;
-  inset: -12px;
+  inset: -8px;
   z-index: -1;
-  border: 2px solid rgba(28, 118, 143, 0.22);
-  border-radius: 28px;
+  border: 1px solid rgba(28, 118, 143, 0.18);
+  border-radius: 26px;
   animation: liveBorderPulse 1.7s ease-out infinite;
 }
 
 .demo-lpsk-mark::before {
   content: "";
   position: absolute;
-  inset: -20px;
+  inset: -16px;
   z-index: -1;
-  border: 3px solid rgba(37, 33, 29, 0.08);
-  border-radius: 26px;
+  border: 1px solid rgba(37, 33, 29, 0.1);
+  border-radius: 30px;
   animation: liveLogoWave 1.7s ease-out infinite;
 }
 
@@ -2051,15 +2051,15 @@ h3 {
 
 @keyframes liveLogoWave {
   0% {
-    opacity: 0.55;
-    transform: scale(0.82);
+    opacity: 0.42;
+    transform: scale(0.92);
   }
   48% {
-    opacity: 0.28;
+    opacity: 0.2;
   }
   100% {
     opacity: 0;
-    transform: scale(1.18);
+    transform: scale(1.12);
   }
 }
 
