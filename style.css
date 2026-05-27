@@ -399,7 +399,7 @@ h3 {
 .hero-marquee {
   position: relative;
   max-width: 640px;
-  margin-top: 86px;
+  margin-top: 44px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -479,7 +479,7 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   max-width: 640px;
-  margin-top: 26px;
+  margin-top: 68px;
 }
 
 .hero-proof div {
