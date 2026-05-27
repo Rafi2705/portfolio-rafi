@@ -15,24 +15,28 @@
 .reporting-showcase {
   position: relative;
   display: grid;
-  gap: 18px;
+  gap: 14px;
 }
 
 .reporting-note {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+  align-items: end;
   justify-content: space-between;
-  gap: 18px;
-  padding: 16px 18px;
-  background: rgba(255, 255, 255, 0.08);
+  gap: 22px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.065);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius);
+  backdrop-filter: blur(14px);
 }
 
 .reporting-note p {
-  max-width: 760px;
-  margin: 0;
+  max-width: 620px;
+  margin: 8px 0 0;
   color: rgba(255, 250, 242, 0.78);
+  font-size: 0.94rem;
+  line-height: 1.58;
 }
 
 .rp-app {
@@ -1229,6 +1233,11 @@
   .reporting-note,
   .rp-page-head {
     display: block;
+  }
+
+  .demo-feature-list {
+    justify-content: flex-start;
+    margin-top: 14px;
   }
 
   .rp-app {
