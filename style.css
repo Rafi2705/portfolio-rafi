@@ -446,7 +446,7 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   max-width: 640px;
-  margin-top: 94px;
+  margin-top: 40px;
 }
 
 .hero-proof div {
