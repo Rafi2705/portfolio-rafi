@@ -291,7 +291,7 @@ a {
 }
 
 .hero-content {
-  padding-top: 18px;
+  padding-top: 58px;
 }
 
 .eyebrow {
@@ -336,7 +336,7 @@ h3 {
 
 .hero-headline {
   max-width: 680px;
-  margin: 26px 0 18px;
+  margin: 32px 0 22px;
   color: var(--brown-700);
   font-size: clamp(1rem, 1.55vw, 1.24rem);
   font-weight: 800;
@@ -348,7 +348,7 @@ h3 {
   margin: 0;
   color: var(--muted);
   font-size: 0.96rem;
-  line-height: 1.74;
+  line-height: 1.78;
 }
 
 .hero-status-row {
@@ -393,40 +393,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 46px;
-}
-
-.hero-marquee {
-  position: relative;
-  max-width: 640px;
-  margin-top: 96px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.46);
-  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 8px;
-  padding: 7px 8px;
-  animation: marqueeMove 23s linear infinite;
-}
-
-.marquee-track span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 26px;
-  padding: 0 10px;
-  color: var(--brown-950);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(37, 33, 29, 0.08);
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 900;
-  white-space: nowrap;
+  margin-top: 60px;
 }
 
 .btn {
@@ -479,11 +446,11 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   max-width: 640px;
-  margin-top: 16px;
+  margin-top: 94px;
 }
 
 .hero-proof div {
-  padding: 14px;
+  padding: 20px;
   background: rgba(255, 255, 255, 0.62);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1875,15 +1842,6 @@ h3 {
   }
 }
 
-@keyframes marqueeMove {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @keyframes logoMarqueeMove {
   from {
     transform: translateX(0);
@@ -2192,12 +2150,6 @@ h3 {
   .btn {
     white-space: normal;
     text-align: center;
-  }
-
-  .hero-marquee {
-    width: 100%;
-    margin-top: 72px;
-    border-radius: var(--radius);
   }
 
   .profile-scene {
