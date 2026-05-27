@@ -4,6 +4,7 @@ const reportingContent = document.querySelector("#reportingDemoContent");
 const rpState = {
   view: "home",
   lastList: "penugasan",
+  monitoringMonth: 5,
   openGroups: new Set(["kegiatan", "tim", "admin"]),
   penugasan: [
     {
@@ -58,6 +59,45 @@ const rpState = {
       tone: "pending",
       lane: 0,
     },
+    {
+      id: "ST-005",
+      title: "Koordinasi Perlindungan Saksi Wilayah Barat",
+      unit: "Biro Pemenuhan Hak Saksi",
+      date: "2026-06-01",
+      endDate: "2026-06-05",
+      deadline: "2026-06-09",
+      status: "done",
+      reporter: "rafi",
+      location: "Jakarta",
+      tone: "done",
+      lane: 0,
+    },
+    {
+      id: "ST-006",
+      title: "Verifikasi Lapangan Permohonan Perlindungan",
+      unit: "Biro Penelaahan Permohonan",
+      date: "2026-06-08",
+      endDate: "2026-06-12",
+      deadline: "2026-06-17",
+      status: "pending",
+      reporter: "rafi",
+      location: "Tangerang",
+      tone: "pending",
+      lane: 0,
+    },
+    {
+      id: "ST-007",
+      title: "Pendampingan Layanan Perlindungan Darurat",
+      unit: "Biro Keamanan dan Pengawalan",
+      date: "2026-06-15",
+      endDate: "2026-06-19",
+      deadline: "2026-06-18",
+      status: "overdue",
+      reporter: "rafi",
+      location: "Bekasi",
+      tone: "overdue",
+      lane: 0,
+    },
   ],
   penetapan: [
     {
@@ -103,6 +143,18 @@ const fmtDate = (value) => {
 };
 
 const dayNumber = (value) => Number(value.slice(-2));
+
+const monthNumber = (value) => Number(value.slice(5, 7));
+
+const monthNames = {
+  5: "Mei",
+  6: "Juni",
+};
+
+const monthDays = {
+  5: 31,
+  6: 30,
+};
 
 const rangeDate = (item) => `${fmtDate(item.date)} - ${fmtDate(item.endDate || item.date)}`;
 
@@ -177,11 +229,11 @@ const homeView = () => `
           <img src="assets/icons/logo-lpsk-ui.png" alt="">
         </div>
         <div class="rp-home-status status-green">
-          <span>1</span>
+          <span>2</span>
           Sudah Dilaporkan
         </div>
         <div class="rp-home-status status-red">
-          <span>2</span>
+          <span>5</span>
           Belum Dilaporkan
         </div>
       </div>
@@ -190,12 +242,12 @@ const homeView = () => `
     <div class="rp-home-metrics">
       <article>
         <span>Total ST</span>
-        <strong>4</strong>
+        <strong>7</strong>
         <small>Data dummy aktif</small>
       </article>
       <article>
         <span>Monitoring</span>
-        <strong>Mei 2026</strong>
+        <strong>Mei & Juni 2026</strong>
         <small>Kalender laporan</small>
       </article>
       <article>
@@ -208,12 +260,19 @@ const homeView = () => `
 `;
 
 const monitoringStView = () => {
+  const selectedMonth = rpState.monitoringMonth;
+  const monthLabel = monthNames[selectedMonth] || "Mei";
+  const monthTotalDays = monthDays[selectedMonth] || 31;
+  const monthItems = rpState.penugasan.filter((item) => monthNumber(item.date) === selectedMonth);
+  const totalDone = monthItems.filter((item) => item.status === "done").length;
+  const totalPending = monthItems.filter((item) => item.status === "pending").length;
+  const totalOverdue = monthItems.filter((item) => item.status === "overdue").length;
   const days = Array.from({ length: 35 }, (_, index) => index + 1);
   const barsByWeek = [0, 1, 2, 3, 4].map((weekIndex) => {
     const weekStart = weekIndex * 7 + 1;
     const weekEnd = weekStart + 6;
 
-    return rpState.penugasan.flatMap((item) => {
+    return monthItems.flatMap((item) => {
       const start = dayNumber(item.date);
       const end = dayNumber(item.endDate || item.date);
       const segStart = Math.max(start, weekStart);
@@ -236,22 +295,22 @@ const monitoringStView = () => {
     <section class="rp-page mst-wrap">
       <div class="mst-topbar mst-topbar-with-unit">
         <div class="mst-title-wrap">
-          <div class="mst-title">Mei 2026</div>
+          <div class="mst-title">${monthLabel} 2026</div>
           <div class="mst-subtitle">Kalender Monitoring ST - deadline laporan hari kerja</div>
         </div>
         <div class="mst-filter-row mst-filter-with-unit">
           <div class="mst-pill mst-pill-unit"><div class="mst-pill-inner"><select><option>Semua Unit Kerja</option><option>Biro Pemenuhan Hak Saksi</option></select><span class="mst-pill-icon"><i class="fa-solid fa-chevron-down"></i></span></div></div>
-          <div class="mst-pill"><div class="mst-pill-inner"><select><option>Mei</option></select><span class="mst-pill-icon"><i class="fa-solid fa-chevron-down"></i></span></div></div>
+          <div class="mst-pill"><div class="mst-pill-inner"><select data-rp-monitor-month><option value="5" ${selectedMonth === 5 ? "selected" : ""}>Mei</option><option value="6" ${selectedMonth === 6 ? "selected" : ""}>Juni</option></select><span class="mst-pill-icon"><i class="fa-solid fa-chevron-down"></i></span></div></div>
           <div class="mst-pill"><div class="mst-pill-inner"><select><option>2026</option></select><span class="mst-pill-icon"><i class="fa-solid fa-chevron-down"></i></span></div></div>
           <div class="mst-pill mst-pill-sm"><div class="mst-pill-inner"><select><option>Semua Deadline</option><option>Countdown Aktif</option><option>Melewati Batas Waktu</option></select><span class="mst-pill-icon"><i class="fa-solid fa-chevron-down"></i></span></div></div>
         </div>
       </div>
       <div class="mst-kpi-row">
-        <div class="mst-kpi"><div class="mst-kpi-label">Total Kegiatan</div><div class="mst-kpi-value">4</div></div>
-        <div class="mst-kpi"><div class="mst-kpi-label">Countdown Aktif</div><div class="mst-kpi-value">3</div></div>
-        <div class="mst-kpi"><div class="mst-kpi-label">Sudah Dilaporkan</div><div class="mst-kpi-value" style="color:#15803d">1</div></div>
-        <div class="mst-kpi"><div class="mst-kpi-label">Belum Dilaporkan<br>Masih Batas Waktu</div><div class="mst-kpi-value" style="color:#dc2626">2</div></div>
-        <div class="mst-kpi"><div class="mst-kpi-label">Melewati Batas Waktu</div><div class="mst-kpi-value" style="color:#b91c1c">1</div></div>
+        <div class="mst-kpi"><div class="mst-kpi-label">Total Kegiatan</div><div class="mst-kpi-value">${monthItems.length}</div></div>
+        <div class="mst-kpi"><div class="mst-kpi-label">Countdown Aktif</div><div class="mst-kpi-value">${totalPending + totalOverdue}</div></div>
+        <div class="mst-kpi"><div class="mst-kpi-label">Sudah Dilaporkan</div><div class="mst-kpi-value" style="color:#15803d">${totalDone}</div></div>
+        <div class="mst-kpi"><div class="mst-kpi-label">Belum Dilaporkan<br>Masih Batas Waktu</div><div class="mst-kpi-value" style="color:#dc2626">${totalPending}</div></div>
+        <div class="mst-kpi"><div class="mst-kpi-label">Melewati Batas Waktu</div><div class="mst-kpi-value" style="color:#b91c1c">${totalOverdue}</div></div>
       </div>
       <div class="mst-weekdays">
         <div class="mst-weekday">Senin</div><div class="mst-weekday">Selasa</div><div class="mst-weekday">Rabu</div><div class="mst-weekday">Kamis</div><div class="mst-weekday">Jumat</div><div class="mst-weekday">Sabtu</div><div class="mst-weekday">Minggu</div>
@@ -261,7 +320,7 @@ const monitoringStView = () => {
           <div class="mst-week">
             ${days.slice(week * 7, week * 7 + 7).map((day, index) => `
               <div class="mst-day ${(week + index) % 2 === 0 ? "mst-check-a" : "mst-check-b"} ${day === 27 ? "mst-today" : ""}">
-                <div class="mst-day-num">${day <= 31 ? day : ""}</div>
+                <div class="mst-day-num">${day <= monthTotalDays ? day : ""}</div>
               </div>
             `).join("")}
             <div class="mst-bars">
@@ -273,6 +332,7 @@ const monitoringStView = () => {
                   <button class="mst-bar ${item.status === "overdue" ? "mst-bar-overdue" : ""}"
                     style="left:${item.left + 0.45}%; width:calc(${item.width}% - 8px); top:${item.top}px; height:24px; background:${color}; --mst-marquee-duration:9s;"
                     data-rp-detail="penugasan:${item.id}"
+                    data-rp-return="monitoring-st"
                     data-mst-tip="${item.id}"
                     aria-label="${label}">
                     <span class="mst-bar-label-shell">
@@ -329,7 +389,7 @@ const tableFilters = (isPenugasan) => {
   return `
     <div class="sp-toolbar">
       <button class="sp-btn sp-btn-blue" data-rp-form="${type}:create"><i class="fa-solid fa-plus"></i><span>Tambah</span></button>
-      <select class="sp-select is-empty"><option>Pilih bulan kegiatan</option><option>Mei</option></select>
+      <select class="sp-select is-empty"><option>Pilih bulan kegiatan</option><option>Mei</option><option>Juni</option></select>
       <select class="sp-select is-empty"><option>Pilih tahun kegiatan</option><option>2026</option></select>
       <div class="sp-search-wrap">
         <input class="sp-search-input" placeholder="Cari nomor/judul ${isPenugasan ? "surat tugas" : "penetapan"}...">
@@ -402,7 +462,7 @@ const formTextarea = (label, value = "", readonly = false) => `
   </label>
 `;
 
-const workflowFormView = (type, mode, id = "") => {
+const workflowFormView = (type, mode, id = "", returnView = "") => {
   const isPenugasan = type === "penugasan";
   const code = isPenugasan ? "ST" : "SK";
   const source = isPenugasan ? rpState.penugasan : rpState.penetapan;
@@ -425,7 +485,8 @@ const workflowFormView = (type, mode, id = "") => {
     edit: `Edit ${isPenugasan ? "Penugasan" : "Penetapan"}`,
     report: `Input Laporan ${isPenugasan ? "Penugasan" : "Penetapan"}`,
   }[mode];
-  const listView = isPenugasan ? "penugasan" : "penetapan";
+  const listView = returnView || (isPenugasan ? "penugasan" : "penetapan");
+  const backLabel = mode === "detail" ? "Kembali" : "Batal";
   const finalButton = mode === "detail" ? "" : `<button class="rp-btn green" type="button" data-rp-demo-save="${modeLabel}">Simpan</button>`;
 
   return `
@@ -453,7 +514,7 @@ const workflowFormView = (type, mode, id = "") => {
             : formTextarea("Catatan", "Halaman ini dibuat statis mengikuti alur aplikasi pelaporan asli untuk kebutuhan portfolio.", readonly)}
         </div>
         <div class="rp-workflow-actions">
-          <button class="rp-btn gray" type="button" data-view="${listView}">Batal</button>
+          <button class="rp-btn gray" type="button" data-view="${listView}">${backLabel}</button>
           ${finalButton}
         </div>
       </div>
@@ -596,7 +657,7 @@ if (reportingApp && reportingContent) {
     if (detailButton) {
       const [type, id] = detailButton.dataset.rpDetail.split(":");
       rpState.lastList = type;
-      reportingContent.innerHTML = workflowFormView(type, "detail", id);
+      reportingContent.innerHTML = workflowFormView(type, "detail", id, detailButton.dataset.rpReturn || "");
       reportingContent.focus({ preventScroll: true });
       return;
     }
@@ -633,6 +694,14 @@ if (reportingApp && reportingContent) {
     if (toastButton) {
       showPelaporanAlert(toastButton.dataset.rpToast, "success");
     }
+  });
+
+  reportingApp.addEventListener("change", (event) => {
+    const monthSelect = event.target.closest("[data-rp-monitor-month]");
+    if (!monthSelect) return;
+    rpState.monitoringMonth = Number(monthSelect.value) || 5;
+    rpState.view = "monitoring-st";
+    render();
   });
 
   reportingApp.addEventListener("mouseover", (event) => {

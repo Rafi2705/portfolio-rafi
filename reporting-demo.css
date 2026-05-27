@@ -880,7 +880,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   padding: 0 6px;
   border: 1px solid rgba(255, 255, 255, 0.64);
   border-radius: 6px;
@@ -917,11 +917,11 @@
 .mst-bar-overdue::before {
   content: "";
   position: absolute;
-  inset: -5px;
-  z-index: 0;
+  inset: -8px;
+  z-index: -1;
   border-radius: inherit;
-  background: radial-gradient(ellipse at center, rgba(248, 113, 113, 0.22), rgba(220, 38, 38, 0.18) 36%, rgba(127, 29, 29, 0) 76%);
-  filter: blur(4px);
+  background: radial-gradient(ellipse at center, rgba(248, 113, 113, 0.55), rgba(220, 38, 38, 0.32) 42%, rgba(127, 29, 29, 0) 78%);
+  filter: blur(6px);
   animation: mstOverdueAuraPulse 2.1s ease-in-out infinite;
 }
 
@@ -2229,11 +2229,31 @@
 
 .mst-bar {
   z-index: 4;
+  overflow: visible;
   border: 1px solid rgba(255, 255, 255, 0.72);
   color: #fff;
   font: inherit;
   pointer-events: auto;
   transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+}
+
+.mst-bar-overdue {
+  isolation: isolate;
+  box-shadow:
+    0 0 0 1px rgba(248, 113, 113, 0.58),
+    0 0 14px rgba(220, 38, 38, 0.34),
+    0 4px 16px rgba(127, 29, 29, 0.28);
+}
+
+.mst-bar-overdue::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  z-index: -1;
+  border-radius: 9px;
+  border: 1px solid rgba(248, 113, 113, 0.62);
+  opacity: 0.72;
+  animation: mstOverdueAuraPulse 2.1s ease-in-out infinite;
 }
 
 .mst-bar:hover {
