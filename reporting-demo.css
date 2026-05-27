@@ -25,7 +25,7 @@
 
 .reporting-note {
   display: block;
-  padding: 4px 4px 16px;
+  padding: 4px 4px 18px;
   background: transparent;
   border: 0;
   border-radius: 0;
@@ -35,7 +35,7 @@
 
 .reporting-note p {
   max-width: 100%;
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   color: var(--muted);
   font-size: 0.94rem;
   line-height: 1.58;
@@ -47,26 +47,6 @@
   border: 1px solid rgba(37, 33, 29, 0.12);
   border-radius: var(--radius);
   box-shadow: 0 22px 66px rgba(24, 21, 18, 0.12);
-}
-
-.reporting-frame-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 0 4px 12px;
-}
-
-.reporting-frame-head span {
-  color: var(--brown-500);
-  font-size: 0.74rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.reporting-frame-head strong {
-  color: var(--brown-950);
-  font-size: 0.92rem;
 }
 
 .rp-app {
