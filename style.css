@@ -395,7 +395,7 @@ h3 {
 .hero-marquee {
   position: relative;
   max-width: 640px;
-  margin-top: 20px;
+  margin-top: 32px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -479,7 +479,7 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   max-width: 640px;
-  margin-top: 24px;
+  margin-top: 34px;
 }
 
 .hero-proof div {
@@ -518,8 +518,8 @@ h3 {
 
 .profile-scene {
   position: relative;
-  width: min(100%, 590px);
-  height: 620px;
+  width: min(100%, 560px);
+  height: 604px;
   margin-left: auto;
   display: grid;
   place-items: start center;
@@ -546,7 +546,7 @@ h3 {
 }
 
 .orbit-one {
-  inset: 84px 12px 90px 22px;
+  inset: 76px 16px 88px 22px;
   border-radius: 44% 56% 48% 52%;
   background:
     linear-gradient(var(--cream-soft), var(--cream-soft)) padding-box,
@@ -556,7 +556,7 @@ h3 {
 }
 
 .orbit-two {
-  inset: 138px 72px 146px 68px;
+  inset: 128px 72px 144px 68px;
   border-radius: 58% 42% 54% 46%;
   border-color: rgba(169, 132, 95, 0.28);
   transform: rotate(-14deg);
@@ -565,16 +565,16 @@ h3 {
 
 .photo-stack {
   position: relative;
-  width: min(520px, 88vw);
-  height: 518px;
-  margin-top: 78px;
+  width: min(444px, 84vw);
+  height: 472px;
+  margin-top: 76px;
   perspective: 1100px;
   transform-style: preserve-3d;
 }
 
 .profile-photo-card {
   position: absolute;
-  width: min(288px, 64vw);
+  width: min(292px, 64vw);
   aspect-ratio: 4 / 5;
   padding: 10px;
   overflow: hidden;
@@ -592,19 +592,19 @@ h3 {
 }
 
 .photo-card-back {
-  top: 20px;
-  right: 8px;
+  top: 8px;
+  right: 12px;
   z-index: 1;
-  opacity: 0.98;
-  transform: rotate(6deg) translate3d(0, 0, -24px);
+  opacity: 0.94;
+  transform: rotate(5deg) translate3d(0, 0, -24px);
   animation: backCardFloat 6.4s ease-in-out infinite;
 }
 
 .photo-card-front {
-  top: 122px;
-  left: 24px;
+  top: 66px;
+  left: 10px;
   z-index: 3;
-  transform: rotate(-4deg);
+  transform: rotate(-3deg);
   animation: frontCardFloat 5.8s ease-in-out infinite;
 }
 
@@ -615,7 +615,7 @@ h3 {
   box-shadow:
     0 42px 108px rgba(24, 21, 18, 0.26),
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-  transform: rotate(2deg) translate3d(8px, 34px, 90px) scale(1.045);
+  transform: rotate(2deg) translate3d(-34px, 48px, 110px) scale(1.055);
 }
 
 .photo-card-front:hover,
@@ -625,13 +625,13 @@ h3 {
   box-shadow:
     0 46px 116px rgba(24, 21, 18, 0.28),
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-  transform: rotate(-2deg) translate3d(-16px, -18px, 96px) scale(1.055);
+  transform: rotate(-1deg) translate3d(-10px, -18px, 100px) scale(1.055);
 }
 
 .lpsk-logo-float {
   position: absolute;
-  top: 110px;
-  right: 18px;
+  top: 104px;
+  right: 26px;
   z-index: 6;
   width: 62px;
   height: 62px;
@@ -644,82 +644,6 @@ h3 {
   box-shadow: 0 16px 40px rgba(24, 21, 18, 0.14);
   backdrop-filter: blur(16px);
   animation: lpskLogoFloat 5.6s ease-in-out infinite;
-}
-
-.identity-cluster {
-  position: absolute;
-  right: 8px;
-  bottom: 154px;
-  z-index: 7;
-  display: grid;
-  gap: 8px;
-}
-
-.identity-chip {
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  align-items: center;
-  gap: 8px;
-  min-width: 124px;
-  padding: 7px 9px;
-  color: var(--brown-950);
-  background: rgba(255, 255, 255, 0.84);
-  border: 1px solid rgba(255, 255, 255, 0.88);
-  border-radius: var(--radius);
-  box-shadow: 0 16px 38px rgba(24, 21, 18, 0.12);
-  backdrop-filter: blur(14px);
-  animation: identityFloat 5.8s ease-in-out infinite;
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
-}
-
-.identity-chip:nth-child(2) {
-  animation-delay: -1.6s;
-}
-
-.identity-chip:nth-child(3) {
-  animation-delay: -3.2s;
-}
-
-.identity-chip b {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  color: var(--paper);
-  background: var(--brown-950);
-  border-radius: 10px;
-  font-size: 0.72rem;
-  line-height: 1;
-}
-
-.identity-chip small {
-  color: var(--brown-700);
-  font-size: 0.68rem;
-  font-weight: 900;
-  line-height: 1.1;
-}
-
-.identity-kominfo b {
-  background: linear-gradient(135deg, #1c768f, #47a8bd);
-}
-
-.identity-startup b {
-  background: linear-gradient(135deg, #fa991c, #d15f22);
-  font-size: 0.68rem;
-}
-
-.identity-nf b {
-  background: linear-gradient(135deg, #34302b, #6f7a68);
-}
-
-.identity-chip:hover,
-.profile-scene:hover .identity-chip {
-  animation-play-state: paused;
-}
-
-.identity-chip:hover {
-  transform: translateX(-6px) translateY(-3px);
-  box-shadow: 0 22px 52px rgba(24, 21, 18, 0.18);
 }
 
 .profile-scene:hover .lpsk-logo-float {
@@ -855,7 +779,7 @@ h3 {
 }
 
 .badge-role {
-  top: 20px;
+  top: 54px;
   left: 18px;
   max-width: 230px;
   z-index: 7;
@@ -890,15 +814,17 @@ h3 {
 
 .profile-logo-panel {
   position: relative;
-  width: min(100%, 460px);
+  width: min(100%, 520px);
   margin-left: auto;
-  padding: 14px;
+  padding: 14px 14px 16px;
   overflow: hidden;
-  color: var(--paper);
-  background: rgba(37, 33, 29, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--brown-950);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(250, 247, 240, 0.74)),
+    radial-gradient(circle at 86% 22%, rgba(28, 118, 143, 0.1), transparent 34%);
+  border: 1px solid rgba(37, 33, 29, 0.12);
   border-radius: var(--radius);
-  box-shadow: 0 24px 70px rgba(24, 21, 18, 0.18);
+  box-shadow: 0 24px 70px rgba(24, 21, 18, 0.12);
 }
 
 .profile-logo-panel::before {
@@ -906,9 +832,9 @@ h3 {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 26px 26px;
+    linear-gradient(90deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
   mask-image: linear-gradient(90deg, transparent, black 16%, black 84%, transparent);
   pointer-events: none;
 }
@@ -924,46 +850,45 @@ h3 {
 .logo-panel-top span {
   width: 9px;
   height: 9px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(37, 33, 29, 0.24);
   border-radius: 50%;
 }
 
 .logo-panel-top strong {
   margin-left: auto;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.78rem;
+  color: var(--brown-700);
+  font-size: 0.82rem;
+  font-weight: 900;
 }
 
 .profile-logo-marquee {
   position: relative;
   overflow: hidden;
-  padding: 4px 0;
-  mask-image: linear-gradient(90deg, transparent, black 9%, black 91%, transparent);
+  padding: 8px 0;
+  mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
 }
 
 .logo-marquee-track {
   position: relative;
   display: flex;
   width: max-content;
-  gap: 12px;
-  animation: logoMarqueeMove 28s linear infinite;
-}
-
-.profile-logo-panel:hover .logo-marquee-track {
-  animation-play-state: paused;
+  gap: 14px;
+  animation: logoMarqueeMove 34s linear infinite;
 }
 
 .logo-chip {
-  flex: 0 0 96px;
-  width: 96px;
-  height: 64px;
+  flex: 0 0 112px;
+  width: 112px;
+  height: 72px;
   display: grid;
   place-items: center;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.78);
+  padding: 9px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(37, 33, 29, 0.09);
   border-radius: var(--radius);
-  box-shadow: inset 0 0 0 1px rgba(37, 33, 29, 0.03);
+  box-shadow:
+    0 12px 28px rgba(24, 21, 18, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.62);
 }
 
 .logo-chip img {
@@ -2012,20 +1937,20 @@ h3 {
 @keyframes frontCardFloat {
   0%,
   100% {
-    transform: rotate(-4deg) translateY(0);
+    transform: rotate(-3deg) translateY(0);
   }
   50% {
-    transform: rotate(-3deg) translateY(-9px);
+    transform: rotate(-2deg) translateY(-9px);
   }
 }
 
 @keyframes backCardFloat {
   0%,
   100% {
-    transform: rotate(6deg) translate3d(0, 0, -20px);
+    transform: rotate(5deg) translate3d(0, 0, -24px);
   }
   50% {
-    transform: rotate(5deg) translate3d(0, -7px, -20px);
+    transform: rotate(4deg) translate3d(0, -7px, -24px);
   }
 }
 
@@ -2078,16 +2003,6 @@ h3 {
   100% {
     opacity: 0;
     transform: scale(1.26);
-  }
-}
-
-@keyframes identityFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-7px);
   }
 }
 
@@ -2287,60 +2202,38 @@ h3 {
   .profile-scene {
     width: 100%;
     height: auto;
-    min-height: 682px;
-    padding: 0 0 150px;
+    min-height: 632px;
+    padding: 0 0 138px;
   }
 
   .photo-stack {
-    width: min(382px, 92vw);
-    height: 468px;
-    margin-top: 92px;
+    width: min(354px, 92vw);
+    height: 424px;
+    margin-top: 88px;
   }
 
   .profile-photo-card {
-    width: min(238px, 60vw);
+    width: min(238px, 62vw);
     padding: 8px;
   }
 
   .photo-card-back {
-    top: 38px;
-    right: 0;
+    top: 20px;
+    right: 2px;
   }
 
   .photo-card-front {
-    top: 142px;
-    left: 0;
+    top: 86px;
+    left: 2px;
   }
 
   .lpsk-logo-float {
-    top: 130px;
+    top: 112px;
     right: 12px;
     width: 52px;
     height: 52px;
     padding: 5px;
     border-radius: 15px;
-  }
-
-  .identity-cluster {
-    right: 8px;
-    bottom: 178px;
-    gap: 6px;
-  }
-
-  .identity-chip {
-    grid-template-columns: 28px 1fr;
-    min-width: 112px;
-    padding: 6px 8px;
-  }
-
-  .identity-chip b {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-  }
-
-  .identity-chip small {
-    font-size: 0.64rem;
   }
 
   .profile-badge {
@@ -2349,7 +2242,7 @@ h3 {
   }
 
   .badge-role {
-    top: 8px;
+    top: 28px;
     left: 8px;
     max-width: min(230px, 72vw);
   }
