@@ -1415,8 +1415,7 @@
 }
 
 .rp-app.sidebar-collapsed .rp-user,
-.rp-app.sidebar-collapsed .rp-user small,
-.rp-app.sidebar-collapsed .rp-user .fa-circle-user {
+.rp-app.sidebar-collapsed .rp-user small {
   color: #fff;
 }
 
@@ -1489,14 +1488,6 @@
   color: #1c768f;
   font-size: 0.94rem;
   font-weight: 800;
-}
-
-.rp-user .fa-circle-user {
-  color: #374151;
-  border: 2px solid currentColor;
-  border-radius: 999px;
-  font-size: 2.35rem;
-  line-height: 1;
 }
 
 .rp-account-menu {
@@ -1759,15 +1750,6 @@
   font-weight: 700;
 }
 
-.rp-user i,
-.rp-user .fa-circle-user {
-  width: auto;
-  height: auto;
-  background: transparent;
-  border: 2px solid currentColor;
-  box-shadow: none;
-}
-
 .rp-user {
   min-width: 176px;
   justify-content: flex-end;
@@ -1775,6 +1757,30 @@
 
 .rp-user > span {
   min-width: 92px;
+}
+
+.rp-user > .rp-avatar-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: #fff;
+  background: #374151;
+  box-shadow: 0 0 0 6px rgba(28, 118, 143, 0.08);
+}
+
+.rp-user > .rp-avatar-icon i {
+  width: auto;
+  height: auto;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 1.2rem;
 }
 
 .rp-account-menu {
