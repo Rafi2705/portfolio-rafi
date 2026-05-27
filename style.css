@@ -291,7 +291,12 @@ a {
 }
 
 .hero-content {
-  padding-top: 20px;
+  padding-top: 58px;
+}
+
+.hero-status-row,
+.hero-content > .eyebrow {
+  transform: translateY(-38px);
 }
 
 .eyebrow {
@@ -2128,7 +2133,12 @@ h3 {
 
   .hero-content {
     width: 100%;
-    padding-top: 0;
+    padding-top: 42px;
+  }
+
+  .hero-status-row,
+  .hero-content > .eyebrow {
+    transform: translateY(-26px);
   }
 
   .hero-content > * {
