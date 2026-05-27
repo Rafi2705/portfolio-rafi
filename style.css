@@ -336,7 +336,7 @@ h3 {
 
 .hero-headline {
   max-width: 680px;
-  margin: 20px 0 14px;
+  margin: 26px 0 18px;
   color: var(--brown-700);
   font-size: clamp(1rem, 1.55vw, 1.24rem);
   font-weight: 800;
@@ -348,7 +348,7 @@ h3 {
   margin: 0;
   color: var(--muted);
   font-size: 0.96rem;
-  line-height: 1.68;
+  line-height: 1.74;
 }
 
 .hero-status-row {
@@ -393,13 +393,13 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 34px;
+  margin-top: 46px;
 }
 
 .hero-marquee {
   position: relative;
   max-width: 640px;
-  margin-top: 82px;
+  margin-top: 50px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -479,7 +479,7 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   max-width: 640px;
-  margin-top: 52px;
+  margin-top: 62px;
 }
 
 .hero-proof div {
@@ -2196,7 +2196,7 @@ h3 {
 
   .hero-marquee {
     width: 100%;
-    margin-top: 80px;
+    margin-top: 72px;
     border-radius: var(--radius);
   }
 
