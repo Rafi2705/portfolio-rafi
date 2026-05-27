@@ -760,7 +760,8 @@ h3 {
 .badge-stack {
   right: 22px;
   bottom: 36px;
-  max-width: 220px;
+  width: 240px;
+  min-height: 95px;
   z-index: 8;
   animation-delay: -1.8s;
 }
@@ -768,7 +769,8 @@ h3 {
 .badge-focus {
   left: 26px;
   bottom: 28px;
-  max-width: 230px;
+  width: 240px;
+  min-height: 95px;
   z-index: 8;
   color: var(--paper);
   background: rgba(37, 33, 29, 0.92);
@@ -2213,13 +2215,15 @@ h3 {
   .badge-stack {
     right: 0;
     bottom: 78px;
-    width: min(218px, 52vw);
+    width: min(240px, 80vw);
+    min-height: 95px;
   }
 
   .badge-focus {
     left: 0;
     bottom: 0;
-    width: min(238px, 58vw);
+    width: min(240px, 80vw);
+    min-height: 95px;
     transform: none;
   }
 
