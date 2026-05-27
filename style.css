@@ -395,7 +395,7 @@ h3 {
 .hero-marquee {
   position: relative;
   max-width: 640px;
-  margin-top: 32px;
+  margin-top: 96px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -423,10 +423,6 @@ h3 {
   font-size: 0.72rem;
   font-weight: 900;
   white-space: nowrap;
-}
-
-.hero-marquee:hover .marquee-track {
-  animation-play-state: paused;
 }
 
 .btn {
@@ -479,7 +475,7 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   max-width: 640px;
-  margin-top: 34px;
+  margin-top: 46px;
 }
 
 .hero-proof div {
@@ -575,7 +571,7 @@ h3 {
 .profile-photo-card {
   position: absolute;
   width: min(292px, 64vw);
-  aspect-ratio: 4 / 5;
+  height: clamp(298px, 80vw, 365px);
   padding: 10px;
   overflow: hidden;
   background:
@@ -2196,6 +2192,7 @@ h3 {
 
   .hero-marquee {
     width: 100%;
+    margin-top: 72px;
     border-radius: var(--radius);
   }
 
