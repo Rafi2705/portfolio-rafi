@@ -1759,6 +1759,325 @@
   font-weight: 700;
 }
 
+.rp-user i,
+.rp-user .fa-circle-user {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border: 2px solid currentColor;
+  box-shadow: none;
+}
+
+.rp-user {
+  min-width: 176px;
+  justify-content: flex-end;
+}
+
+.rp-user > span {
+  min-width: 92px;
+}
+
+.rp-account-menu {
+  top: 52px;
+}
+
+.rp-nav.sub {
+  max-height: 44px;
+  overflow: hidden;
+  transition: max-height 0.24s ease, padding 0.24s ease, opacity 0.2s ease, background 0.2s ease;
+}
+
+.rp-group:not(.open) .rp-nav.sub {
+  max-height: 0;
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.rp-group .rp-group-title .fa-chevron-down {
+  transition: transform 0.24s ease;
+}
+
+.rp-group:not(.open) .rp-group-title .fa-chevron-down {
+  transform: rotate(0deg);
+}
+
+.rp-workflow-page {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.rp-workflow-card {
+  padding: 26px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.rp-workflow-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.rp-workflow-head h3 {
+  margin: 8px 0 0;
+  color: #1f2937;
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.rp-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  color: #1c768f;
+  background: transparent;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.rp-workflow-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  height: 36px;
+  padding: 0 14px;
+  color: #fff;
+  background: #1c768f;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.rp-form-grid.native {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rp-form-field {
+  display: grid;
+  gap: 7px;
+}
+
+.rp-form-field.full {
+  grid-column: 1 / -1;
+}
+
+.rp-form-field span {
+  color: #374151;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.rp-form-field input,
+.rp-form-field textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #1f2937;
+  background: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  outline: 0;
+}
+
+.rp-form-field input:read-only,
+.rp-form-field textarea:read-only {
+  color: #4b5563;
+  background: #f9fafb;
+}
+
+.rp-workflow-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.rp-workflow-note {
+  margin-top: 12px;
+  color: #64748b;
+  font-size: 0.84rem;
+  text-align: center;
+}
+
+.mst-week {
+  position: relative;
+  height: 132px;
+  min-height: 132px;
+}
+
+.mst-day {
+  min-height: 132px;
+}
+
+.mst-bars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mst-bar {
+  z-index: 4;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  color: #fff;
+  font: inherit;
+  pointer-events: auto;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+}
+
+.mst-bar:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.08) brightness(1.02);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.24);
+}
+
+.mst-bar:hover .mst-inline-badge {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.mst-inline-badge {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  z-index: 3;
+  max-width: 118px;
+  overflow: hidden;
+  padding: 3px 7px;
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transform: translateY(-50%) translateX(4px);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.mst-tip {
+  position: fixed;
+  z-index: 9999;
+  width: 300px;
+  display: none;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 12px;
+  border: 1px solid #d8e0ef;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.22);
+  pointer-events: none;
+}
+
+.mst-tip.show {
+  display: block;
+  animation: rpFade 0.16s ease;
+}
+
+.mst-tip-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.mst-tip-no {
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.mst-tip-chip {
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.mst-tip-chip.safe {
+  color: #14532d;
+  background: #dcfce7;
+  border-color: #bbf7d0;
+}
+
+.mst-tip-chip.warn {
+  color: #854d0e;
+  background: #fef3c7;
+  border-color: #fde68a;
+}
+
+.mst-tip-chip.overdue {
+  color: #7f1d1d;
+  background: #fee2e2;
+  border-color: #fecaca;
+}
+
+.mst-tip-judul {
+  margin-bottom: 9px;
+  color: #1e293b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.mst-tip-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  color: #334155;
+  font-size: 11px;
+}
+
+.mst-tip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+}
+
+.mst-tip-list {
+  display: grid;
+  gap: 6px;
+}
+
+.mst-tip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.mst-tip-k {
+  color: #64748b;
+}
+
+.mst-tip-v {
+  color: #0f172a;
+  font-weight: 700;
+  text-align: right;
+}
+
+.sp-btn i {
+  font-size: 0.78rem;
+}
+
 .rp-toast.show {
   display: block;
   animation: rpFade 0.2s ease;

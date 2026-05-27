@@ -3,36 +3,60 @@ const reportingContent = document.querySelector("#reportingDemoContent");
 
 const rpState = {
   view: "home",
+  lastList: "penugasan",
+  openGroups: new Set(["kegiatan", "tim", "admin"]),
   penugasan: [
     {
       id: "ST-001",
       title: "Pendampingan Saksi Sidang Tindak Pidana",
       unit: "Biro Pemenuhan Hak Saksi",
       date: "2026-05-06",
+      endDate: "2026-05-10",
       deadline: "2026-05-10",
       status: "done",
       reporter: "rafi",
       location: "Jakarta",
+      tone: "safe",
+      lane: 0,
     },
     {
       id: "ST-002",
       title: "Verifikasi Perlindungan Korban",
       unit: "Biro Penelaahan Permohonan",
-      date: "2026-05-16",
-      deadline: "2026-05-28",
+      date: "2026-05-13",
+      endDate: "2026-05-17",
+      deadline: "2026-05-20",
       status: "pending",
       reporter: "rafi",
       location: "Bogor",
+      tone: "warn",
+      lane: 1,
     },
     {
       id: "ST-003",
       title: "Koordinasi Layanan Darurat",
       unit: "Biro Keamanan dan Pengawalan",
-      date: "2026-05-03",
-      deadline: "2026-05-08",
+      date: "2026-05-19",
+      endDate: "2026-05-23",
+      deadline: "2026-05-21",
       status: "overdue",
       reporter: "rafi",
       location: "Depok",
+      tone: "overdue",
+      lane: 0,
+    },
+    {
+      id: "ST-004",
+      title: "Monitoring Layanan Perlindungan Terpadu",
+      unit: "Biro Perencanaan dan TI",
+      date: "2026-05-25",
+      endDate: "2026-05-29",
+      deadline: "2026-05-29",
+      status: "pending",
+      reporter: "rafi",
+      location: "Bekasi",
+      tone: "safe",
+      lane: 2,
     },
   ],
   penetapan: [
@@ -41,16 +65,22 @@ const rpState = {
       title: "Penetapan Tim Verifikasi Permohonan",
       unit: "Biro Hukum",
       date: "2026-05-09",
+      endDate: "2026-05-13",
+      deadline: "2026-05-15",
       status: "done",
       reporter: "rafi",
+      location: "Jakarta",
     },
     {
       id: "SK-002",
       title: "Penetapan Tim Monitoring Layanan",
       unit: "Biro Umum",
       date: "2026-05-22",
+      endDate: "2026-05-26",
+      deadline: "2026-05-29",
       status: "pending",
       reporter: "rafi",
+      location: "Bogor",
     },
   ],
 };
@@ -61,9 +91,24 @@ const statusLabel = {
   overdue: "Melewati Batas Waktu",
 };
 
+const deadlineLabel = {
+  safe: "Aman",
+  warn: "Mendekati Batas Waktu",
+  overdue: "Melewati Batas Waktu",
+};
+
 const fmtDate = (value) => {
   const date = new Date(`${value}T00:00:00`);
   return date.toLocaleDateString("id-ID", { day: "2-digit", month: "short", year: "numeric" });
+};
+
+const dayNumber = (value) => Number(value.slice(-2));
+
+const rangeDate = (item) => `${fmtDate(item.date)} - ${fmtDate(item.endDate || item.date)}`;
+
+const findItem = (type, id) => {
+  const source = type === "penugasan" ? rpState.penugasan : rpState.penetapan;
+  return source.find((item) => item.id === id);
 };
 
 const showPelaporanAlert = (message, type = "success") => {
@@ -84,7 +129,7 @@ const showPelaporanAlert = (message, type = "success") => {
 
   backdrop.innerHTML = `
     <div class="rp-alert-card" role="dialog" aria-modal="true" aria-label="${title}">
-      <div class="rp-alert-icon ${icon}">${icon === "success" ? "✓" : icon === "warning" ? "!" : "⌫"}</div>
+      <div class="rp-alert-icon ${icon}">${iconHtml}</div>
       <h3>${title}</h3>
       <p>${message}</p>
       <div class="rp-alert-actions">
@@ -94,75 +139,11 @@ const showPelaporanAlert = (message, type = "success") => {
   `;
 
   backdrop.classList.add("open");
-  backdrop.querySelector(".rp-alert-icon").innerHTML = iconHtml;
   backdrop.querySelector("[data-rp-alert-close]").addEventListener("click", () => backdrop.classList.remove("open"));
   backdrop.addEventListener("click", (event) => {
     if (event.target === backdrop) backdrop.classList.remove("open");
   }, { once: true });
 };
-
-const openModal = (title, body, actions = "") => {
-  let backdrop = document.querySelector(".rp-modal-backdrop");
-  if (!backdrop) {
-    backdrop = document.createElement("div");
-    backdrop.className = "rp-modal-backdrop";
-    document.body.appendChild(backdrop);
-  }
-
-  backdrop.innerHTML = `
-    <div class="rp-modal" role="dialog" aria-modal="true" aria-label="${title}">
-      <div class="rp-modal-head">
-        <div>
-          <span class="project-category">Aplikasi Pelaporan</span>
-          <h3>${title}</h3>
-        </div>
-        <button class="rp-modal-close" type="button" data-rp-close>×</button>
-      </div>
-      ${body}
-      <div class="rp-actions" style="margin-top:18px; justify-content:flex-end;">
-        ${actions}
-        <button class="rp-btn gray" type="button" data-rp-close>Tutup</button>
-      </div>
-    </div>
-  `;
-
-  backdrop.classList.add("open");
-  backdrop.querySelector(".rp-modal-close").innerHTML = "&times;";
-  backdrop.querySelectorAll("[data-rp-close]").forEach((button) => {
-    button.addEventListener("click", () => backdrop.classList.remove("open"));
-  });
-  backdrop.addEventListener("click", (event) => {
-    if (event.target === backdrop) backdrop.classList.remove("open");
-  }, { once: true });
-};
-
-const findItem = (type, id) => {
-  const source = type === "penugasan" ? rpState.penugasan : rpState.penetapan;
-  return source.find((item) => item.id === id);
-};
-
-const detailBody = (item, type) => `
-  <div class="rp-form-grid">
-    <div class="rp-field"><label>Nomor ${type}</label><input value="${item.id}" readonly></div>
-    <div class="rp-field"><label>Status</label><input value="${statusLabel[item.status]}" readonly></div>
-    <div class="rp-field full"><label>Judul</label><input value="${item.title}" readonly></div>
-    <div class="rp-field"><label>Unit Kerja</label><input value="${item.unit}" readonly></div>
-    <div class="rp-field"><label>Tanggal</label><input value="${fmtDate(item.date)}" readonly></div>
-    <div class="rp-field"><label>Pelapor</label><input value="${item.reporter}" readonly></div>
-    <div class="rp-field full"><label>Catatan</label><textarea rows="4" readonly>Tampilan ini mengikuti alur aplikasi pelaporan untuk kebutuhan preview portfolio.</textarea></div>
-  </div>
-`;
-
-const reportFormBody = (item, type) => `
-  <div class="rp-form-grid">
-    <div class="rp-field"><label>Nomor ${type}</label><input value="${item.id}" readonly></div>
-    <div class="rp-field"><label>Tanggal Laporan</label><input value="26 Mei 2026" readonly></div>
-    <div class="rp-field full"><label>Judul</label><input value="${item.title}" readonly></div>
-    <div class="rp-field full"><label>Uraian Laporan</label><textarea rows="5">Kegiatan telah dilaksanakan sesuai surat tugas/penetapan. Ringkasan hasil kegiatan dicatat pada formulir ini.</textarea></div>
-    <div class="rp-field"><label>Upload Dokumen</label><input value="dokumen-laporan.pdf" readonly></div>
-    <div class="rp-field"><label>Status Submit</label><select><option>Sudah Dilaporkan</option><option>Draft</option></select></div>
-  </div>
-`;
 
 const homeView = () => `
   <section class="rp-page rp-welcome">
@@ -174,7 +155,28 @@ const homeView = () => `
 
 const monitoringStView = () => {
   const days = Array.from({ length: 35 }, (_, index) => index + 1);
-  const events = new Map(rpState.penugasan.map((item) => [Number(item.date.slice(-2)), item]));
+  const barsByWeek = [0, 1, 2, 3, 4].map((weekIndex) => {
+    const weekStart = weekIndex * 7 + 1;
+    const weekEnd = weekStart + 6;
+
+    return rpState.penugasan.flatMap((item) => {
+      const start = dayNumber(item.date);
+      const end = dayNumber(item.endDate || item.date);
+      const segStart = Math.max(start, weekStart);
+      const segEnd = Math.min(end, weekEnd);
+      if (segStart > segEnd) return [];
+
+      const left = ((segStart - weekStart) / 7) * 100;
+      const width = ((segEnd - segStart + 1) / 7) * 100;
+      return [{
+        ...item,
+        key: `${item.id}-${weekIndex}`,
+        left,
+        width,
+        top: 34 + (item.lane || 0) * 26,
+      }];
+    });
+  });
 
   return `
     <section class="rp-page mst-wrap">
@@ -184,16 +186,16 @@ const monitoringStView = () => {
           <div class="mst-subtitle">Kalender Monitoring ST - deadline laporan hari kerja</div>
         </div>
         <div class="mst-filter-row mst-filter-with-unit">
-          <div class="mst-pill mst-pill-unit"><div class="mst-pill-inner"><select><option>Semua Unit Kerja</option><option>Biro Pemenuhan Hak Saksi</option></select><span class="mst-pill-icon">v</span></div></div>
-          <div class="mst-pill"><div class="mst-pill-inner"><select><option>Mei</option></select><span class="mst-pill-icon">v</span></div></div>
-          <div class="mst-pill"><div class="mst-pill-inner"><select><option>2026</option></select><span class="mst-pill-icon">v</span></div></div>
-          <div class="mst-pill mst-pill-sm"><div class="mst-pill-inner"><select><option>Semua Deadline</option><option>Melewati Batas Waktu</option></select><span class="mst-pill-icon">v</span></div></div>
+          <div class="mst-pill mst-pill-unit"><div class="mst-pill-inner"><select><option>Semua Unit Kerja</option><option>Biro Pemenuhan Hak Saksi</option></select><span class="mst-pill-icon"><i class="fa-solid fa-chevron-down"></i></span></div></div>
+          <div class="mst-pill"><div class="mst-pill-inner"><select><option>Mei</option></select><span class="mst-pill-icon"><i class="fa-solid fa-chevron-down"></i></span></div></div>
+          <div class="mst-pill"><div class="mst-pill-inner"><select><option>2026</option></select><span class="mst-pill-icon"><i class="fa-solid fa-chevron-down"></i></span></div></div>
+          <div class="mst-pill mst-pill-sm"><div class="mst-pill-inner"><select><option>Semua Deadline</option><option>Countdown Aktif</option><option>Melewati Batas Waktu</option></select><span class="mst-pill-icon"><i class="fa-solid fa-chevron-down"></i></span></div></div>
         </div>
       </div>
       <div class="mst-kpi-row">
-        <div class="mst-kpi"><div class="mst-kpi-label">Total Kegiatan</div><div class="mst-kpi-value">3</div></div>
-        <div class="mst-kpi"><div class="mst-kpi-label">Countdown Aktif</div><div class="mst-kpi-value">2</div></div>
-        <div class="mst-kpi"><div class="mst-kpi-label">Aman</div><div class="mst-kpi-value" style="color:#15803d">1</div></div>
+        <div class="mst-kpi"><div class="mst-kpi-label">Total Kegiatan</div><div class="mst-kpi-value">4</div></div>
+        <div class="mst-kpi"><div class="mst-kpi-label">Countdown Aktif</div><div class="mst-kpi-value">3</div></div>
+        <div class="mst-kpi"><div class="mst-kpi-label">Aman</div><div class="mst-kpi-value" style="color:#15803d">2</div></div>
         <div class="mst-kpi"><div class="mst-kpi-label">Mendekati Batas Waktu<br>/Hari Ini</div><div class="mst-kpi-value" style="color:#b45309">1</div></div>
         <div class="mst-kpi"><div class="mst-kpi-label">Melewati Batas Waktu</div><div class="mst-kpi-value" style="color:#b91c1c">1</div></div>
       </div>
@@ -203,18 +205,30 @@ const monitoringStView = () => {
       <div class="mst-calendar">
         ${[0, 1, 2, 3, 4].map((week) => `
           <div class="mst-week">
-            ${days.slice(week * 7, week * 7 + 7).map((day, index) => {
-              const item = events.get(day);
-              const label = item?.status === "overdue" ? `${item.title} - Melewati Batas Waktu` : item?.title;
-              return `<div class="mst-day ${(week + index) % 2 === 0 ? "mst-check-a" : "mst-check-b"} ${day === 26 ? "mst-today" : ""}">
+            ${days.slice(week * 7, week * 7 + 7).map((day, index) => `
+              <div class="mst-day ${(week + index) % 2 === 0 ? "mst-check-a" : "mst-check-b"} ${day === 27 ? "mst-today" : ""}">
                 <div class="mst-day-num">${day <= 31 ? day : ""}</div>
-                ${item ? `<div class="mst-bar ${item.status === "overdue" ? "mst-bar-overdue" : ""}" style="left:8px;right:8px;top:${36 + (index % 2) * 28}px;height:24px;background:${item.status === "done" ? "#16a34a" : "#dc2626"}" data-rp-detail="penugasan:${item.id}">
-                  <div class="mst-bar-label-shell">
-                    ${item.status === "overdue" ? `<div class="mst-bar-label-track"><span class="mst-bar-label-copy">${label}</span><span class="mst-bar-label-copy">${label}</span><span class="mst-bar-label-copy">${label}</span></div>` : `<span class="mst-bar-label">${label}</span>`}
-                  </div>
-                </div>` : ""}
-              </div>`;
-            }).join("")}
+              </div>
+            `).join("")}
+            <div class="mst-bars">
+              ${barsByWeek[week].map((item) => {
+                const color = item.status === "done" ? "#16a34a" : item.tone === "warn" ? "#d97706" : item.tone === "overdue" ? "#dc2626" : "#1d77ff";
+                const running = item.status !== "done";
+                const label = `${item.id} - ${item.title}`;
+                return `
+                  <button class="mst-bar ${item.tone === "overdue" ? "mst-bar-overdue" : ""} ${item.tone === "warn" ? "mst-bar-urgent" : ""}"
+                    style="left:${item.left + 0.45}%; width:calc(${item.width}% - 8px); top:${item.top}px; height:24px; background:${color}; --mst-marquee-duration:${item.tone === "overdue" ? "9s" : "13s"};"
+                    data-rp-detail="penugasan:${item.id}"
+                    data-mst-tip="${item.id}"
+                    aria-label="${label}">
+                    <span class="mst-bar-label-shell">
+                      ${running ? `<span class="mst-bar-label-track"><span class="mst-bar-label-copy">${label}</span><span class="mst-bar-label-copy" aria-hidden="true">${label}</span><span class="mst-bar-label-copy" aria-hidden="true">${label}</span></span>` : `<span class="mst-bar-label">${label}</span>`}
+                    </span>
+                    <span class="mst-inline-badge">${deadlineLabel[item.tone] || "Aman"}</span>
+                  </button>
+                `;
+              }).join("")}
+            </div>
           </div>
         `).join("")}
       </div>
@@ -236,8 +250,8 @@ const monitoringSkView = () => `
     <div class="msk-header">
       <div class="msk-year-title">2026</div>
       <div class="msk-controls">
-        <div class="msk-select-wrap"><select class="msk-select"><option>Unit Kerja Saya (Default)</option></select><div class="msk-select-btn">v</div></div>
-        <div class="msk-select-wrap"><select class="msk-select"><option>2026</option></select><div class="msk-select-btn">v</div></div>
+        <div class="msk-select-wrap"><select class="msk-select"><option>Unit Kerja Saya (Default)</option></select><div class="msk-select-btn"><i class="fa-solid fa-chevron-down"></i></div></div>
+        <div class="msk-select-wrap"><select class="msk-select"><option>2026</option></select><div class="msk-select-btn"><i class="fa-solid fa-chevron-down"></i></div></div>
       </div>
     </div>
     <div class="msk-calendar">
@@ -257,17 +271,20 @@ const monitoringSkView = () => `
   </section>
 `;
 
-const tableFilters = (isPenugasan) => `
-  <div class="sp-toolbar">
-    <button class="sp-btn sp-btn-blue" data-rp-toast="Form tambah ${isPenugasan ? "penugasan" : "penetapan"} siap digunakan."><span class="sp-plus">+</span><span>Tambah</span></button>
-    <select class="sp-select is-empty"><option>Pilih bulan kegiatan</option><option>Mei</option></select>
-    <select class="sp-select is-empty"><option>Pilih tahun kegiatan</option><option>2026</option></select>
-    <div class="sp-search-wrap">
-      <input class="sp-search-input" placeholder="Cari nomor/judul ${isPenugasan ? "surat tugas" : "penetapan"}...">
-      <button class="sp-search-btn" data-rp-toast="Pencarian diterapkan.">Cari</button>
+const tableFilters = (isPenugasan) => {
+  const type = isPenugasan ? "penugasan" : "penetapan";
+  return `
+    <div class="sp-toolbar">
+      <button class="sp-btn sp-btn-blue" data-rp-form="${type}:create"><i class="fa-solid fa-plus"></i><span>Tambah</span></button>
+      <select class="sp-select is-empty"><option>Pilih bulan kegiatan</option><option>Mei</option></select>
+      <select class="sp-select is-empty"><option>Pilih tahun kegiatan</option><option>2026</option></select>
+      <div class="sp-search-wrap">
+        <input class="sp-search-input" placeholder="Cari nomor/judul ${isPenugasan ? "surat tugas" : "penetapan"}...">
+        <button class="sp-search-btn" data-rp-toast="Pencarian diterapkan.">Cari</button>
+      </div>
     </div>
-  </div>
-`;
+  `;
+};
 
 const tableView = (type, archived = false) => {
   const isPenugasan = type === "penugasan";
@@ -296,14 +313,14 @@ const tableView = (type, archived = false) => {
                   <td>${index + 1}</td>
                   <td>${item.id}</td>
                   <td>${item.title}</td>
-                  <td><span class="sp-date-stack"><span class="sp-date-line">${fmtDate(item.date)}</span></span></td>
+                  <td><span class="sp-date-stack"><span class="sp-date-line">${rangeDate(item)}</span></span></td>
                   <td>${item.reporter}</td>
                   <td><span class="sp-pill ${item.status === "done" ? "sp-setuju" : "sp-belum"}">${statusLabel[item.status]}</span></td>
                   <td>
                     <div class="sp-act">
-                      <button class="sp-act-btn sp-act-eye" data-rp-detail="${type}:${item.id}" title="Detail"><i class="fa-solid fa-circle-info"></i></button>
-                      <button class="sp-act-btn sp-act-report" data-rp-report="${type}:${item.id}" title="Input Laporan"><i class="fa-solid fa-file-circle-plus"></i></button>
-                      <button class="sp-act-btn sp-act-edit" data-rp-toast="Mode edit ${item.id} dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button>
+                      <button class="sp-act-btn sp-act-eye" data-rp-form="${type}:detail:${item.id}" title="Detail"><i class="fa-solid fa-circle-info"></i></button>
+                      <button class="sp-act-btn sp-act-report" data-rp-form="${type}:report:${item.id}" title="Input Laporan"><i class="fa-solid fa-file-circle-plus"></i></button>
+                      <button class="sp-act-btn sp-act-edit" data-rp-form="${type}:edit:${item.id}" title="Edit"><i class="fa-regular fa-pen-to-square"></i></button>
                       <button class="sp-act-btn sp-act-del" data-rp-delete="${item.id}" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                   </td>
@@ -314,6 +331,80 @@ const tableView = (type, archived = false) => {
         </div>
         <div class="sp-pager"><button class="sp-pager-btn" disabled>Sebelumnya</button><button class="sp-pager-num active">1</button><button class="sp-pager-btn" disabled>Selanjutnya</button></div>
       </div>
+    </section>
+  `;
+};
+
+const formField = (label, value = "", type = "text", readonly = false) => `
+  <label class="rp-form-field">
+    <span>${label}</span>
+    <input type="${type}" value="${value}" ${readonly ? "readonly" : ""}>
+  </label>
+`;
+
+const formTextarea = (label, value = "", readonly = false) => `
+  <label class="rp-form-field full">
+    <span>${label}</span>
+    <textarea rows="4" ${readonly ? "readonly" : ""}>${value}</textarea>
+  </label>
+`;
+
+const workflowFormView = (type, mode, id = "") => {
+  const isPenugasan = type === "penugasan";
+  const code = isPenugasan ? "ST" : "SK";
+  const source = isPenugasan ? rpState.penugasan : rpState.penetapan;
+  const fallback = {
+    id: `${code}-BARU`,
+    title: isPenugasan ? "Kegiatan baru LPSK" : "Penetapan tim baru",
+    unit: "Biro Perencanaan dan Teknologi Informasi",
+    date: "2026-05-27",
+    endDate: "2026-05-30",
+    deadline: "2026-06-03",
+    status: "pending",
+    reporter: "rafi",
+    location: "Jakarta",
+  };
+  const item = findItem(type, id) || fallback;
+  const readonly = mode === "detail";
+  const modeLabel = {
+    create: `Tambah ${isPenugasan ? "Penugasan" : "Penetapan"}`,
+    detail: `Detail ${isPenugasan ? "Penugasan" : "Penetapan"}`,
+    edit: `Edit ${isPenugasan ? "Penugasan" : "Penetapan"}`,
+    report: `Input Laporan ${isPenugasan ? "Penugasan" : "Penetapan"}`,
+  }[mode];
+  const listView = isPenugasan ? "penugasan" : "penetapan";
+  const finalButton = mode === "detail" ? "" : `<button class="rp-btn green" type="button" data-rp-demo-save="${modeLabel}">Simpan</button>`;
+
+  return `
+    <section class="rp-page rp-workflow-page">
+      <div class="rp-workflow-card">
+        <div class="rp-workflow-head">
+          <div>
+            <button class="rp-back-link" type="button" data-view="${listView}"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+            <h3>${modeLabel}</h3>
+          </div>
+          <span class="rp-workflow-badge">${code}</span>
+        </div>
+        <div class="rp-form-grid native">
+          ${formField(`Nomor ${code}`, item.id, "text", mode !== "create")}
+          ${formField("Pengaju", item.reporter, "text", readonly)}
+          ${formField(isPenugasan ? "Judul Kegiatan" : "Judul Penetapan", item.title, "text", readonly)}
+          ${formField("Unit Kerja", item.unit, "text", readonly)}
+          ${formField("Tanggal Mulai", item.date, "date", readonly)}
+          ${formField("Tanggal Selesai", item.endDate || item.date, "date", readonly)}
+          ${formField("Deadline Laporan", item.deadline, "date", readonly)}
+          ${formField("Lokasi", item.location || "Jakarta", "text", readonly)}
+          ${mode === "report"
+            ? `${formTextarea("Uraian Laporan", "Kegiatan telah dilaksanakan sesuai arahan dan dokumen pendukung dilampirkan.", false)}
+               ${formField("Upload Dokumen", "laporan-demo.pdf", "text", true)}`
+            : formTextarea("Catatan", "Halaman ini dibuat statis mengikuti alur aplikasi pelaporan asli untuk kebutuhan portfolio.", readonly)}
+        </div>
+        <div class="rp-workflow-actions">
+          <button class="rp-btn gray" type="button" data-view="${listView}">Batal</button>
+          ${finalButton}
+        </div>
+      </div>
+      <div class="rp-workflow-note">Data pada halaman ini hanya simulasi dan tidak tersimpan ke database.</div>
     </section>
   `;
 };
@@ -331,20 +422,10 @@ const adminUsersView = () => `
     </div>
     <div class="rp-native-table">
       <table>
-        <thead>
-          <tr>
-            <th style="width:56px;text-align:center;">No.</th><th>Nama</th><th>Username</th><th>Unit Kerja</th><th style="text-align:center;">Status</th><th style="text-align:center;">Role</th><th style="text-align:center;">Aksi</th>
-          </tr>
-        </thead>
+        <thead><tr><th style="width:56px;text-align:center;">No.</th><th>Nama</th><th>Username</th><th>Unit Kerja</th><th style="text-align:center;">Status</th><th style="text-align:center;">Role</th><th style="text-align:center;">Aksi</th></tr></thead>
         <tbody>
-          <tr>
-            <td style="text-align:center;">1.</td><td>Rafi Yulian</td><td>rafi</td><td>Biro Perencanaan dan Teknologi Informasi</td><td style="text-align:center;">Aktif</td><td style="text-align:center;">admin</td>
-            <td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail pengguna rafi dibuka." title="Detail"><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit pengguna rafi dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="rafi" title="Hapus"><i class="fa-solid fa-trash-can"></i></button></div></td>
-          </tr>
-          <tr>
-            <td style="text-align:center;">2.</td><td>Admin LPSK</td><td>admin</td><td>Sekretariat Jenderal</td><td style="text-align:center;">Aktif</td><td style="text-align:center;">admin</td>
-            <td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail pengguna admin dibuka." title="Detail"><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit pengguna admin dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="admin" title="Hapus"><i class="fa-solid fa-trash-can"></i></button></div></td>
-          </tr>
+          <tr><td style="text-align:center;">1.</td><td>Rafi Yulian</td><td>rafi</td><td>Biro Perencanaan dan Teknologi Informasi</td><td style="text-align:center;">Aktif</td><td style="text-align:center;">admin</td><td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail pengguna rafi dibuka."><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit pengguna rafi dibuka."><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="rafi"><i class="fa-solid fa-trash-can"></i></button></div></td></tr>
+          <tr><td style="text-align:center;">2.</td><td>Admin LPSK</td><td>admin</td><td>Sekretariat Jenderal</td><td style="text-align:center;">Aktif</td><td style="text-align:center;">admin</td><td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail pengguna admin dibuka."><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit pengguna admin dibuka."><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="admin"><i class="fa-solid fa-trash-can"></i></button></div></td></tr>
         </tbody>
       </table>
     </div>
@@ -356,30 +437,13 @@ const adminRolesView = () => `
     <h3>Daftar Role</h3>
     <div class="rp-admin-toolbar">
       <button class="sp-btn sp-btn-blue" data-rp-toast="Form tambah role dibuka."><i class="fa-solid fa-plus"></i> Tambah</button>
-      <div class="rp-admin-filters">
-        <input class="rp-admin-search" type="text" placeholder="Cari nama role...">
-      </div>
+      <div class="rp-admin-filters"><input class="rp-admin-search" type="text" placeholder="Cari nama role..."></div>
     </div>
     <div class="rp-native-table">
       <table>
-        <thead>
-          <tr>
-            <th style="width:56px;text-align:center;">No.</th><th>Nama Role</th><th>Jumlah Permission</th><th style="width:150px;text-align:center;">Aksi</th>
-          </tr>
-        </thead>
+        <thead><tr><th style="width:56px;text-align:center;">No.</th><th>Nama Role</th><th>Jumlah Permission</th><th style="width:150px;text-align:center;">Aksi</th></tr></thead>
         <tbody>
-          <tr>
-            <td style="text-align:center;">1.</td><td>admin</td><td><span class="rp-badge">24 Akses</span></td>
-            <td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail role admin dibuka." title="Detail"><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit role admin dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="role admin" title="Hapus"><i class="fa-solid fa-trash-can"></i></button></div></td>
-          </tr>
-          <tr>
-            <td style="text-align:center;">2.</td><td>user</td><td><span class="rp-badge">12 Akses</span></td>
-            <td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail role user dibuka." title="Detail"><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit role user dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="role user" title="Hapus"><i class="fa-solid fa-trash-can"></i></button></div></td>
-          </tr>
-          <tr>
-            <td style="text-align:center;">3.</td><td>atasan</td><td><span class="rp-badge">10 Akses</span></td>
-            <td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail role atasan dibuka." title="Detail"><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit role atasan dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="role atasan" title="Hapus"><i class="fa-solid fa-trash-can"></i></button></div></td>
-          </tr>
+          ${["admin", "user", "atasan"].map((role, index) => `<tr><td style="text-align:center;">${index + 1}.</td><td>${role}</td><td><span class="rp-badge">${role === "admin" ? 24 : role === "user" ? 12 : 10} Akses</span></td><td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail role ${role} dibuka."><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit role ${role} dibuka."><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="role ${role}"><i class="fa-solid fa-trash-can"></i></button></div></td></tr>`).join("")}
         </tbody>
       </table>
     </div>
@@ -403,13 +467,59 @@ const render = () => {
   reportingContent.focus({ preventScroll: true });
 };
 
+const setActiveNav = (nav) => {
+  reportingApp.querySelectorAll(".rp-nav").forEach((button) => {
+    button.classList.toggle("active", button === nav);
+  });
+};
+
+const showMonitoringTooltip = (item, event) => {
+  let tip = document.querySelector(".mst-tip");
+  if (!tip) {
+    tip = document.createElement("div");
+    tip.className = "mst-tip";
+    document.body.appendChild(tip);
+  }
+
+  const tone = item.tone || "safe";
+  tip.innerHTML = `
+    <div class="mst-tip-head">
+      <div class="mst-tip-no">${item.id}</div>
+      <span class="mst-tip-chip ${tone}">${deadlineLabel[tone] || "Aman"}</span>
+    </div>
+    <div class="mst-tip-judul">${item.title}</div>
+    <div class="mst-tip-status"><span class="mst-tip-dot" style="background:${item.status === "done" ? "#16a34a" : "#dc2626"}"></span>Status Pelaporan ${statusLabel[item.status]}</div>
+    <div class="mst-tip-list">
+      <div class="mst-tip-row"><span class="mst-tip-k">Deadline</span><span class="mst-tip-v">${fmtDate(item.deadline)}</span></div>
+      <div class="mst-tip-row"><span class="mst-tip-k">Rentang</span><span class="mst-tip-v">${rangeDate(item)}</span></div>
+      <div class="mst-tip-row"><span class="mst-tip-k">Unit</span><span class="mst-tip-v">${item.unit}</span></div>
+    </div>
+  `;
+  tip.classList.add("show");
+  moveMonitoringTooltip(event);
+};
+
+const moveMonitoringTooltip = (event) => {
+  const tip = document.querySelector(".mst-tip");
+  if (!tip) return;
+  const left = Math.min(event.clientX + 16, window.innerWidth - tip.offsetWidth - 12);
+  const top = Math.min(event.clientY + 16, window.innerHeight - tip.offsetHeight - 12);
+  tip.style.left = `${Math.max(12, left)}px`;
+  tip.style.top = `${Math.max(12, top)}px`;
+};
+
+const hideMonitoringTooltip = () => {
+  document.querySelector(".mst-tip")?.classList.remove("show");
+};
+
 if (reportingApp && reportingContent) {
   reportingApp.addEventListener("click", (event) => {
     const nav = event.target.closest("[data-view]");
-    const detail = event.target.closest("[data-rp-detail]");
-    const report = event.target.closest("[data-rp-report]");
+    const groupTitle = event.target.closest(".rp-group-title");
+    const formButton = event.target.closest("[data-rp-form]");
     const toastButton = event.target.closest("[data-rp-toast]");
     const deleteButton = event.target.closest("[data-rp-delete]");
+    const saveButton = event.target.closest("[data-rp-demo-save]");
     const sidebarClose = event.target.closest(".rp-sidebar-close");
     const sidebarOpen = event.target.closest(".rp-sidebar-open");
 
@@ -423,35 +533,33 @@ if (reportingApp && reportingContent) {
       return;
     }
 
+    if (groupTitle) {
+      const group = groupTitle.closest(".rp-group");
+      group?.classList.toggle("open");
+      return;
+    }
+
     if (nav) {
       rpState.view = nav.dataset.view;
-      reportingApp.querySelectorAll(".rp-nav").forEach((button) => {
-        button.classList.toggle("active", button === nav);
-      });
+      if (["penugasan", "penetapan"].includes(rpState.view)) rpState.lastList = rpState.view;
+      const targetNav = nav.classList.contains("rp-nav")
+        ? nav
+        : reportingApp.querySelector(`.rp-nav[data-view="${rpState.view}"]`);
+      setActiveNav(targetNav);
       render();
       return;
     }
 
-    if (detail) {
-      const [type, id] = detail.dataset.rpDetail.split(":");
-      const item = findItem(type, id);
-      if (item) openModal(`Detail ${type === "penugasan" ? "Penugasan" : "Penetapan"}`, detailBody(item, type === "penugasan" ? "ST" : "SK"));
+    if (formButton) {
+      const [type, mode, id] = formButton.dataset.rpForm.split(":");
+      rpState.lastList = type;
+      reportingContent.innerHTML = workflowFormView(type, mode, id);
+      reportingContent.focus({ preventScroll: true });
       return;
     }
 
-    if (report) {
-      const [type, id] = report.dataset.rpReport.split(":");
-      const item = findItem(type, id);
-      if (item) {
-        openModal(
-          `Input Laporan ${type === "penugasan" ? "Penugasan" : "Penetapan"}`,
-          reportFormBody(item, type === "penugasan" ? "ST" : "SK"),
-          `<button class="rp-btn green" type="button" data-rp-close data-rp-save>Simpan</button>`
-        );
-        document.querySelector("[data-rp-save]")?.addEventListener("click", () => {
-          showPelaporanAlert("Laporan berhasil disimpan pada sesi preview.", "success");
-        });
-      }
+    if (saveButton) {
+      showPelaporanAlert(`${saveButton.dataset.rpDemoSave} berhasil diproses pada mode demo. Data tidak disimpan permanen.`, "success");
       return;
     }
 
@@ -463,6 +571,24 @@ if (reportingApp && reportingContent) {
     if (toastButton) {
       showPelaporanAlert(toastButton.dataset.rpToast, "success");
     }
+  });
+
+  reportingApp.addEventListener("mouseover", (event) => {
+    const bar = event.target.closest("[data-mst-tip]");
+    if (!bar) return;
+    const item = findItem("penugasan", bar.dataset.mstTip);
+    if (item) showMonitoringTooltip(item, event);
+  });
+
+  reportingApp.addEventListener("mousemove", (event) => {
+    if (event.target.closest("[data-mst-tip]")) moveMonitoringTooltip(event);
+  });
+
+  reportingApp.addEventListener("mouseout", (event) => {
+    const bar = event.target.closest("[data-mst-tip]");
+    if (!bar) return;
+    if (event.relatedTarget && bar.contains(event.relatedTarget)) return;
+    hideMonitoringTooltip();
   });
 
   render();
