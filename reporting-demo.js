@@ -76,6 +76,11 @@ const showPelaporanAlert = (message, type = "success") => {
 
   const icon = type === "delete" ? "trash" : type === "warning" ? "warning" : "success";
   const title = type === "warning" ? "Perhatian" : type === "delete" ? "Konfirmasi Data" : "Berhasil";
+  const iconHtml = {
+    success: '<i class="fa-solid fa-check"></i>',
+    warning: '<i class="fa-solid fa-exclamation"></i>',
+    trash: '<i class="fa-solid fa-trash-can"></i>',
+  }[icon];
 
   backdrop.innerHTML = `
     <div class="rp-alert-card" role="dialog" aria-modal="true" aria-label="${title}">
@@ -89,6 +94,7 @@ const showPelaporanAlert = (message, type = "success") => {
   `;
 
   backdrop.classList.add("open");
+  backdrop.querySelector(".rp-alert-icon").innerHTML = iconHtml;
   backdrop.querySelector("[data-rp-alert-close]").addEventListener("click", () => backdrop.classList.remove("open"));
   backdrop.addEventListener("click", (event) => {
     if (event.target === backdrop) backdrop.classList.remove("open");
@@ -121,6 +127,7 @@ const openModal = (title, body, actions = "") => {
   `;
 
   backdrop.classList.add("open");
+  backdrop.querySelector(".rp-modal-close").innerHTML = "&times;";
   backdrop.querySelectorAll("[data-rp-close]").forEach((button) => {
     button.addEventListener("click", () => backdrop.classList.remove("open"));
   });
@@ -266,7 +273,7 @@ const tableView = (type, archived = false) => {
   const isPenugasan = type === "penugasan";
   const items = isPenugasan ? rpState.penugasan : rpState.penetapan;
   const title = archived
-    ? `Arsip ${isPenugasan ? "Penugasan" : "Penetapan"}`
+    ? `Arsip Laporan ${isPenugasan ? "Penugasan" : "Penetapan"}`
     : `Daftar ${isPenugasan ? "Penugasan" : "Penetapan"}`;
   const code = isPenugasan ? "ST" : "SK";
   const rows = archived ? items.filter((item) => item.status === "done") : items;
@@ -294,10 +301,10 @@ const tableView = (type, archived = false) => {
                   <td><span class="sp-pill ${item.status === "done" ? "sp-setuju" : "sp-belum"}">${statusLabel[item.status]}</span></td>
                   <td>
                     <div class="sp-act">
-                      <button class="sp-act-btn sp-act-eye" data-rp-detail="${type}:${item.id}" title="Detail">Lihat</button>
-                      <button class="sp-act-btn sp-act-report" data-rp-report="${type}:${item.id}" title="Input Laporan">Lap</button>
-                      <button class="sp-act-btn sp-act-edit" data-rp-toast="Mode edit ${item.id} dibuka.">Edit</button>
-                      <button class="sp-act-btn sp-act-del" data-rp-delete="${item.id}">Del</button>
+                      <button class="sp-act-btn sp-act-eye" data-rp-detail="${type}:${item.id}" title="Detail"><i class="fa-solid fa-circle-info"></i></button>
+                      <button class="sp-act-btn sp-act-report" data-rp-report="${type}:${item.id}" title="Input Laporan"><i class="fa-solid fa-file-circle-plus"></i></button>
+                      <button class="sp-act-btn sp-act-edit" data-rp-toast="Mode edit ${item.id} dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button>
+                      <button class="sp-act-btn sp-act-del" data-rp-delete="${item.id}" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                   </td>
                 </tr>
@@ -311,26 +318,70 @@ const tableView = (type, archived = false) => {
   `;
 };
 
-const adminView = () => `
-  <section class="rp-page app-kegiatan-shell">
-    <div class="sp-title">Tampilan Admin</div>
-    <div class="rp-admin-panel">
-      <div class="rp-admin-grid">
-        <article class="rp-admin-card">
-          <h4>Akun Demo</h4>
-          <p><strong>Nama:</strong> rafi</p>
-          <p><strong>Role:</strong> Admin, User, Atasan</p>
-          <p><strong>Status:</strong> Semua menu terbuka</p>
-        </article>
-        <article class="rp-admin-card">
-          <h4>Hak Akses</h4>
-          <div class="rp-permission-list">
-            <span>monitoring.penugasan</span><span>laporan.penugasan.create</span><span>penugasan.arsip</span>
-            <span>monitoring.penetapan</span><span>laporan.penetapan.create</span><span>penetapan.arsip</span>
-            <span>admin.users</span><span>admin.roles</span>
-          </div>
-        </article>
+const adminUsersView = () => `
+  <section class="rp-page rp-admin-native">
+    <h3>Daftar Pengguna</h3>
+    <div class="rp-admin-toolbar">
+      <button class="sp-btn sp-btn-blue" data-rp-toast="Form tambah pengguna dibuka."><i class="fa-solid fa-plus"></i> Tambah</button>
+      <div class="rp-admin-filters">
+        <select class="rp-admin-select"><option>Filter status akun...</option><option>Aktif</option><option>Nonaktif</option></select>
+        <select class="rp-admin-select"><option>Filter unit kerja...</option><option>Biro Umum</option><option>Biro Hukum</option></select>
+        <input class="rp-admin-search" type="text" placeholder="Cari nama/username...">
       </div>
+    </div>
+    <div class="rp-native-table">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:56px;text-align:center;">No.</th><th>Nama</th><th>Username</th><th>Unit Kerja</th><th style="text-align:center;">Status</th><th style="text-align:center;">Role</th><th style="text-align:center;">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:center;">1.</td><td>Rafi Yulian</td><td>rafi</td><td>Biro Perencanaan dan Teknologi Informasi</td><td style="text-align:center;">Aktif</td><td style="text-align:center;">admin</td>
+            <td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail pengguna rafi dibuka." title="Detail"><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit pengguna rafi dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="rafi" title="Hapus"><i class="fa-solid fa-trash-can"></i></button></div></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;">2.</td><td>Admin LPSK</td><td>admin</td><td>Sekretariat Jenderal</td><td style="text-align:center;">Aktif</td><td style="text-align:center;">admin</td>
+            <td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail pengguna admin dibuka." title="Detail"><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit pengguna admin dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="admin" title="Hapus"><i class="fa-solid fa-trash-can"></i></button></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+`;
+
+const adminRolesView = () => `
+  <section class="rp-page rp-admin-native">
+    <h3>Daftar Role</h3>
+    <div class="rp-admin-toolbar">
+      <button class="sp-btn sp-btn-blue" data-rp-toast="Form tambah role dibuka."><i class="fa-solid fa-plus"></i> Tambah</button>
+      <div class="rp-admin-filters">
+        <input class="rp-admin-search" type="text" placeholder="Cari nama role...">
+      </div>
+    </div>
+    <div class="rp-native-table">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:56px;text-align:center;">No.</th><th>Nama Role</th><th>Jumlah Permission</th><th style="width:150px;text-align:center;">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:center;">1.</td><td>admin</td><td><span class="rp-badge">24 Akses</span></td>
+            <td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail role admin dibuka." title="Detail"><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit role admin dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="role admin" title="Hapus"><i class="fa-solid fa-trash-can"></i></button></div></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;">2.</td><td>user</td><td><span class="rp-badge">12 Akses</span></td>
+            <td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail role user dibuka." title="Detail"><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit role user dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="role user" title="Hapus"><i class="fa-solid fa-trash-can"></i></button></div></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;">3.</td><td>atasan</td><td><span class="rp-badge">10 Akses</span></td>
+            <td><div class="rp-native-actions"><button class="info" data-rp-toast="Detail role atasan dibuka." title="Detail"><i class="fa-solid fa-circle-info"></i></button><button class="edit" data-rp-toast="Edit role atasan dibuka." title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><button class="delete" data-rp-delete="role atasan" title="Hapus"><i class="fa-solid fa-trash-can"></i></button></div></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 `;
@@ -344,7 +395,8 @@ const render = () => {
     "monitoring-sk": monitoringSkView,
     penetapan: () => tableView("penetapan"),
     "arsip-penetapan": () => tableView("penetapan", true),
-    admin: adminView,
+    users: adminUsersView,
+    roles: adminRolesView,
   };
 
   reportingContent.innerHTML = (views[rpState.view] || views.home)();
@@ -358,6 +410,18 @@ if (reportingApp && reportingContent) {
     const report = event.target.closest("[data-rp-report]");
     const toastButton = event.target.closest("[data-rp-toast]");
     const deleteButton = event.target.closest("[data-rp-delete]");
+    const sidebarClose = event.target.closest(".rp-sidebar-close");
+    const sidebarOpen = event.target.closest(".rp-sidebar-open");
+
+    if (sidebarClose) {
+      reportingApp.classList.add("sidebar-collapsed");
+      return;
+    }
+
+    if (sidebarOpen) {
+      reportingApp.classList.remove("sidebar-collapsed");
+      return;
+    }
 
     if (nav) {
       rpState.view = nav.dataset.view;

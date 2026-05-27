@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="reporting-demo.css">
 </head>
@@ -201,45 +202,76 @@
             <div class="rp-app" id="reportingDemoApp" aria-label="Demo aplikasi pelaporan">
               <aside class="rp-sidebar">
                 <div class="rp-sidebar-header">
-                  <span class="rp-logo">
-                    <img src="assets/icons/logo-lpsk-ui.png" alt="Logo LPSK">
-                  </span>
-                  <strong>PELAPORAN</strong>
+                  <div class="rp-sidebar-brand">
+                    <span class="rp-logo sm">
+                      <img src="assets/icons/logo-lpsk-ui.png" alt="Logo LPSK">
+                    </span>
+                    <strong>PELAPORAN</strong>
+                  </div>
+                  <button class="rp-sidebar-close" type="button" aria-label="Tutup sidebar demo">
+                    <i class="fa-solid fa-angles-left"></i>
+                  </button>
                 </div>
                 <nav class="rp-menu" aria-label="Menu demo pelaporan">
-                  <button class="rp-nav active" data-view="home"><span>H</span>Beranda</button>
+                  <button class="rp-nav active" data-view="home"><i class="fa-solid fa-house"></i><span>Beranda</span></button>
                   <div class="rp-group open">
-                    <button class="rp-group-title" type="button"><span>ST</span>Kelola Kegiatan</button>
+                    <button class="rp-group-title" type="button"><span><i class="fa-solid fa-file-invoice"></i>Kelola Kegiatan</span><i class="fa-solid fa-chevron-down"></i></button>
                     <button class="rp-nav sub" data-view="monitoring-st">Monitoring ST</button>
-                    <button class="rp-nav sub" data-view="penugasan">Daftar Penugasan</button>
-                    <button class="rp-nav sub" data-view="arsip-penugasan">Arsip Penugasan</button>
+                    <button class="rp-nav sub" data-view="penugasan">Submit Penugasan</button>
+                    <button class="rp-nav sub" data-view="arsip-penugasan">Arsip Laporan</button>
                   </div>
                   <div class="rp-group open">
-                    <button class="rp-group-title" type="button"><span>SK</span>Kelola Tim</button>
+                    <button class="rp-group-title" type="button"><span><i class="fa-solid fa-users"></i>Kelola Tim</span><i class="fa-solid fa-chevron-down"></i></button>
                     <button class="rp-nav sub" data-view="monitoring-sk">Monitoring SK</button>
-                    <button class="rp-nav sub" data-view="penetapan">Daftar Penetapan</button>
-                    <button class="rp-nav sub" data-view="arsip-penetapan">Arsip Penetapan</button>
+                    <button class="rp-nav sub" data-view="penetapan">Submit Penetapan</button>
+                    <button class="rp-nav sub" data-view="arsip-penetapan">Arsip Laporan</button>
                   </div>
                   <div class="rp-group open">
-                    <button class="rp-group-title" type="button"><span>AD</span>Administrator</button>
-                    <button class="rp-nav sub" data-view="admin">Tampilan Admin</button>
+                    <button class="rp-group-title" type="button"><span><i class="fa-solid fa-user-gear"></i>Administrator</span><i class="fa-solid fa-chevron-down"></i></button>
+                    <button class="rp-nav sub" data-view="users">Kelola Pengguna</button>
+                    <button class="rp-nav sub" data-view="roles">Kelola Hak Akses</button>
                   </div>
                 </nav>
               </aside>
 
               <div class="rp-shell">
                 <header class="rp-topbar">
-                  <div class="rp-year">
-                    <span>Tahun</span>
-                    <select aria-label="Tahun aktif demo">
-                      <option>2026</option>
-                      <option>2025</option>
-                    </select>
+                  <div class="rp-topbar-left">
+                    <button class="rp-sidebar-open" type="button" aria-label="Buka sidebar demo">
+                      <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="rp-topbar-brand">
+                      <span class="rp-logo">
+                        <img src="assets/icons/logo-lpsk-ui.png" alt="Logo LPSK">
+                      </span>
+                      <strong>PELAPORAN</strong>
+                    </div>
+                    <div class="rp-year">
+                      <span>Tahun</span>
+                      <select aria-label="Tahun aktif demo">
+                        <option>2026</option>
+                        <option>2025</option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="rp-user">
-                    <span>Halo, Admin</span>
-                    <strong>rafi</strong>
-                    <i aria-hidden="true"></i>
+                  <div class="rp-account">
+                    <button class="rp-user" type="button" aria-label="Akun rafi">
+                      <span><small>Halo, Admin</small><strong>rafi</strong></span>
+                      <i class="fa-solid fa-circle-user" aria-hidden="true"></i>
+                    </button>
+                    <div class="rp-account-menu" aria-hidden="true">
+                      <div class="rp-account-head">
+                        <p>Akun Anda</p>
+                        <strong>rafi</strong>
+                        <span>Role: Admin, User, Atasan</span>
+                      </div>
+                      <button type="button" data-rp-toast="Halaman profil demo dibuka.">
+                        <i class="fa-regular fa-id-card"></i> Profil Saya
+                      </button>
+                      <button type="button" data-rp-toast="Mode demo tidak mengakhiri sesi.">
+                        <i class="fa-solid fa-power-off"></i> Keluar Aplikasi
+                      </button>
+                    </div>
                   </div>
                 </header>
                 <main class="rp-content" id="reportingDemoContent" tabindex="-1"></main>

@@ -1153,6 +1153,612 @@
   background: #ef4444;
 }
 
+/* Reporting app shell rebuilt to follow the original Laravel admin layout. */
+.reporting-frame {
+  padding: 12px;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 22px 64px rgba(15, 23, 42, 0.12);
+}
+
+.rp-app {
+  --app-header-height: 80px;
+  min-height: 780px;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  overflow: hidden;
+  background: #f3f4f6;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: none;
+  font-family: "Inter", "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+.rp-sidebar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  background: #1c768f;
+  color: #fff;
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.25);
+}
+
+.rp-sidebar-header {
+  height: 80px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 24px;
+  background: #1c768f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rp-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.rp-sidebar-brand strong {
+  color: #fff;
+  font-size: 1.22rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.rp-logo {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 999px;
+}
+
+.rp-logo.sm {
+  width: 35px;
+  height: 35px;
+  padding: 3px;
+}
+
+.rp-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+.rp-sidebar-close {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: #fa991c;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+  cursor: pointer;
+}
+
+.rp-menu {
+  flex: 1;
+  display: block;
+  overflow-y: auto;
+  padding: 0 0 16px;
+}
+
+.rp-menu button {
+  width: 100%;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rp-nav,
+.rp-group-title {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  border-left: 4px solid transparent;
+  color: #fff;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.rp-nav > i,
+.rp-group-title i:first-child {
+  width: 20px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.rp-nav span,
+.rp-group-title span {
+  font-weight: 600;
+}
+
+.rp-nav:hover,
+.rp-group-title:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.rp-nav.active {
+  background: #fa991c;
+  border-left-color: #fff;
+  color: #fff;
+  font-weight: 700;
+}
+
+.rp-group {
+  background: transparent;
+}
+
+.rp-group.open {
+  background: transparent;
+}
+
+.rp-group-title {
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.rp-group-title span {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rp-group-title .fa-chevron-down {
+  font-size: 0.72rem;
+  transform: rotate(180deg);
+}
+
+.rp-nav.sub {
+  min-height: 37px;
+  padding: 8px 16px 8px 56px;
+  color: #e5e7eb;
+  background: #155a6d;
+  border-left: 0;
+  font-size: 0.88rem;
+}
+
+.rp-nav.sub.active {
+  color: #fff;
+  background: #fa991c;
+  font-weight: 700;
+}
+
+.rp-shell {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 80px minmax(0, 1fr);
+}
+
+.rp-topbar {
+  position: relative;
+  z-index: 1;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 24px 0 32px;
+  background: #fff;
+  color: #1f2937;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+}
+
+.rp-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.rp-sidebar-open {
+  display: none;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.rp-topbar-brand {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+}
+
+.rp-topbar-brand strong {
+  color: inherit;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.rp-app.sidebar-collapsed {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.rp-app.sidebar-collapsed .rp-sidebar {
+  display: none;
+}
+
+.rp-app.sidebar-collapsed .rp-topbar {
+  background: #1c768f;
+  color: #fff;
+  border-bottom-color: #1c768f;
+}
+
+.rp-app.sidebar-collapsed .rp-sidebar-open,
+.rp-app.sidebar-collapsed .rp-topbar-brand {
+  display: inline-flex;
+}
+
+.rp-app.sidebar-collapsed .rp-user,
+.rp-app.sidebar-collapsed .rp-user small,
+.rp-app.sidebar-collapsed .rp-user .fa-circle-user {
+  color: #fff;
+}
+
+.rp-app.sidebar-collapsed .rp-user strong {
+  color: #fff;
+}
+
+.rp-year {
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.rp-year span {
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.rp-year select {
+  width: 64px;
+  border: 0;
+  outline: 0;
+  color: #334155;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.rp-account {
+  position: relative;
+}
+
+.rp-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  color: #374151;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.rp-user > span {
+  display: grid;
+  gap: 2px;
+  color: #6b7280;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.1;
+  text-align: right;
+}
+
+.rp-user small {
+  color: #6b7280;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.rp-user strong {
+  color: #1c768f;
+  font-size: 0.94rem;
+  font-weight: 800;
+}
+
+.rp-user .fa-circle-user {
+  color: #374151;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  font-size: 2.35rem;
+  line-height: 1;
+}
+
+.rp-account-menu {
+  position: absolute;
+  top: 56px;
+  right: 0;
+  z-index: 12;
+  width: 224px;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  border-radius: 8px;
+  box-shadow: 0 20px 38px rgba(15, 23, 42, 0.18);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+}
+
+.rp-account:hover .rp-account-menu,
+.rp-account:focus-within .rp-account-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rp-account-head {
+  padding: 12px 16px;
+  background: #f9fafb;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.rp-account-head p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.rp-account-head strong {
+  display: block;
+  margin-top: 3px;
+  color: #1c768f;
+  font-size: 0.88rem;
+}
+
+.rp-account-head span {
+  display: block;
+  margin-top: 3px;
+  color: #9ca3af;
+  font-size: 0.64rem;
+  text-transform: uppercase;
+}
+
+.rp-account-menu button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 0;
+  padding: 12px 16px;
+  color: #374151;
+  background: #fff;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rp-account-menu button:hover {
+  color: #0f766e;
+  background: #f0fdfa;
+}
+
+.rp-account-menu button:last-child {
+  color: #dc2626;
+}
+
+.rp-account-menu button:last-child:hover {
+  color: #b91c1c;
+  background: #fef2f2;
+}
+
+.rp-content {
+  min-width: 0;
+  min-height: 0;
+  padding: 24px;
+  overflow: auto;
+  color: #111827;
+  background: #f3f4f6;
+}
+
+.rp-welcome {
+  min-height: 620px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 200px;
+}
+
+.rp-welcome-card {
+  width: min(100%, 896px);
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  color: #fff;
+  background: #fa991c;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  text-align: center;
+}
+
+.rp-welcome-card h3 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.rp-welcome-card u {
+  font-weight: 800;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.app-kegiatan-shell,
+.mst-wrap,
+.msk-wrap,
+.rp-admin-native {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sp-title,
+.rp-admin-native h3 {
+  margin: 0 0 24px;
+  color: #1f2937;
+  font-size: 1.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.rp-admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.rp-admin-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.rp-admin-select,
+.rp-admin-search {
+  height: 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0 14px;
+  color: #4b5563;
+  background: #fff;
+  font: inherit;
+  font-size: 0.86rem;
+}
+
+.rp-admin-search {
+  width: 220px;
+}
+
+.rp-native-table {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.rp-native-table table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.rp-native-table thead {
+  color: #fff;
+  background: #1c768f;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.rp-native-table th,
+.rp-native-table td {
+  padding: 12px 16px;
+  border-right: 1px solid rgba(28, 118, 143, 0.65);
+}
+
+.rp-native-table td {
+  border-right-color: #f3f4f6;
+  color: #374151;
+  font-size: 0.86rem;
+}
+
+.rp-native-table tbody tr {
+  border-top: 1px solid #e5e7eb;
+  transition: background 0.18s ease;
+}
+
+.rp-native-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.rp-native-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.rp-native-actions button {
+  border: 0;
+  background: transparent;
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.rp-native-actions .info {
+  color: #007bff;
+}
+
+.rp-native-actions .edit {
+  color: #ffc107;
+}
+
+.rp-native-actions .delete {
+  color: #f05f40;
+}
+
+.rp-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1e40af;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
 .rp-toast.show {
   display: block;
   animation: rpFade 0.2s ease;
