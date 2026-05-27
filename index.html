@@ -161,7 +161,7 @@
         <div class="demo-intro reveal">
           <div class="demo-copy-block">
             <div class="demo-kicker-row">
-              <span class="demo-live-badge"><i aria-hidden="true"></i>Live Demo</span>
+              <span class="demo-live-badge"><i aria-hidden="true"></i><b>LIVE</b><small>Demo</small></span>
               <span>Portfolio Case Study</span>
             </div>
             <div class="demo-title-row">
@@ -179,19 +179,10 @@
             </p>
           </div>
 
-          <div class="demo-summary" aria-label="Demo highlights">
-            <article>
-              <strong>Clickable</strong>
-              <span>Menu dapat diklik</span>
-            </article>
-            <article>
-              <strong>Laravel Case</strong>
-              <span>Mengikuti sistem asli</span>
-            </article>
-            <article>
-              <strong>Static Demo</strong>
-              <span>Aman tanpa backend</span>
-            </article>
+          <div class="demo-side-note" aria-label="Demo status">
+            <span>Laravel, MySQL, RBAC</span>
+            <strong>Clickable static preview</strong>
+            <p>Data simulasi, aman tanpa backend.</p>
           </div>
         </div>
 
@@ -204,14 +195,6 @@
                 arsip, admin, dan notifikasi interaktif.
               </p>
             </div>
-            <ul class="demo-feature-list" aria-label="Demo modules">
-              <li>Monitoring ST</li>
-              <li>Penugasan</li>
-              <li>Monitoring SK</li>
-              <li>Penetapan</li>
-              <li>Arsip</li>
-              <li>Admin</li>
-            </ul>
           </div>
 
           <div class="demo-note-mobile">
@@ -220,51 +203,58 @@
             </p>
           </div>
 
-          <div class="rp-app" id="reportingDemoApp" aria-label="Demo aplikasi pelaporan">
-            <aside class="rp-sidebar">
-              <div class="rp-sidebar-header">
-                <span class="rp-logo">
-                  <img src="assets/icons/logo-lpsk-ui.png" alt="Logo LPSK">
-                </span>
-                <strong>PELAPORAN</strong>
-              </div>
-              <nav class="rp-menu" aria-label="Menu demo pelaporan">
-                <button class="rp-nav active" data-view="home"><span>H</span>Beranda</button>
-                <div class="rp-group open">
-                  <button class="rp-group-title" type="button"><span>ST</span>Kelola Kegiatan</button>
-                  <button class="rp-nav sub" data-view="monitoring-st">Monitoring ST</button>
-                  <button class="rp-nav sub" data-view="penugasan">Daftar Penugasan</button>
-                  <button class="rp-nav sub" data-view="arsip-penugasan">Arsip Penugasan</button>
-                </div>
-                <div class="rp-group open">
-                  <button class="rp-group-title" type="button"><span>SK</span>Kelola Tim</button>
-                  <button class="rp-nav sub" data-view="monitoring-sk">Monitoring SK</button>
-                  <button class="rp-nav sub" data-view="penetapan">Daftar Penetapan</button>
-                  <button class="rp-nav sub" data-view="arsip-penetapan">Arsip Penetapan</button>
-                </div>
-                <div class="rp-group open">
-                  <button class="rp-group-title" type="button"><span>AD</span>Administrator</button>
-                  <button class="rp-nav sub" data-view="admin">Tampilan Admin</button>
-                </div>
-              </nav>
-            </aside>
+          <div class="reporting-frame">
+            <div class="reporting-frame-head">
+              <span>Live Application Preview</span>
+              <strong>Aplikasi Pelaporan LPSK</strong>
+            </div>
 
-            <div class="rp-shell">
-              <header class="rp-topbar">
-                <div class="rp-year">
-                  <span>Tahun</span>
-                  <select aria-label="Tahun aktif demo">
-                    <option>2026</option>
-                    <option>2025</option>
-                  </select>
+            <div class="rp-app" id="reportingDemoApp" aria-label="Demo aplikasi pelaporan">
+              <aside class="rp-sidebar">
+                <div class="rp-sidebar-header">
+                  <span class="rp-logo">
+                    <img src="assets/icons/logo-lpsk-ui.png" alt="Logo LPSK">
+                  </span>
+                  <strong>PELAPORAN</strong>
                 </div>
-                <div class="rp-user">
-                  <span>Halo, Admin</span>
-                  <strong>rafi</strong>
-                  <i aria-hidden="true"></i>
-                </div>
-              </header>
-              <main class="rp-content" id="reportingDemoContent" tabindex="-1"></main>
+                <nav class="rp-menu" aria-label="Menu demo pelaporan">
+                  <button class="rp-nav active" data-view="home"><span>H</span>Beranda</button>
+                  <div class="rp-group open">
+                    <button class="rp-group-title" type="button"><span>ST</span>Kelola Kegiatan</button>
+                    <button class="rp-nav sub" data-view="monitoring-st">Monitoring ST</button>
+                    <button class="rp-nav sub" data-view="penugasan">Daftar Penugasan</button>
+                    <button class="rp-nav sub" data-view="arsip-penugasan">Arsip Penugasan</button>
+                  </div>
+                  <div class="rp-group open">
+                    <button class="rp-group-title" type="button"><span>SK</span>Kelola Tim</button>
+                    <button class="rp-nav sub" data-view="monitoring-sk">Monitoring SK</button>
+                    <button class="rp-nav sub" data-view="penetapan">Daftar Penetapan</button>
+                    <button class="rp-nav sub" data-view="arsip-penetapan">Arsip Penetapan</button>
+                  </div>
+                  <div class="rp-group open">
+                    <button class="rp-group-title" type="button"><span>AD</span>Administrator</button>
+                    <button class="rp-nav sub" data-view="admin">Tampilan Admin</button>
+                  </div>
+                </nav>
+              </aside>
+
+              <div class="rp-shell">
+                <header class="rp-topbar">
+                  <div class="rp-year">
+                    <span>Tahun</span>
+                    <select aria-label="Tahun aktif demo">
+                      <option>2026</option>
+                      <option>2025</option>
+                    </select>
+                  </div>
+                  <div class="rp-user">
+                    <span>Halo, Admin</span>
+                    <strong>rafi</strong>
+                    <i aria-hidden="true"></i>
+                  </div>
+                </header>
+                <main class="rp-content" id="reportingDemoContent" tabindex="-1"></main>
+              </div>
             </div>
           </div>
         </div>

@@ -1141,10 +1141,7 @@ h3 {
 
 .demo-section {
   padding: 84px 0 96px;
-  background:
-    radial-gradient(circle at 13% 12%, rgba(28, 118, 143, 0.1), transparent 28%),
-    radial-gradient(circle at 88% 18%, rgba(250, 153, 28, 0.12), transparent 24%),
-    linear-gradient(135deg, #fbf8f1, #f1eadf);
+  background-color: #fbf8f1;
   color: var(--ink);
 }
 
@@ -1153,10 +1150,9 @@ h3 {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: linear-gradient(180deg, transparent, black 18%, black 82%, transparent);
+    linear-gradient(90deg, rgba(37, 33, 29, 0.105) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(37, 33, 29, 0.105) 1px, transparent 1px);
+  background-size: 42px 42px;
   pointer-events: none;
 }
 
@@ -1171,10 +1167,7 @@ h3 {
 
 .demo-intro {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-  gap: 24px;
-  align-items: stretch;
+  display: block;
   margin-bottom: 18px;
   padding: 24px;
   overflow: hidden;
@@ -1197,7 +1190,7 @@ h3 {
 
 .demo-copy-block {
   position: relative;
-  max-width: 760px;
+  max-width: none;
   z-index: 1;
 }
 
@@ -1222,22 +1215,52 @@ h3 {
 }
 
 .demo-live-badge {
-  gap: 8px;
+  position: relative;
+  gap: 9px;
+  padding-right: 14px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #c62828, #fa991c);
+  border-color: rgba(198, 40, 40, 0.18);
+  box-shadow: 0 14px 30px rgba(198, 40, 40, 0.16);
+  overflow: visible;
 }
 
 .demo-live-badge i {
-  width: 8px;
-  height: 8px;
-  background: #1c768f;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(28, 118, 143, 0.35);
-  animation: statusPulse 1.4s ease-out infinite;
+  box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.45);
+  animation: liveBeacon 1.35s ease-out infinite;
+}
+
+.demo-live-badge b,
+.demo-live-badge small {
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+}
+
+.demo-live-badge small {
+  font-size: 0.72rem;
+  font-weight: 900;
+  opacity: 0.86;
+}
+
+.demo-live-badge::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 1px solid rgba(198, 40, 40, 0.28);
+  border-radius: inherit;
+  animation: liveBorderPulse 1.8s ease-out infinite;
 }
 
 .demo-title-row {
   display: grid;
   grid-template-columns: 74px 1fr;
-  gap: 16px;
+  gap: 18px;
   align-items: center;
 }
 
@@ -1247,11 +1270,23 @@ h3 {
   place-items: center;
   width: 74px;
   height: 74px;
-  padding: 9px;
+  padding: 7px;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(37, 33, 29, 0.1);
   border-radius: 20px;
   box-shadow: 0 18px 44px rgba(24, 21, 18, 0.12);
+}
+
+.demo-lpsk-mark::after {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  z-index: -1;
+  background: conic-gradient(from 180deg, rgba(28, 118, 143, 0), rgba(28, 118, 143, 0.32), rgba(250, 153, 28, 0.34), rgba(28, 118, 143, 0));
+  border-radius: 30px;
+  opacity: 0.7;
+  filter: blur(10px);
+  animation: orbitSpin 7s linear infinite;
 }
 
 .demo-lpsk-mark::before {
@@ -1271,85 +1306,57 @@ h3 {
 }
 
 .demo-copy-block h2 {
-  max-width: 680px;
+  max-width: 920px;
   color: var(--brown-950);
   font-size: clamp(1.9rem, 3.6vw, 3.25rem);
   line-height: 1.04;
 }
 
 .demo-copy-block p {
-  max-width: 680px;
+  max-width: 1040px;
   margin: 16px 0 0;
   color: var(--muted);
   font-size: 0.98rem;
   line-height: 1.68;
 }
 
-.demo-summary {
+.demo-side-note {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.demo-summary article {
-  min-height: 126px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(37, 33, 29, 0.1);
-  border-radius: var(--radius);
-  box-shadow: 0 16px 42px rgba(24, 21, 18, 0.08);
-  transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
-}
-
-.demo-summary article:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.96);
-  border-color: rgba(250, 153, 28, 0.28);
-  box-shadow: 0 22px 56px rgba(24, 21, 18, 0.13);
-}
-
-.demo-summary strong {
-  display: block;
-  color: var(--brown-950);
-  font-size: 1rem;
-  line-height: 1.15;
-}
-
-.demo-summary span {
-  display: block;
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 800;
-  line-height: 1.35;
-}
-
-.demo-feature-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.demo-feature-list li {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
-  min-height: 30px;
-  padding: 6px 10px;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 10px 12px;
   color: var(--brown-950);
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(37, 33, 29, 0.1);
   border-radius: 999px;
-  font-size: 0.75rem;
+  box-shadow: 0 14px 36px rgba(24, 21, 18, 0.08);
+}
+
+.demo-side-note span,
+.demo-side-note strong,
+.demo-side-note p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.demo-side-note span {
+  color: var(--brown-500);
   font-weight: 900;
+  text-transform: uppercase;
+}
+
+.demo-side-note strong {
+  font-weight: 900;
+}
+
+.demo-side-note p {
+  color: var(--muted);
+  font-weight: 800;
 }
 
 .demo-note-mobile {
@@ -2054,6 +2061,28 @@ h3 {
   }
 }
 
+@keyframes liveBeacon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.55), 0 0 16px rgba(255, 255, 255, 0.72);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(198, 40, 40, 0), 0 0 22px rgba(255, 255, 255, 0.9);
+    transform: scale(1.12);
+  }
+}
+
+@keyframes liveBorderPulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+}
+
 @keyframes statusPulse {
   0% {
     box-shadow: 0 0 0 0 rgba(28, 118, 143, 0.34);
@@ -2364,7 +2393,6 @@ h3 {
   }
 
   .hero-proof,
-  .demo-summary,
   .screen-grid,
   .demo-skeleton,
   .project-grid,
@@ -2399,14 +2427,6 @@ h3 {
 
   .demo-copy-block p {
     font-size: 0.94rem;
-  }
-
-  .demo-summary article {
-    min-height: auto;
-  }
-
-  .demo-feature-list {
-    justify-content: flex-start;
   }
 
   .demo-note-mobile {
