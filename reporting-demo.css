@@ -540,12 +540,18 @@
 
 .sp-btn {
   height: 36px;
+  min-width: 132px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
   border-radius: 8px;
   padding: 0 18px;
   color: #fff;
   font-size: 12px;
   font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
 }
 
@@ -2094,6 +2100,12 @@
 
 .sp-btn i {
   font-size: 0.78rem;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.sp-btn span {
+  line-height: 1;
 }
 
 .rp-toast.show {
