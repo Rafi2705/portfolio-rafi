@@ -25,16 +25,17 @@
   justify-content: space-between;
   gap: 22px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.065);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(37, 33, 29, 0.1);
   border-radius: var(--radius);
+  box-shadow: 0 16px 44px rgba(24, 21, 18, 0.08);
   backdrop-filter: blur(14px);
 }
 
 .reporting-note p {
   max-width: 620px;
   margin: 8px 0 0;
-  color: rgba(255, 250, 242, 0.78);
+  color: var(--muted);
   font-size: 0.94rem;
   line-height: 1.58;
 }
@@ -45,7 +46,7 @@
   grid-template-columns: 280px minmax(0, 1fr);
   overflow: hidden;
   background: var(--rp-bg);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(37, 33, 29, 0.1);
   border-radius: var(--radius);
   box-shadow: var(--shadow-hard);
   font-family: "Inter", Arial, sans-serif;
