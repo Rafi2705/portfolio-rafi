@@ -10,35 +10,35 @@ const rpState = {
       id: "ST-001",
       title: "Pendampingan Saksi Sidang Tindak Pidana",
       unit: "Biro Pemenuhan Hak Saksi",
-      date: "2026-05-06",
-      endDate: "2026-05-10",
-      deadline: "2026-05-10",
+      date: "2026-05-01",
+      endDate: "2026-05-05",
+      deadline: "2026-05-07",
       status: "done",
       reporter: "rafi",
       location: "Jakarta",
-      tone: "safe",
+      tone: "done",
       lane: 0,
     },
     {
       id: "ST-002",
       title: "Verifikasi Perlindungan Korban",
       unit: "Biro Penelaahan Permohonan",
-      date: "2026-05-13",
-      endDate: "2026-05-17",
-      deadline: "2026-05-20",
+      date: "2026-05-08",
+      endDate: "2026-05-12",
+      deadline: "2026-05-15",
       status: "pending",
       reporter: "rafi",
       location: "Bogor",
-      tone: "warn",
-      lane: 1,
+      tone: "pending",
+      lane: 0,
     },
     {
       id: "ST-003",
       title: "Koordinasi Layanan Darurat",
       unit: "Biro Keamanan dan Pengawalan",
-      date: "2026-05-19",
-      endDate: "2026-05-23",
-      deadline: "2026-05-21",
+      date: "2026-05-15",
+      endDate: "2026-05-19",
+      deadline: "2026-05-18",
       status: "overdue",
       reporter: "rafi",
       location: "Depok",
@@ -49,14 +49,14 @@ const rpState = {
       id: "ST-004",
       title: "Monitoring Layanan Perlindungan Terpadu",
       unit: "Biro Perencanaan dan TI",
-      date: "2026-05-25",
-      endDate: "2026-05-29",
+      date: "2026-05-22",
+      endDate: "2026-05-26",
       deadline: "2026-05-29",
       status: "pending",
       reporter: "rafi",
       location: "Bekasi",
-      tone: "safe",
-      lane: 2,
+      tone: "pending",
+      lane: 0,
     },
   ],
   penetapan: [
@@ -92,9 +92,9 @@ const statusLabel = {
 };
 
 const deadlineLabel = {
-  safe: "Aman",
-  warn: "Mendekati Batas Waktu",
-  overdue: "Melewati Batas Waktu",
+  done: "Sudah Dilaporkan",
+  pending: "Masih Batas Waktu",
+  overdue: "Lewat Batas Waktu",
 };
 
 const fmtDate = (value) => {
@@ -195,8 +195,8 @@ const monitoringStView = () => {
       <div class="mst-kpi-row">
         <div class="mst-kpi"><div class="mst-kpi-label">Total Kegiatan</div><div class="mst-kpi-value">4</div></div>
         <div class="mst-kpi"><div class="mst-kpi-label">Countdown Aktif</div><div class="mst-kpi-value">3</div></div>
-        <div class="mst-kpi"><div class="mst-kpi-label">Aman</div><div class="mst-kpi-value" style="color:#15803d">2</div></div>
-        <div class="mst-kpi"><div class="mst-kpi-label">Mendekati Batas Waktu<br>/Hari Ini</div><div class="mst-kpi-value" style="color:#b45309">1</div></div>
+        <div class="mst-kpi"><div class="mst-kpi-label">Sudah Dilaporkan</div><div class="mst-kpi-value" style="color:#15803d">1</div></div>
+        <div class="mst-kpi"><div class="mst-kpi-label">Belum Dilaporkan<br>Masih Batas Waktu</div><div class="mst-kpi-value" style="color:#dc2626">2</div></div>
         <div class="mst-kpi"><div class="mst-kpi-label">Melewati Batas Waktu</div><div class="mst-kpi-value" style="color:#b91c1c">1</div></div>
       </div>
       <div class="mst-weekdays">
@@ -212,19 +212,19 @@ const monitoringStView = () => {
             `).join("")}
             <div class="mst-bars">
               ${barsByWeek[week].map((item) => {
-                const color = item.status === "done" ? "#16a34a" : item.tone === "warn" ? "#d97706" : item.tone === "overdue" ? "#dc2626" : "#1d77ff";
-                const running = item.status !== "done";
+                const color = item.status === "done" ? "#16a34a" : "#dc2626";
+                const running = item.status === "overdue";
                 const label = `${item.id} - ${item.title}`;
                 return `
-                  <button class="mst-bar ${item.tone === "overdue" ? "mst-bar-overdue" : ""} ${item.tone === "warn" ? "mst-bar-urgent" : ""}"
-                    style="left:${item.left + 0.45}%; width:calc(${item.width}% - 8px); top:${item.top}px; height:24px; background:${color}; --mst-marquee-duration:${item.tone === "overdue" ? "9s" : "13s"};"
+                  <button class="mst-bar ${item.status === "overdue" ? "mst-bar-overdue" : ""}"
+                    style="left:${item.left + 0.45}%; width:calc(${item.width}% - 8px); top:${item.top}px; height:24px; background:${color}; --mst-marquee-duration:9s;"
                     data-rp-detail="penugasan:${item.id}"
                     data-mst-tip="${item.id}"
                     aria-label="${label}">
                     <span class="mst-bar-label-shell">
                       ${running ? `<span class="mst-bar-label-track"><span class="mst-bar-label-copy">${label}</span><span class="mst-bar-label-copy" aria-hidden="true">${label}</span><span class="mst-bar-label-copy" aria-hidden="true">${label}</span></span>` : `<span class="mst-bar-label">${label}</span>`}
                     </span>
-                    <span class="mst-inline-badge">${deadlineLabel[item.tone] || "Aman"}</span>
+                    <span class="mst-inline-badge">${deadlineLabel[item.tone] || "Status Laporan"}</span>
                   </button>
                 `;
               }).join("")}
@@ -237,7 +237,6 @@ const monitoringStView = () => {
           <span class="mst-legend-item"><span class="mst-legend-dot" style="background:#dc2626"></span>Belum dilaporkan</span>
           <span class="mst-legend-item"><span class="mst-legend-dot" style="background:#16a34a"></span>Sudah dilaporkan</span>
           <span class="mst-legend-item"><span class="mst-legend-dot" style="background:#b91c1c"></span>Melewati Batas Waktu</span>
-          <span class="mst-legend-item"><span class="mst-legend-dot" style="background:#d97706"></span>Mendekati Batas Waktu</span>
         </div>
         <div class="mst-legend-note">Countdown hanya aktif untuk status <span class="mst-note-belum">Belum dilaporkan</span>.</div>
       </div>
@@ -485,7 +484,7 @@ const showMonitoringTooltip = (item, event) => {
   tip.innerHTML = `
     <div class="mst-tip-head">
       <div class="mst-tip-no">${item.id}</div>
-      <span class="mst-tip-chip ${tone}">${deadlineLabel[tone] || "Aman"}</span>
+      <span class="mst-tip-chip ${tone}">${deadlineLabel[tone] || "Status Laporan"}</span>
     </div>
     <div class="mst-tip-judul">${item.title}</div>
     <div class="mst-tip-status"><span class="mst-tip-dot" style="background:${item.status === "done" ? "#16a34a" : "#dc2626"}"></span>Status Pelaporan ${statusLabel[item.status]}</div>
@@ -516,6 +515,7 @@ if (reportingApp && reportingContent) {
   reportingApp.addEventListener("click", (event) => {
     const nav = event.target.closest("[data-view]");
     const groupTitle = event.target.closest(".rp-group-title");
+    const detailButton = event.target.closest("[data-rp-detail]");
     const formButton = event.target.closest("[data-rp-form]");
     const toastButton = event.target.closest("[data-rp-toast]");
     const deleteButton = event.target.closest("[data-rp-delete]");
@@ -536,6 +536,14 @@ if (reportingApp && reportingContent) {
     if (groupTitle) {
       const group = groupTitle.closest(".rp-group");
       group?.classList.toggle("open");
+      return;
+    }
+
+    if (detailButton) {
+      const [type, id] = detailButton.dataset.rpDetail.split(":");
+      rpState.lastList = type;
+      reportingContent.innerHTML = workflowFormView(type, "detail", id);
+      reportingContent.focus({ preventScroll: true });
       return;
     }
 

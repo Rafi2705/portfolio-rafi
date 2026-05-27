@@ -2018,6 +2018,18 @@
   border-color: #bbf7d0;
 }
 
+.mst-tip-chip.done {
+  color: #14532d;
+  background: #dcfce7;
+  border-color: #bbf7d0;
+}
+
+.mst-tip-chip.pending {
+  color: #7f1d1d;
+  background: #fee2e2;
+  border-color: #fecaca;
+}
+
 .mst-tip-chip.warn {
   color: #854d0e;
   background: #fef3c7;
