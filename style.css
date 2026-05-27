@@ -291,7 +291,7 @@ a {
 }
 
 .hero-content {
-  padding-top: 58px;
+  padding-top: 20px;
 }
 
 .eyebrow {
@@ -2128,6 +2128,7 @@ h3 {
 
   .hero-content {
     width: 100%;
+    padding-top: 0;
   }
 
   .hero-content > * {
