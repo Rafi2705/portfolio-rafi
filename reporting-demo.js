@@ -147,8 +147,62 @@ const showPelaporanAlert = (message, type = "success") => {
 
 const homeView = () => `
   <section class="rp-page rp-welcome">
-    <div class="rp-welcome-card">
-      <h3>Selamat Datang di Aplikasi Pelaporan,<br><u>RAFI</u>!</h3>
+    <div class="rp-home-hero">
+      <div class="rp-home-copy">
+        <div class="rp-home-kicker">
+          <span class="rp-live-dot"></span>
+          Dashboard Pelaporan Internal LPSK
+        </div>
+        <h3>Selamat Datang, <span>Rafi</span></h3>
+        <p>
+          Demo ini menampilkan alur pelaporan berbasis web untuk monitoring surat tugas, penetapan tim,
+          arsip laporan, dan pengelolaan admin dalam satu tampilan interaktif.
+        </p>
+        <div class="rp-home-actions">
+          <button type="button" data-view="monitoring-st">
+            <i class="fa-solid fa-calendar-days"></i>
+            Monitoring ST
+          </button>
+          <button type="button" data-view="penugasan">
+            <i class="fa-solid fa-file-circle-plus"></i>
+            Submit Penugasan
+          </button>
+        </div>
+      </div>
+
+      <div class="rp-home-orbit" aria-hidden="true">
+        <span class="rp-orbit-ring ring-a"></span>
+        <span class="rp-orbit-ring ring-b"></span>
+        <div class="rp-home-logo">
+          <img src="assets/icons/logo-lpsk-ui.png" alt="">
+        </div>
+        <div class="rp-home-status status-green">
+          <span>1</span>
+          Sudah Dilaporkan
+        </div>
+        <div class="rp-home-status status-red">
+          <span>2</span>
+          Belum Dilaporkan
+        </div>
+      </div>
+    </div>
+
+    <div class="rp-home-metrics">
+      <article>
+        <span>Total ST</span>
+        <strong>4</strong>
+        <small>Data dummy aktif</small>
+      </article>
+      <article>
+        <span>Monitoring</span>
+        <strong>Mei 2026</strong>
+        <small>Kalender laporan</small>
+      </article>
+      <article>
+        <span>Akses</span>
+        <strong>Admin</strong>
+        <small>Semua menu terbuka</small>
+      </article>
     </div>
   </section>
 `;
