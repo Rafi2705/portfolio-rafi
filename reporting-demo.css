@@ -563,12 +563,27 @@
 .sp-select {
   min-width: 220px;
   height: 36px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
-  padding: 0 14px;
+  padding: 0 42px 0 14px;
   color: #9aa0a6;
-  background: #fff;
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #9aa0a6 50%),
+    linear-gradient(135deg, #9aa0a6 50%, transparent 50%);
+  background-position:
+    calc(100% - 21px) 50%,
+    calc(100% - 15px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
   font-size: 12px;
+}
+
+.sp-select::-ms-expand {
+  display: none;
 }
 
 .sp-search-wrap {
@@ -578,7 +593,7 @@
   display: flex;
   align-items: center;
   padding-left: 16px;
-  padding-right: 56px;
+  padding-right: 44px;
   background: #fff;
   border: 1px solid #d9d9d9;
   border-radius: 999px;
@@ -596,8 +611,12 @@
 .sp-search-btn {
   position: absolute;
   top: 50%;
-  right: 8px;
+  right: 10px;
+  width: 28px;
   height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
   border-radius: 999px;
   color: #777;
@@ -605,6 +624,10 @@
   transform: translateY(-50%);
   cursor: pointer;
   font-size: 11px;
+}
+
+.sp-search-btn i {
+  font-size: 12px;
 }
 
 .sp-pill {
