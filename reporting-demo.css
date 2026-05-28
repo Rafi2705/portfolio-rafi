@@ -2093,7 +2093,9 @@
 
 .rp-user {
   min-width: 176px;
+  gap: 18px;
   justify-content: flex-end;
+  padding-right: 10px;
 }
 
 .rp-user > span {
