@@ -576,6 +576,8 @@ const adminRolesView = () => `
 `;
 
 const render = () => {
+  removeMonitoringTooltip();
+
   const views = {
     home: homeView,
     "monitoring-st": monitoringStView,
@@ -637,6 +639,10 @@ const hideMonitoringTooltip = () => {
   document.querySelector(".mst-tip")?.classList.remove("show");
 };
 
+const removeMonitoringTooltip = () => {
+  document.querySelector(".mst-tip")?.remove();
+};
+
 if (reportingApp && reportingContent) {
   reportingApp.addEventListener("click", (event) => {
     const nav = event.target.closest("[data-view]");
@@ -648,6 +654,10 @@ if (reportingApp && reportingContent) {
     const saveButton = event.target.closest("[data-rp-demo-save]");
     const sidebarClose = event.target.closest(".rp-sidebar-close");
     const sidebarOpen = event.target.closest(".rp-sidebar-open");
+
+    if (!event.target.closest("[data-mst-tip]")) {
+      removeMonitoringTooltip();
+    }
 
     if (sidebarClose) {
       reportingApp.classList.add("sidebar-collapsed");
@@ -666,6 +676,7 @@ if (reportingApp && reportingContent) {
     }
 
     if (detailButton) {
+      removeMonitoringTooltip();
       const [type, id] = detailButton.dataset.rpDetail.split(":");
       rpState.lastList = type;
       reportingContent.innerHTML = workflowFormView(type, "detail", id, detailButton.dataset.rpReturn || "");
