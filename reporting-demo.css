@@ -495,6 +495,7 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 16px;
+  width: 100%;
 }
 
 .sp-card {
@@ -540,7 +541,7 @@
 
 .sp-btn {
   height: 36px;
-  min-width: 132px;
+  min-width: 120px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -560,7 +561,13 @@
   background: #1f73ff;
 }
 
+.sp-toolbar .sp-btn-blue {
+  min-width: 112px;
+  padding-inline: 14px;
+}
+
 .sp-select {
+  flex: 0 1 300px;
   min-width: 220px;
   height: 36px;
   appearance: none;
@@ -568,16 +575,16 @@
   -moz-appearance: none;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
-  padding: 0 42px 0 14px;
+  padding: 0 58px 0 20px;
   color: #9aa0a6;
   background-color: #fff;
   background-image:
-    linear-gradient(45deg, transparent 50%, #9aa0a6 50%),
-    linear-gradient(135deg, #9aa0a6 50%, transparent 50%);
+    url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5' stroke='%23899BB3' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
+    linear-gradient(#d9e2ef, #d9e2ef);
   background-position:
-    calc(100% - 21px) 50%,
-    calc(100% - 15px) 50%;
-  background-size: 6px 6px, 6px 6px;
+    calc(100% - 22px) 50%,
+    calc(100% - 52px) 50%;
+  background-size: 18px 18px, 1px 100%;
   background-repeat: no-repeat;
   font-size: 12px;
 }
@@ -588,7 +595,8 @@
 
 .sp-search-wrap {
   position: relative;
-  width: 520px;
+  flex: 1 1 360px;
+  min-width: 300px;
   height: 36px;
   display: flex;
   align-items: center;
@@ -2565,6 +2573,7 @@
 
   .sp-search-wrap {
     width: 100%;
+    min-width: 0;
   }
 }
 
