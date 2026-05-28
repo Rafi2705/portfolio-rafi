@@ -10,12 +10,6 @@ const ambientLayer = document.querySelector(".ambient-layer");
 const cursorSpotlight = document.querySelector(".cursor-spotlight");
 const demoBrowser = document.querySelector(".demo-browser");
 const demoLiveLink = document.querySelector(".demo-live-link");
-const pdfModal = document.querySelector("#pdfModal");
-const pdfModalFrame = document.querySelector(".pdf-modal-frame");
-const pdfModalTitle = document.querySelector("#pdfModalTitle");
-const pdfModalDownload = document.querySelector(".pdf-modal-download");
-const pdfModalClose = document.querySelector(".pdf-modal-close");
-const pdfOpenButtons = document.querySelectorAll("[data-pdf-open]");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -40,7 +34,6 @@ navLinks.forEach((link) => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeMenu();
-    closePdfModal();
   }
 });
 
@@ -103,41 +96,6 @@ if (demoBrowser) {
       demoLiveLink.removeAttribute("aria-disabled");
     }
   }
-}
-
-const openPdfModal = (button) => {
-  if (!pdfModal || !pdfModalFrame || !pdfModalTitle || !pdfModalDownload) return;
-
-  const title = button.dataset.pdfTitle || "Dokumen Pelaporan LPSK";
-  const src = button.dataset.pdfSrc;
-  if (!src) return;
-
-  pdfModalTitle.textContent = title;
-  pdfModalFrame.src = `${src}#toolbar=1&navpanes=0&view=FitH`;
-  pdfModalDownload.href = src;
-  pdfModalDownload.setAttribute("download", "");
-  pdfModal.hidden = false;
-  document.body.classList.add("pdf-modal-open");
-  pdfModalClose?.focus();
-};
-
-function closePdfModal() {
-  if (!pdfModal || pdfModal.hidden) return;
-  pdfModal.hidden = true;
-  document.body.classList.remove("pdf-modal-open");
-  if (pdfModalFrame) pdfModalFrame.src = "";
-}
-
-pdfOpenButtons.forEach((button) => {
-  button.addEventListener("click", () => openPdfModal(button));
-});
-
-if (pdfModal) {
-  pdfModal.addEventListener("click", (event) => {
-    if (event.target === pdfModal || event.target.closest("[data-pdf-close]")) {
-      closePdfModal();
-    }
-  });
 }
 
 const animateCounter = (element) => {

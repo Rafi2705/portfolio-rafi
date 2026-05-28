@@ -278,102 +278,86 @@
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="pdf-showcase reveal" aria-labelledby="pdfShowcaseTitle">
-            <div class="pdf-showcase-head">
-              <div>
-                <span class="project-category">Reporting Documentation</span>
-                <h3 id="pdfShowcaseTitle">Dokumen pendukung aplikasi pelaporan LPSK</h3>
+        <div class="pdf-showcase reveal" aria-labelledby="pdfShowcaseTitle">
+          <div class="pdf-showcase-head">
+            <div>
+              <span class="project-category">Reporting Documentation</span>
+              <h3 id="pdfShowcaseTitle">Dokumen pendukung aplikasi pelaporan LPSK</h3>
+            </div>
+            <p>
+              Dua dokumen utama ditampilkan sebagai cover PDF satu halaman penuh. Buka preview untuk membaca dokumen
+              lengkap di tab baru dengan kontrol PDF browser.
+            </p>
+          </div>
+
+          <div class="pdf-grid">
+            <article class="pdf-card">
+              <div class="pdf-card-head">
+                <div>
+                  <span>Final Report</span>
+                  <h4>Aplikasi Pelaporan LPSK</h4>
+                </div>
+                <a
+                  class="pdf-open-btn"
+                  href="assets/docs/final-report-pelaporan-lpsk.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Buka Final Report Aplikasi Pelaporan LPSK di tab baru"
+                >
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
               </div>
-              <p>
-                Dua dokumen utama ditampilkan langsung sebagai preview PDF: final report aplikasi dan buku panduan
-                pengguna. Keduanya bisa diperbesar untuk dibaca penuh atau diunduh.
-              </p>
-            </div>
+              <a
+                class="pdf-preview"
+                href="assets/docs/final-report-pelaporan-lpsk.pdf"
+                target="_blank"
+                rel="noopener"
+                aria-label="Buka preview Final Report Aplikasi Pelaporan LPSK"
+              >
+                <img
+                  src="assets/docs/covers/final-report-cover-01.png"
+                  alt="Cover Final Report Aplikasi Pelaporan LPSK"
+                  loading="lazy"
+                >
+              </a>
+            </article>
 
-            <div class="pdf-grid">
-              <article class="pdf-card">
-                <div class="pdf-card-head">
-                  <div>
-                    <span>Final Report</span>
-                    <h4>Aplikasi Pelaporan LPSK</h4>
-                  </div>
-                  <button
-                    class="pdf-open-btn"
-                    type="button"
-                    data-pdf-open
-                    data-pdf-title="Final Report Aplikasi Pelaporan LPSK"
-                    data-pdf-src="assets/docs/final-report-pelaporan-lpsk.pdf"
-                  >
-                    <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
-                    <span>Perbesar</span>
-                  </button>
+            <article class="pdf-card">
+              <div class="pdf-card-head">
+                <div>
+                  <span>User Manual</span>
+                  <h4>Buku Panduan Pengguna</h4>
                 </div>
-                <div class="pdf-preview">
-                  <iframe
-                    src="assets/docs/final-report-pelaporan-lpsk.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-                    title="Preview Final Report Aplikasi Pelaporan LPSK"
-                    loading="lazy"
-                  ></iframe>
-                </div>
-                <div class="pdf-card-foot">
-                  <span>Project report</span>
-                  <a href="assets/docs/final-report-pelaporan-lpsk.pdf" download>Download PDF</a>
-                </div>
-              </article>
-
-              <article class="pdf-card">
-                <div class="pdf-card-head">
-                  <div>
-                    <span>User Manual</span>
-                    <h4>Buku Panduan Pengguna</h4>
-                  </div>
-                  <button
-                    class="pdf-open-btn"
-                    type="button"
-                    data-pdf-open
-                    data-pdf-title="User Manual Pelaporan LPSK"
-                    data-pdf-src="assets/docs/user-manual-pelaporan-lpsk.pdf"
-                  >
-                    <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
-                    <span>Perbesar</span>
-                  </button>
-                </div>
-                <div class="pdf-preview">
-                  <iframe
-                    src="assets/docs/user-manual-pelaporan-lpsk.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-                    title="Preview User Manual Pelaporan LPSK"
-                    loading="lazy"
-                  ></iframe>
-                </div>
-                <div class="pdf-card-foot">
-                  <span>User guide</span>
-                  <a href="assets/docs/user-manual-pelaporan-lpsk.pdf" download>Download PDF</a>
-                </div>
-              </article>
-            </div>
+                <a
+                  class="pdf-open-btn"
+                  href="assets/docs/user-manual-pelaporan-lpsk.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Buka User Manual Pelaporan LPSK di tab baru"
+                >
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
+              </div>
+              <a
+                class="pdf-preview"
+                href="assets/docs/user-manual-pelaporan-lpsk.pdf"
+                target="_blank"
+                rel="noopener"
+                aria-label="Buka preview User Manual Pelaporan LPSK"
+              >
+                <img
+                  src="assets/docs/covers/user-manual-cover-01.png"
+                  alt="Cover User Manual Pelaporan LPSK"
+                  loading="lazy"
+                >
+              </a>
+            </article>
           </div>
         </div>
       </div>
     </section>
-
-    <div class="pdf-modal" id="pdfModal" hidden>
-      <div class="pdf-modal-panel" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
-        <div class="pdf-modal-bar">
-          <div>
-            <span>PDF Preview</span>
-            <h3 id="pdfModalTitle">Dokumen Pelaporan LPSK</h3>
-          </div>
-          <div class="pdf-modal-actions">
-            <a class="pdf-modal-download" href="#" download>Download</a>
-            <button class="pdf-modal-close" type="button" data-pdf-close aria-label="Tutup preview PDF">
-              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-        <iframe class="pdf-modal-frame" title="PDF preview penuh"></iframe>
-      </div>
-    </div>
 
     <section class="section lpsk-focus" id="lpsk">
       <div class="container">
