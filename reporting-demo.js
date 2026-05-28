@@ -399,6 +399,17 @@ const tableFilters = (isPenugasan) => {
   `;
 };
 
+const archiveFilters = (isPenugasan) => `
+  <div class="sp-toolbar sp-toolbar-archive">
+    <select class="sp-select is-empty"><option>Pilih bulan kegiatan</option><option>Mei</option><option>Juni</option></select>
+    <select class="sp-select is-empty"><option>Pilih tahun kegiatan</option><option>2026</option></select>
+    <div class="sp-search-wrap">
+      <input class="sp-search-input" placeholder="Cari nomor/judul ${isPenugasan ? "surat tugas" : "penetapan"}...">
+      <button class="sp-search-btn" data-rp-toast="Pencarian arsip diterapkan." aria-label="Cari"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+  </div>
+`;
+
 const tableView = (type, archived = false) => {
   const isPenugasan = type === "penugasan";
   const items = isPenugasan ? rpState.penugasan : rpState.penetapan;
@@ -411,7 +422,7 @@ const tableView = (type, archived = false) => {
   return `
     <section class="rp-page app-kegiatan-shell">
       <div class="sp-title">${title}</div>
-      ${!archived ? tableFilters(isPenugasan) : `<div class="sp-toolbar"><div class="sp-search-wrap"><input class="sp-search-input" placeholder="Cari arsip laporan..."><button class="sp-search-btn" data-rp-toast="Pencarian arsip diterapkan." aria-label="Cari"><i class="fa-solid fa-magnifying-glass"></i></button></div></div>`}
+      ${!archived ? tableFilters(isPenugasan) : archiveFilters(isPenugasan)}
       <div class="sp-card">
         <div class="sp-table-scroll">
           <table class="sp-table">
