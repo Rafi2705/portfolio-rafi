@@ -1481,27 +1481,28 @@ h3 {
 }
 
 .pdf-showcase-head {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.7fr);
-  gap: 24px;
-  align-items: end;
-  margin-bottom: 22px;
+  display: block;
+  max-width: none;
+  margin-bottom: 34px;
   padding: 0;
 }
 
 .pdf-showcase-head h3 {
-  max-width: 700px;
+  max-width: none;
   margin-top: 8px;
   color: var(--brown-950);
-  font-size: clamp(1.45rem, 2.6vw, 2.25rem);
-  line-height: 1.08;
+  font-size: clamp(1.55rem, 2.25vw, 2.05rem);
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .pdf-showcase-head p {
-  margin: 0;
+  max-width: none;
+  margin: 16px 0 0;
   color: var(--muted);
   font-size: 0.94rem;
-  line-height: 1.62;
+  line-height: 1.6;
+  white-space: nowrap;
 }
 
 .pdf-grid {
@@ -2566,6 +2567,14 @@ h3 {
 
   .pdf-showcase-head {
     padding: 0;
+  }
+
+  .pdf-showcase-head h3 {
+    white-space: normal;
+  }
+
+  .pdf-showcase-head p {
+    white-space: normal;
   }
 
   .pdf-preview {
