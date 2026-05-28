@@ -491,11 +491,17 @@
 }
 
 .sp-toolbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 104px minmax(0, 200px) minmax(0, 200px) minmax(260px, 1fr);
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 16px;
   width: 100%;
+}
+
+.sp-toolbar > * {
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .sp-card {
@@ -562,29 +568,30 @@
 }
 
 .sp-toolbar .sp-btn-blue {
-  min-width: 112px;
-  padding-inline: 14px;
+  width: 100%;
+  min-width: 0;
+  padding-inline: 10px;
 }
 
 .sp-select {
-  flex: 0 1 250px;
-  min-width: 180px;
-  max-width: 250px;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
   height: 36px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
-  padding: 0 46px 0 18px;
+  padding: 0 42px 0 16px;
   color: #9aa0a6;
   background-color: #fff;
   background-image:
     url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5' stroke='%23899BB3' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
     linear-gradient(#d9e2ef, #d9e2ef);
   background-position:
-    calc(100% - 17px) 50%,
-    calc(100% - 42px) 50%;
+    calc(100% - 15px) 50%,
+    calc(100% - 38px) 50%;
   background-size: 18px 18px, 1px 100%;
   background-repeat: no-repeat;
   font-size: 12px;
@@ -596,8 +603,8 @@
 
 .sp-search-wrap {
   position: relative;
-  flex: 1 1 420px;
-  min-width: 320px;
+  width: 100%;
+  min-width: 0;
   height: 36px;
   display: flex;
   align-items: center;
@@ -606,6 +613,10 @@
   background: #fff;
   border: 1px solid #d9d9d9;
   border-radius: 999px;
+}
+
+.sp-search-wrap:only-child {
+  grid-column: 1 / -1;
 }
 
 .sp-search-input {
