@@ -1202,7 +1202,7 @@ h3 {
 .lpsk-focus {
   overflow: hidden;
   color: var(--paper);
-  background-color: #302820;
+  background-color: #14252d;
 }
 
 .lpsk-focus::before {
@@ -1210,8 +1210,8 @@ h3 {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(250, 247, 240, 0.07) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(250, 247, 240, 0.07) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(229, 242, 247, 0.075) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(229, 242, 247, 0.075) 1px, transparent 1px);
   background-size: 42px 42px;
   pointer-events: none;
 }
@@ -1700,41 +1700,25 @@ h3 {
 }
 
 .gallery-hero {
-  margin-bottom: 34px;
+  max-width: 900px;
+  margin: 0 auto 38px;
   text-align: center;
 }
 
 .gallery-hero .eyebrow {
-  color: var(--brown-300);
+  color: #cfe3ea;
   text-transform: uppercase;
   font-size: clamp(1.12rem, 2vw, 1.42rem);
   font-weight: 900;
 }
 
-.gallery-logo-lockup {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 18px;
-  padding: 16px 20px;
-  background: #fbfaf6;
-  border: 1px solid rgba(225, 207, 186, 0.92);
-  border-radius: 12px;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22);
-}
-
-.gallery-logo-lockup img {
-  width: 54px;
-  height: 54px;
-  object-fit: contain;
-}
-
-.gallery-logo-lockup span {
-  color: var(--brown-950);
-  font-size: 1rem;
-  font-weight: 900;
-  text-transform: uppercase;
+.gallery-lead {
+  max-width: 760px;
+  margin: 14px auto 0;
+  color: rgba(241, 249, 252, 0.78);
+  font-size: clamp(1rem, 1.55vw, 1.22rem);
+  font-weight: 600;
+  line-height: 1.7;
 }
 
 .gallery-stage {
@@ -1747,19 +1731,19 @@ h3 {
   position: relative;
   display: block;
   width: min(100%, 680px);
-  padding: 14px;
+  padding: 10px;
   overflow: hidden;
   text-decoration: none;
-  background: #3a3128;
-  border: 1px solid rgba(250, 247, 240, 0.18);
+  background: rgba(242, 248, 250, 0.14);
+  border: 1px solid rgba(213, 232, 239, 0.28);
   border-radius: 14px;
-  box-shadow: 0 34px 78px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 34px 78px rgba(0, 0, 0, 0.28);
   transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
 .certificate-frame:hover {
   transform: translateY(-5px);
-  border-color: rgba(225, 207, 186, 0.48);
+  border-color: rgba(195, 230, 241, 0.56);
   box-shadow: 0 42px 88px rgba(0, 0, 0, 0.32);
 }
 
@@ -2683,11 +2667,6 @@ h3 {
 
   .demo-section {
     padding: 70px 0 82px;
-  }
-
-  .gallery-logo-lockup img {
-    width: 42px;
-    height: 42px;
   }
 
   .certificate-frame {
