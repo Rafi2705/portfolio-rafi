@@ -1202,7 +1202,7 @@ h3 {
 .lpsk-focus {
   overflow: hidden;
   color: var(--paper);
-  background-color: #2f281f;
+  background-color: #302820;
 }
 
 .lpsk-focus::before {
@@ -1210,26 +1210,23 @@ h3 {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(250, 247, 240, 0.08) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(250, 247, 240, 0.08) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(250, 247, 240, 0.07) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(250, 247, 240, 0.07) 1px, transparent 1px);
   background-size: 42px 42px;
   pointer-events: none;
 }
 
 .lpsk-focus::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 12% 10%, rgba(169, 132, 95, 0.32), transparent 34%),
-    radial-gradient(circle at 86% 20%, rgba(250, 247, 240, 0.12), transparent 30%),
-    linear-gradient(180deg, rgba(24, 21, 18, 0.1), rgba(24, 21, 18, 0.46));
-  pointer-events: none;
+  display: none;
 }
 
 .lpsk-focus .container {
   position: relative;
   z-index: 1;
+}
+
+.gallery-section {
+  padding: 86px 0 96px;
 }
 
 .demo-section {
@@ -1703,11 +1700,8 @@ h3 {
 }
 
 .gallery-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 32px;
-  align-items: end;
-  margin-bottom: 34px;
+  margin-bottom: 28px;
+  text-align: center;
 }
 
 .gallery-hero .eyebrow {
@@ -1715,94 +1709,26 @@ h3 {
 }
 
 .gallery-hero h2 {
-  max-width: 980px;
   color: var(--paper);
-  font-size: clamp(2.15rem, 5vw, 4.45rem);
-  line-height: 0.98;
+  font-size: clamp(2.4rem, 5.4vw, 4.45rem);
+  line-height: 0.95;
 }
 
-.gallery-hero p {
-  max-width: 900px;
-  margin: 22px 0 0;
-  color: rgba(250, 247, 240, 0.72);
-  font-size: 1.02rem;
-  line-height: 1.72;
-}
-
-.gallery-hero-badge {
-  min-width: 220px;
-  padding: 20px;
-  color: var(--paper);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(250, 247, 240, 0.14);
-  border-radius: var(--radius);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.2);
-}
-
-.gallery-hero-badge span,
-.gallery-card-head span,
-.gallery-marquee-head span,
-.gallery-proof-grid span {
-  display: block;
-  color: var(--brown-300);
-  font-size: 0.76rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.gallery-hero-badge strong {
-  display: block;
-  margin-top: 8px;
-  font-size: 1.45rem;
-}
-
-.gallery-feature-grid {
+.gallery-stage {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-  gap: 24px;
-  align-items: stretch;
-}
-
-.certificate-showcase,
-.internship-panel,
-.gallery-marquee-shell,
-.gallery-proof-grid article {
-  background: rgba(250, 247, 240, 0.08);
-  border: 1px solid rgba(250, 247, 240, 0.16);
-  border-radius: var(--radius);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.18);
-}
-
-.certificate-showcase {
-  min-height: 620px;
-  padding: 24px;
-}
-
-.gallery-card-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 22px;
-}
-
-.gallery-card-head strong {
-  color: var(--paper);
-  font-size: 1.15rem;
+  place-items: center;
+  margin-inline: auto;
 }
 
 .certificate-frame {
   display: grid;
   place-items: center;
-  min-height: 520px;
-  padding: 26px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)),
-    linear-gradient(90deg, rgba(250, 247, 240, 0.06) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(250, 247, 240, 0.06) 1px, transparent 1px);
-  background-size: auto, 34px 34px, 34px 34px;
-  border: 1px solid rgba(250, 247, 240, 0.14);
+  width: min(100%, 540px);
+  padding: 18px;
+  background: #3a3128;
+  border: 1px solid rgba(250, 247, 240, 0.16);
   border-radius: var(--radius);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.22);
 }
 
 .certificate-placeholder {
@@ -1810,226 +1736,97 @@ h3 {
   display: grid;
   justify-items: center;
   align-content: center;
-  width: min(100%, 370px);
+  width: min(100%, 350px);
   aspect-ratio: 0.72;
-  padding: 34px;
+  padding: 36px;
   overflow: hidden;
   color: var(--brown-950);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 247, 240, 0.96)),
-    repeating-linear-gradient(135deg, rgba(169, 132, 95, 0.08) 0 1px, transparent 1px 16px);
-  border: 1px solid rgba(250, 247, 240, 0.6);
-  border-radius: 10px;
-  box-shadow:
-    0 28px 70px rgba(0, 0, 0, 0.28),
-    inset 0 0 0 10px rgba(169, 132, 95, 0.08);
+  background: #fbfaf6;
+  border: 10px solid #f2ece1;
+  border-radius: 8px;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
 }
 
 .certificate-placeholder::before,
 .certificate-placeholder::after {
   content: "";
   position: absolute;
-  left: 34px;
-  right: 34px;
+  left: 42px;
+  right: 42px;
   height: 1px;
-  background: rgba(169, 132, 95, 0.34);
+  background: rgba(169, 132, 95, 0.3);
 }
 
 .certificate-placeholder::before {
-  top: 110px;
+  top: 112px;
 }
 
 .certificate-placeholder::after {
-  bottom: 110px;
+  bottom: 112px;
 }
 
 .certificate-seal {
   display: grid;
   place-items: center;
-  width: 86px;
-  height: 86px;
+  width: 84px;
+  height: 84px;
   color: var(--paper);
   background: var(--brown-950);
   border-radius: 50%;
   font-weight: 900;
-  box-shadow: 0 0 0 8px rgba(169, 132, 95, 0.16);
-}
-
-.certificate-placeholder p {
-  margin: 34px 0 0;
-  color: var(--brown-500);
-  font-size: 0.78rem;
-  font-weight: 900;
-  text-transform: uppercase;
+  box-shadow: 0 0 0 8px rgba(169, 132, 95, 0.13);
 }
 
 .certificate-placeholder h3 {
-  margin-top: 12px;
+  margin-top: 46px;
   font-size: clamp(1.8rem, 4vw, 2.55rem);
   text-align: center;
 }
 
-.certificate-placeholder small {
-  margin-top: 18px;
-  color: var(--muted);
-  font-weight: 800;
-}
-
 .certificate-placeholder i {
   position: absolute;
-  right: 34px;
+  right: 36px;
   bottom: 34px;
-  width: 70px;
-  height: 70px;
-  border: 2px solid rgba(169, 132, 95, 0.46);
+  width: 66px;
+  height: 66px;
+  border: 2px solid rgba(169, 132, 95, 0.45);
   border-radius: 50%;
 }
 
-.internship-panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 620px;
-  padding: 32px;
-}
-
-.internship-panel h3 {
-  margin-top: 18px;
-  color: var(--paper);
-  font-size: clamp(1.8rem, 3.2vw, 3.2rem);
-  line-height: 1.02;
-}
-
-.internship-panel p {
-  margin-top: 20px;
-  color: rgba(250, 247, 240, 0.72);
-}
-
-.gallery-meta-grid {
-  display: grid;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.gallery-meta-grid div {
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(250, 247, 240, 0.12);
-  border-radius: var(--radius);
-}
-
-.gallery-meta-grid span {
-  display: block;
-  color: var(--brown-300);
-  font-size: 0.72rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.gallery-meta-grid strong {
-  display: block;
-  margin-top: 6px;
-  color: var(--paper);
-}
-
 .gallery-marquee-shell {
-  margin-top: 24px;
-  padding: 22px 0 24px;
+  margin-top: 28px;
   overflow: hidden;
-}
-
-.gallery-marquee-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 0 24px 18px;
-}
-
-.gallery-marquee-head p {
-  margin: 0;
-  color: rgba(250, 247, 240, 0.62);
 }
 
 .photo-marquee {
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 
 .photo-track {
   display: flex;
-  gap: 16px;
+  gap: 18px;
   width: max-content;
   animation: galleryMarquee 34s linear infinite;
 }
 
 .gallery-photo-card {
   position: relative;
-  display: flex;
-  flex: 0 0 230px;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 170px;
-  padding: 18px;
+  flex: 0 0 260px;
+  width: 260px;
+  height: 172px;
   overflow: hidden;
-  color: var(--paper);
-  background:
-    linear-gradient(180deg, rgba(37, 33, 29, 0.1), rgba(37, 33, 29, 0.84)),
-    radial-gradient(circle at 24% 22%, rgba(250, 247, 240, 0.32), transparent 24%),
-    linear-gradient(135deg, rgba(169, 132, 95, 0.68), rgba(95, 87, 80, 0.72));
-  border: 1px solid rgba(250, 247, 240, 0.16);
+  background: #4a4036;
+  border: 1px solid rgba(250, 247, 240, 0.14);
   border-radius: var(--radius);
-}
-
-.gallery-photo-card.wide {
-  flex-basis: 300px;
-}
-
-.gallery-photo-card.tall {
-  height: 210px;
 }
 
 .gallery-photo-card::before {
   content: "";
   position: absolute;
-  inset: 12px;
-  border: 1px dashed rgba(250, 247, 240, 0.3);
-  border-radius: 6px;
-}
-
-.gallery-photo-card span,
-.gallery-photo-card strong {
-  position: relative;
-  z-index: 1;
-}
-
-.gallery-photo-card span {
-  color: var(--brown-300);
-  font-weight: 900;
-}
-
-.gallery-photo-card strong {
-  margin-top: 6px;
-  font-size: 1.1rem;
-}
-
-.gallery-proof-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.gallery-proof-grid article {
-  padding: 20px;
-}
-
-.gallery-proof-grid strong {
-  display: block;
-  margin-top: 8px;
-  color: var(--paper);
-  font-size: 1.02rem;
-  line-height: 1.4;
+  inset: 16px;
+  border: 1px dashed rgba(250, 247, 240, 0.26);
+  border-radius: 5px;
 }
 
 .mini-card,
@@ -2687,22 +2484,8 @@ h3 {
   .hero-grid,
   .contact-grid,
   .demo-stage,
-  .gallery-feature-grid,
   .project-card.featured {
     grid-template-columns: 1fr;
-  }
-
-  .gallery-hero {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery-hero-badge {
-    width: min(100%, 360px);
-  }
-
-  .certificate-showcase,
-  .internship-panel {
-    min-height: auto;
   }
 
   .hero-showcase {
@@ -2746,7 +2529,6 @@ h3 {
   .project-grid,
   .skills-grid,
   .certificate-grid,
-  .gallery-proof-grid,
   .pdf-grid,
   .pdf-showcase-head {
     grid-template-columns: repeat(2, 1fr);
@@ -2905,40 +2687,14 @@ h3 {
     font-size: clamp(2rem, 11vw, 3.15rem);
   }
 
-  .gallery-feature-grid,
-  .gallery-proof-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .certificate-showcase,
-  .internship-panel {
-    padding: 18px;
-  }
-
   .certificate-frame {
-    min-height: 430px;
     padding: 14px;
-  }
-
-  .gallery-marquee-head {
-    display: block;
-  }
-
-  .gallery-marquee-head p {
-    margin-top: 6px;
   }
 
   .gallery-photo-card {
     flex-basis: 190px;
-    height: 150px;
-  }
-
-  .gallery-photo-card.wide {
-    flex-basis: 240px;
-  }
-
-  .gallery-photo-card.tall {
-    height: 178px;
+    width: 190px;
+    height: 126px;
   }
 
   .demo-intro {
