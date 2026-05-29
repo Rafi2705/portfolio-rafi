@@ -1357,6 +1357,10 @@ h3 {
   align-items: center;
 }
 
+.demo-title-row > div {
+  transform: translateY(-7px);
+}
+
 .demo-lpsk-mark {
   position: relative;
   display: grid;
