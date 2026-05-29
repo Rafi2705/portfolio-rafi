@@ -1802,8 +1802,8 @@ h3 {
   width: 260px;
   height: 172px;
   overflow: hidden;
-  background: #4a4036;
-  border: 1px solid rgba(250, 247, 240, 0.14);
+  background: rgba(219, 238, 245, 0.11);
+  border: 1px solid rgba(213, 232, 239, 0.2);
   border-radius: var(--radius);
 }
 
@@ -1811,7 +1811,8 @@ h3 {
   content: "";
   position: absolute;
   inset: 16px;
-  border: 1px dashed rgba(250, 247, 240, 0.26);
+  background: rgba(241, 249, 252, 0.045);
+  border: 1px dashed rgba(213, 232, 239, 0.34);
   border-radius: 5px;
 }
 
