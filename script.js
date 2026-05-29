@@ -1,6 +1,7 @@
 const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.querySelector(".nav-menu");
 const navLinks = document.querySelectorAll(".nav-menu a");
+const navIndicator = document.querySelector(".nav-indicator");
 const sections = document.querySelectorAll("main section[id]");
 const contactForm = document.querySelector("#contactForm");
 const progressBar = document.querySelector(".scroll-progress");
@@ -12,6 +13,23 @@ const demoBrowser = document.querySelector(".demo-browser");
 const demoLiveLink = document.querySelector(".demo-live-link");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const desktopNavQuery = window.matchMedia("(min-width: 861px)");
+
+const updateNavIndicator = (target = document.querySelector(".nav-menu a.active")) => {
+  if (!navMenu || !navIndicator) return;
+
+  if (!desktopNavQuery.matches || !target) {
+    navMenu.classList.remove("has-active");
+    return;
+  }
+
+  const menuRect = navMenu.getBoundingClientRect();
+  const linkRect = target.getBoundingClientRect();
+
+  navMenu.style.setProperty("--nav-rail-x", `${linkRect.left - menuRect.left}px`);
+  navMenu.style.setProperty("--nav-rail-w", `${linkRect.width}px`);
+  navMenu.classList.add("has-active");
+};
 
 const closeMenu = () => {
   navMenu.classList.remove("open");
@@ -29,6 +47,8 @@ navToggle.addEventListener("click", () => {
 
 navLinks.forEach((link) => {
   link.addEventListener("click", closeMenu);
+  link.addEventListener("pointerenter", () => updateNavIndicator(link));
+  link.addEventListener("pointerleave", () => updateNavIndicator());
 });
 
 document.addEventListener("keydown", (event) => {
@@ -50,9 +70,13 @@ const updateScrollState = () => {
     }
   });
 
+  const activeLink = [...navLinks].find((link) => link.getAttribute("href") === `#${currentSection}`);
+
   navLinks.forEach((link) => {
-    link.classList.toggle("active", link.getAttribute("href") === `#${currentSection}`);
+    link.classList.toggle("active", link === activeLink);
   });
+
+  updateNavIndicator(activeLink);
 
   if (!prefersReducedMotion && ambientLayer) {
     ambientLayer.style.transform = `translateY(${window.scrollY * -0.025}px)`;
@@ -61,6 +85,7 @@ const updateScrollState = () => {
 
 window.addEventListener("scroll", updateScrollState, { passive: true });
 window.addEventListener("load", updateScrollState);
+window.addEventListener("resize", () => updateNavIndicator());
 
 if (!prefersReducedMotion && cursorSpotlight) {
   window.addEventListener(
