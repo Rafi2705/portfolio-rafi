@@ -1713,12 +1713,12 @@ h3 {
 }
 
 .gallery-lead {
-  max-width: 760px;
+  max-width: 680px;
   margin: 14px auto 0;
   color: rgba(241, 249, 252, 0.78);
-  font-size: clamp(1rem, 1.55vw, 1.22rem);
+  font-size: clamp(0.86rem, 1.08vw, 0.98rem);
   font-weight: 600;
-  line-height: 1.7;
+  line-height: 1.62;
 }
 
 .gallery-stage {
