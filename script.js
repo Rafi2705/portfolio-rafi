@@ -47,8 +47,16 @@ navToggle.addEventListener("click", () => {
 
 navLinks.forEach((link) => {
   link.addEventListener("click", closeMenu);
-  link.addEventListener("pointerenter", () => updateNavIndicator(link));
-  link.addEventListener("pointerleave", () => updateNavIndicator());
+  link.addEventListener("pointerenter", () => {
+    navMenu.classList.add("is-previewing");
+    navLinks.forEach((item) => item.classList.toggle("nav-preview", item === link));
+    updateNavIndicator(link);
+  });
+  link.addEventListener("pointerleave", () => {
+    navMenu.classList.remove("is-previewing");
+    navLinks.forEach((item) => item.classList.remove("nav-preview"));
+    updateNavIndicator();
+  });
 });
 
 document.addEventListener("keydown", (event) => {
