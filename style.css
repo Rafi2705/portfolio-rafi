@@ -939,7 +939,10 @@ h3 {
 }
 
 .logo-chip img[src*="Komdigi"] {
-  transform: scale(1.12);
+  width: 80%;
+  height: 80%;
+  object-position: center;
+  transform: none;
 }
 
 .portrait-card {
@@ -2549,7 +2552,10 @@ h3 {
 }
 
 .road-logo img[src*="Komdigi"] {
-  transform: scale(1.28);
+  width: 82%;
+  height: 82%;
+  object-position: center;
+  transform: none;
 }
 
 .road-logo img[src*="Bouquetin"],
