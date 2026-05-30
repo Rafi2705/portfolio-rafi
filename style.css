@@ -942,7 +942,7 @@ h3 {
   width: 92%;
   height: 92%;
   object-position: center 48%;
-  transform: none;
+  transform: translateY(-4px);
 }
 
 .portrait-card {
