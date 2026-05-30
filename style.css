@@ -2272,12 +2272,38 @@ h3 {
 
 .journey-road-panel {
   max-width: 1180px;
-  margin: 42px auto 0;
-  padding: 20px;
-  background: rgba(255, 252, 246, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin: 0 auto;
+  padding: 64px 20px 20px;
+  background:
+    linear-gradient(90deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
+    #f8f4ed;
+  background-size: 38px 38px, 38px 38px, auto;
+  border: 1px solid rgba(37, 33, 29, 0.1);
   border-radius: var(--radius);
   box-shadow: 0 30px 86px rgba(12, 10, 8, 0.32);
+}
+
+.experience .journey-road-panel .section-heading {
+  display: grid;
+  justify-items: center;
+  max-width: 880px;
+  margin: 0 auto 58px;
+  text-align: center;
+}
+
+.experience .journey-road-panel .section-heading .eyebrow {
+  color: var(--brown-700);
+}
+
+.experience .journey-road-panel .section-heading h2 {
+  color: var(--brown-950);
+}
+
+.experience .journey-road-panel .section-heading p {
+  max-width: 940px;
+  margin-inline: auto;
+  color: var(--muted);
 }
 
 .journey-road-grid {
@@ -2287,11 +2313,7 @@ h3 {
   gap: 60px 22px;
   padding: 66px 28px 64px;
   overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
-    #f8f4ed;
-  background-size: 38px 38px, 38px 38px, auto;
+  background: rgba(255, 252, 246, 0.46);
   border: 1px solid rgba(37, 33, 29, 0.1);
   border-radius: calc(var(--radius) - 2px);
 }
