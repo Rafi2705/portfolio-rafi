@@ -942,7 +942,7 @@ h3 {
   width: 92%;
   height: 92%;
   object-position: center 48%;
-  transform: translateY(-4px);
+  transform: translateY(-6px);
 }
 
 .portrait-card {
@@ -2552,8 +2552,8 @@ h3 {
 }
 
 .road-logo img[src*="logo-komdigi-display"] {
-  width: 104%;
-  height: 104%;
+  width: 107%;
+  height: 107%;
   object-position: center;
   transform: none;
 }
