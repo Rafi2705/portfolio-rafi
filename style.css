@@ -1206,11 +1206,26 @@ h3 {
 }
 
 .lpsk-focus::before {
-  display: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0 8%, rgba(255, 255, 255, 0.38) 8% 8.4%, transparent 8.4% 91.6%, rgba(255, 255, 255, 0.34) 91.6% 92%, transparent 92%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 26%, rgba(169, 132, 95, 0.08) 68%, transparent);
+  pointer-events: none;
 }
 
 .lpsk-focus::after {
-  display: none;
+  content: "GALLERY";
+  position: absolute;
+  right: -18px;
+  bottom: 24px;
+  color: rgba(37, 33, 29, 0.045);
+  font-size: clamp(5rem, 17vw, 17rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+  pointer-events: none;
 }
 
 .lpsk-focus .container {
@@ -1219,7 +1234,7 @@ h3 {
 }
 
 .gallery-section {
-  padding: 86px 0 96px;
+  padding: 92px 0 104px;
 }
 
 .demo-section {
@@ -1698,7 +1713,7 @@ h3 {
 
 .gallery-hero {
   max-width: 900px;
-  margin: 0 auto 38px;
+  margin: 0 auto 32px;
   text-align: center;
 }
 
@@ -1716,6 +1731,29 @@ h3 {
   font-size: clamp(0.86rem, 1.08vw, 0.98rem);
   font-weight: 600;
   line-height: 1.62;
+}
+
+.gallery-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.gallery-meta-row span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 8px 14px;
+  color: var(--brown-850);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(37, 33, 29, 0.12);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  box-shadow: 0 12px 26px rgba(24, 21, 18, 0.08);
 }
 
 .gallery-stage {
@@ -2358,16 +2396,16 @@ h3 {
 .road-logo {
   display: grid;
   place-items: center;
-  width: 70px;
-  height: 70px;
-  padding: 6px;
+  width: 72px;
+  height: 72px;
+  padding: 8px;
   overflow: hidden;
   color: var(--paper);
-  background: #ffffff;
-  border: 6px solid #f8f4ed;
-  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.96);
+  border: 0;
+  border-radius: 10px;
   box-shadow:
-    0 16px 32px rgba(24, 21, 18, 0.18),
+    0 16px 32px rgba(24, 21, 18, 0.16),
     inset 0 0 0 1px rgba(37, 33, 29, 0.06);
 }
 
@@ -2375,30 +2413,50 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transform: scale(1.08);
+  transform: scale(1);
 }
 
 .road-logo img[src*="logo-nf-display"] {
-  transform: scale(1.04);
+  transform: scale(1.06);
 }
 
 .road-logo img[src*="logo-senada-display"] {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .road-logo img[src*="logo-nf-academy-display"],
 .road-logo img[src*="logo-1000-startup-display"],
 .road-logo img[src*="logo-sangsang-display"],
 .road-logo img[src*="logo-lppm-display"] {
-  transform: scale(1.06);
+  transform: scale(1.02);
 }
 
 .road-logo img[src*="logo-lpsk-display"] {
-  transform: scale(1.18);
+  transform: scale(1.06);
+}
+
+.road-logo img[src*="Bouquetin"],
+.road-logo img[src*="Picdates"],
+.road-logo img[src*="NFC"],
+.road-logo img[src*="DSI"] {
+  transform: scale(1.12);
+}
+
+.road-logo img[src*="Bouquetin"] {
+  transform: scale(1.58);
+}
+
+.road-logo img[src*="Picdates"] {
+  transform: scale(1.3);
+}
+
+.road-logo img[src*="DSI"] {
+  transform: scale(1.22);
 }
 
 .road-logo.logo-placeholder {
   background: linear-gradient(135deg, var(--brown-950), #1f5360);
+  border-radius: 10px;
   font-size: 0.92rem;
   font-weight: 900;
 }
@@ -2446,7 +2504,7 @@ h3 {
 }
 
 .road-final .road-logo {
-  border-color: #dff3f7;
+  background: #f3fbfd;
   box-shadow: 0 18px 40px rgba(28, 118, 143, 0.28);
 }
 
