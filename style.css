@@ -1824,21 +1824,37 @@ h3 {
 .gallery-marquee-shell {
   position: relative;
   width: min(1120px, 100%);
-  margin: 34px auto 0;
-  padding: 0;
+  margin: 42px auto 0;
+  padding: 20px 0;
   overflow: hidden;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(245, 236, 222, 0.38)),
+    repeating-linear-gradient(90deg, rgba(169, 132, 95, 0.08) 0 1px, transparent 1px 62px);
+  border: 1px solid rgba(37, 33, 29, 0.1);
+  border-radius: 18px;
+  box-shadow: 0 28px 70px rgba(24, 21, 18, 0.11);
 }
 
 .gallery-marquee-shell::before {
-  content: none;
+  content: "";
+  position: absolute;
+  inset: 12px 18px;
+  background:
+    linear-gradient(90deg, rgba(169, 132, 95, 0.28), transparent 26%, transparent 74%, rgba(169, 132, 95, 0.28)) top / 100% 1px no-repeat,
+    linear-gradient(90deg, rgba(169, 132, 95, 0.28), transparent 26%, transparent 74%, rgba(169, 132, 95, 0.28)) bottom / 100% 1px no-repeat;
+  border-radius: 14px;
+  pointer-events: none;
 }
 
 .gallery-marquee-shell::after {
-  content: none;
+  content: "";
+  position: absolute;
+  inset: 22px 28px;
+  background:
+    linear-gradient(90deg, rgba(37, 33, 29, 0.18) 0 46px, transparent 46px calc(100% - 46px), rgba(37, 33, 29, 0.18) calc(100% - 46px)) top / 100% 2px no-repeat,
+    linear-gradient(90deg, rgba(37, 33, 29, 0.18) 0 46px, transparent 46px calc(100% - 46px), rgba(37, 33, 29, 0.18) calc(100% - 46px)) bottom / 100% 2px no-repeat;
+  border-radius: 12px;
+  pointer-events: none;
 }
 
 .photo-marquee {
@@ -1859,7 +1875,7 @@ h3 {
   display: flex;
   gap: 18px;
   width: max-content;
-  padding: 20px 0;
+  padding: 24px 0;
   animation: galleryMarquee 88s linear infinite;
 }
 
@@ -1870,13 +1886,26 @@ h3 {
   right: -24px;
   top: 50%;
   z-index: 0;
-  height: 128px;
+  height: 150px;
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.48)),
-    repeating-linear-gradient(90deg, rgba(169, 132, 95, 0.2) 0 34px, transparent 34px 54px);
-  border: 1px solid rgba(169, 132, 95, 0.18);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(239, 226, 207, 0.56)),
+    repeating-linear-gradient(90deg, rgba(169, 132, 95, 0.24) 0 34px, transparent 34px 54px),
+    linear-gradient(90deg, transparent, rgba(37, 33, 29, 0.08), transparent);
+  border: 1px solid rgba(169, 132, 95, 0.2);
   border-radius: 14px;
-  box-shadow: 0 20px 46px rgba(24, 21, 18, 0.1);
+  box-shadow: 0 20px 46px rgba(24, 21, 18, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%);
+}
+
+.photo-track::after {
+  content: "";
+  position: absolute;
+  left: -24px;
+  right: -24px;
+  top: 50%;
+  z-index: 0;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, rgba(37, 33, 29, 0.38) 0 34px, transparent 34px 56px);
   transform: translateY(-50%);
 }
 
@@ -1891,6 +1920,28 @@ h3 {
   border: 1px solid rgba(37, 33, 29, 0.12);
   border-radius: var(--radius);
   box-shadow: 0 18px 38px rgba(24, 21, 18, 0.12);
+}
+
+.gallery-photo-card::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: calc(var(--radius) - 5px);
+  pointer-events: none;
+}
+
+.gallery-photo-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 42%;
+  background: linear-gradient(180deg, transparent, rgba(24, 21, 18, 0.12));
+  pointer-events: none;
 }
 
 .gallery-photo-card img {
