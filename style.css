@@ -939,9 +939,9 @@ h3 {
 }
 
 .logo-chip img[src*="logo-komdigi-display"] {
-  width: 88%;
-  height: 88%;
-  object-position: center;
+  width: 92%;
+  height: 92%;
+  object-position: center 48%;
   transform: none;
 }
 
@@ -2552,8 +2552,8 @@ h3 {
 }
 
 .road-logo img[src*="logo-komdigi-display"] {
-  width: 100%;
-  height: 100%;
+  width: 104%;
+  height: 104%;
   object-position: center;
   transform: none;
 }
