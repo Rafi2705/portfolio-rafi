@@ -2270,37 +2270,47 @@ h3 {
   background: var(--brown-300);
 }
 
+.journey-title-card,
 .journey-road-panel {
   max-width: 1180px;
-  margin: 0 auto;
-  padding: 64px 20px 20px;
-  background:
-    linear-gradient(90deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
-    #f8f4ed;
-  background-size: 38px 38px, 38px 38px, auto;
-  border: 1px solid rgba(37, 33, 29, 0.1);
   border-radius: var(--radius);
+}
+
+.journey-title-card {
+  margin: 0 auto;
+  padding: 54px 56px 58px;
+  overflow: hidden;
+  background: rgba(255, 252, 246, 0.97);
+  border: 1px solid rgba(37, 33, 29, 0.1);
+  box-shadow: 0 24px 70px rgba(12, 10, 8, 0.24);
+}
+
+.journey-road-panel {
+  position: relative;
+  margin: 34px auto 0;
+  padding: 20px;
+  background: #f8f4ed;
+  border: 1px solid rgba(37, 33, 29, 0.1);
   box-shadow: 0 30px 86px rgba(12, 10, 8, 0.32);
 }
 
-.experience .journey-road-panel .section-heading {
+.experience .journey-title-card .section-heading {
   display: grid;
   justify-items: center;
   max-width: 880px;
-  margin: 0 auto 58px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.experience .journey-road-panel .section-heading .eyebrow {
+.experience .journey-title-card .section-heading .eyebrow {
   color: var(--brown-700);
 }
 
-.experience .journey-road-panel .section-heading h2 {
+.experience .journey-title-card .section-heading h2 {
   color: var(--brown-950);
 }
 
-.experience .journey-road-panel .section-heading p {
+.experience .journey-title-card .section-heading p {
   max-width: 940px;
   margin-inline: auto;
   color: var(--muted);
@@ -2313,7 +2323,11 @@ h3 {
   gap: 60px 22px;
   padding: 66px 28px 64px;
   overflow: hidden;
-  background: rgba(255, 252, 246, 0.46);
+  background:
+    linear-gradient(90deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
+    #fffaf2;
+  background-size: 38px 38px, 38px 38px, auto;
   border: 1px solid rgba(37, 33, 29, 0.1);
   border-radius: calc(var(--radius) - 2px);
 }
@@ -2322,7 +2336,7 @@ h3 {
   position: absolute;
   left: 28px;
   right: 28px;
-  z-index: 0;
+  z-index: 1;
   height: 60px;
   background: linear-gradient(180deg, #4a4a47, #333330);
   border-radius: 999px;
@@ -2361,7 +2375,7 @@ h3 {
 
 .road-turn {
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   width: 60px;
   height: 370px;
   background: linear-gradient(90deg, #3d3d3a, #333330);
@@ -2405,7 +2419,7 @@ h3 {
 
 .road-stop {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   align-content: start;
   justify-items: center;
