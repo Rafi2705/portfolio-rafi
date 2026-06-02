@@ -1375,6 +1375,15 @@ h3 {
 }
 
 @media (max-width: 640px) {
+  .tags {
+    flex-wrap: wrap;
+  }
+
+  .project-stat-row span,
+  .tags span {
+    white-space: normal;
+  }
+
   .gallery-section {
     padding: 54px 0 78px;
     background:
@@ -1407,12 +1416,6 @@ h3 {
     padding: 12px;
   }
 }
-
-/* Gallery crop refinement: keep the black-outfit visitor visible in this frame. */
-.gallery-wall .gallery-photo-card img[src$="lpsk-gallery-07.jpg"] {
-  object-position: left center;
-}
-
 /* Gallery title plaque polish */
 .gallery-title-board {
   min-width: 280px;
@@ -3405,9 +3408,12 @@ h3 {
 .projects {
   overflow: hidden;
   background:
+    linear-gradient(90deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(37, 33, 29, 0.055) 1px, transparent 1px),
     linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(243, 238, 230, 0.82)),
     radial-gradient(circle at 12% 18%, rgba(28, 118, 143, 0.12), transparent 30%),
     radial-gradient(circle at 86% 78%, rgba(169, 132, 95, 0.16), transparent 32%);
+  background-size: 42px 42px, 42px 42px, auto, auto, auto;
 }
 
 .experience {
@@ -4324,15 +4330,16 @@ h3 {
   display: grid;
   place-items: center;
   min-height: 40px;
-  padding: 8px;
+  padding: 8px 6px;
   color: var(--brown-950);
   background: rgba(255, 255, 255, 0.68);
   border: 1px solid rgba(37, 33, 29, 0.1);
   border-radius: calc(var(--radius) - 2px);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 900;
   text-align: center;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .project-grid,
@@ -4366,19 +4373,23 @@ h3 {
 
 .tags {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
   margin-top: 18px;
 }
 
 .tags span {
-  padding: 7px 10px;
+  flex: 0 1 auto;
+  min-width: 0;
+  padding: 6px 8px;
   color: var(--brown-950);
   background: rgba(225, 207, 186, 0.42);
   border: 1px solid rgba(225, 207, 186, 0.72);
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 900;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 
@@ -6040,7 +6051,11 @@ h3 {
   padding: 72px 0 98px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(247, 246, 241, 0.1)),
-    url("assets/Gallery/Latar%20Tembok%202.png") center top / 900px auto repeat;
+    url("assets/Gallery/Latar%20Tembok%202.png") left top / 900px auto repeat;
+  border-top: 1px solid rgba(37, 33, 29, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 18px 28px rgba(37, 33, 29, 0.045);
 }
 
 .gallery-section.lpsk-focus::before,
@@ -6071,33 +6086,24 @@ h3 {
 .gallery-title-board {
   position: relative;
   z-index: 3;
-  width: fit-content;
-  min-width: 248px;
-  margin: 0 auto 42px;
-  padding: 16px 34px 15px;
+  display: grid;
+  place-items: center;
+  width: min(64vw, 360px);
+  min-width: 0;
+  height: 58px;
+  margin: 0 auto 64px;
+  padding: 0 46px;
   overflow: hidden;
-  color: var(--brown-950);
-  background:
-    linear-gradient(90deg, rgba(34, 91, 119, 0.16), transparent 18%, transparent 82%, rgba(34, 91, 119, 0.16)),
-    linear-gradient(180deg, #fffefa 0%, #f1eadf 100%);
-  border: 1px solid rgba(71, 89, 96, 0.22);
-  border-radius: 12px;
-  box-shadow:
-    0 18px 38px rgba(38, 34, 29, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.94),
-    inset 0 -1px 0 rgba(91, 75, 56, 0.12);
+  color: #2a1d14;
+  background: url("assets/Gallery/Papan%20Nama%20Gallery.png") center 48.2% / 453px auto no-repeat;
+  border: 0;
+  border-radius: 9px;
+  box-shadow: none;
 }
 
 .gallery-title-board::before,
 .gallery-title-board::after {
-  content: "";
-  position: absolute;
-  left: 18px;
-  right: 18px;
-  display: block;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(38, 34, 29, 0.24), transparent);
-  pointer-events: none;
+  content: none;
 }
 
 .gallery-title-board::before {
@@ -6112,9 +6118,17 @@ h3 {
   position: relative;
   z-index: 1;
   margin: 0;
-  font-size: clamp(1.06rem, 1.7vw, 1.28rem);
+  transform: none;
+  color: #281b12;
+  font-size: clamp(0.92rem, 1.38vw, 1.08rem);
+  font-weight: 950;
   letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
   text-transform: uppercase;
+  text-shadow:
+    0 1px 0 rgba(255, 235, 196, 0.58),
+    0 8px 20px rgba(25, 17, 11, 0.18);
 }
 
 .gallery-title-board .gallery-lead,
@@ -6146,6 +6160,37 @@ h3 {
   animation: none;
 }
 
+.gallery-wall .gallery-photo-card {
+  position: relative;
+  padding: 3px !important;
+  overflow: hidden;
+  background: var(--brown-950) !important;
+  border: 1px solid rgba(24, 21, 18, 0.76) !important;
+  border-radius: 5px;
+  box-shadow:
+    0 12px 22px rgba(45, 29, 18, 0.16),
+    inset 0 0 0 1px rgba(255, 239, 217, 0.1) !important;
+}
+
+.gallery-wall .gallery-photo-card::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  z-index: 1;
+  border: 1px solid rgba(246, 232, 211, 0.96);
+  border-radius: 3px;
+  box-shadow:
+    inset 0 0 0 1px rgba(37, 33, 29, 0.12),
+    0 0 0 1px rgba(37, 33, 29, 0.12);
+  pointer-events: none;
+}
+
+.gallery-wall .gallery-photo-card img {
+  position: relative;
+  z-index: 0;
+  border-radius: 4px;
+}
+
 .gallery-wall .certificate-frame {
   grid-column: 2 / 6;
   grid-row: 2 / 4;
@@ -6154,25 +6199,24 @@ h3 {
   justify-self: center;
   align-self: center;
   padding: 16px;
-  background:
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.86) 0 10px, rgba(226, 218, 205, 0.92) 10px 18px),
-    linear-gradient(135deg, #ffffff, #eee6d9);
-  border: 1px solid rgba(138, 127, 113, 0.34);
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid rgba(37, 33, 29, 0.24);
   border-radius: 10px;
   box-shadow:
-    0 30px 64px rgba(38, 34, 29, 0.2),
+    0 30px 64px rgba(38, 34, 29, 0.16),
     inset 0 0 0 2px rgba(255, 255, 255, 0.72),
-    inset 0 0 0 10px rgba(238, 231, 218, 0.38);
+    inset 0 0 0 8px rgba(255, 255, 255, 0.38);
   transform: rotate(0deg);
 }
 
 .gallery-wall .certificate-frame::before {
-  inset: 12px;
-  border: 8px solid rgba(255, 253, 248, 0.96);
+  inset: 8px;
+  border: 3px solid #ffffff;
   border-radius: 6px;
   box-shadow:
-    inset 0 0 0 1px rgba(138, 127, 113, 0.18),
-    0 0 0 1px rgba(255, 255, 255, 0.62);
+    inset 0 0 0 1px rgba(37, 33, 29, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
 .gallery-wall .certificate-frame::after {
@@ -6197,17 +6241,19 @@ h3 {
     padding: 54px 0 78px;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(247, 246, 241, 0.08)),
-      url("assets/Gallery/Latar%20Tembok%202.png") center top / 620px auto repeat;
+      url("assets/Gallery/Latar%20Tembok%202.png") left top / 620px auto repeat;
   }
 
   .gallery-title-board {
-    min-width: 216px;
-    margin-bottom: 30px;
-    padding: 14px 24px 13px;
+    width: min(84vw, 292px);
+    height: 48px;
+    margin-bottom: 42px;
+    padding: 0 36px;
+    background-size: 368px auto;
   }
 
   .gallery-title-board .eyebrow {
-    font-size: 1rem;
+    font-size: 0.86rem;
   }
 
   .gallery-wall .photo-track {
@@ -6224,4 +6270,9 @@ h3 {
     max-width: 370px;
     padding: 12px;
   }
+}
+
+/* Final crop lock for the outdoor LPSK building photo. */
+.gallery-wall .gallery-photo-card img[src$="lpsk-gallery-07.jpg"] {
+  object-position: left center !important;
 }
