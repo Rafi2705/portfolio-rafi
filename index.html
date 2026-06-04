@@ -66,7 +66,7 @@
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#demo">Reporting Demo</a>
-            <a class="btn btn-secondary" href="assets/cv/CV-Muhamad-Rafi-Yulian.pdf" download>Download CV</a>
+            <a class="btn btn-secondary" href="assets/cv/CV-Muhamad-Rafi-Yulian.pdf" target="_blank" rel="noopener">CV</a>
           </div>
           <div class="hero-proof" aria-label="Portfolio highlights">
             <div>
@@ -659,7 +659,8 @@
     <section class="section certificates" id="certificates">
       <div class="container">
         <div class="section-heading certificates-heading reveal">
-          <h2>Certificates</h2>
+          <p class="eyebrow">Certificate Library</p>
+          <h2>Professional Certificates</h2>
         </div>
 
         <div class="certificate-library">
@@ -849,29 +850,80 @@
     </section>
 
     <section class="section contact" id="contact">
-      <div class="container contact-grid">
-        <div class="contact-info reveal">
+      <div class="container contact-shell">
+        <div class="section-heading contact-heading reveal">
           <p class="eyebrow">Contact</p>
-          <h2>Available for Web Developer, IT Staff, Information Systems, and digital project roles.</h2>
-          <ul class="contact-list">
-            <li><span>Email</span><a href="mailto:rafiyulian@gmail.com">rafiyulian@gmail.com</a></li>
-            <li><span>Phone</span><a href="tel:+6285777456596">+62 857-7745-6596</a></li>
-            <li><span>Location</span><p>Bogor, West Java, Indonesia</p></li>
-            <li><span>LinkedIn</span><a href="https://linkedin.com/in/muhamad-rafi-yulian" target="_blank" rel="noopener">linkedin.com/in/muhamad-rafi-yulian</a></li>
-            <li><span>GitHub</span><a href="#" aria-label="GitHub placeholder">Placeholder</a></li>
-            <li><span>Instagram</span><a href="#" aria-label="Instagram placeholder">Placeholder</a></li>
-          </ul>
+          <h2>Let’s Connect</h2>
         </div>
 
-        <form class="contact-form reveal" id="contactForm">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Write your message" required></textarea>
-          <button class="btn btn-primary" type="submit">Send Message</button>
-        </form>
+        <div class="contact-pdf-grid">
+          <a class="contact-pdf-card reveal" href="assets/cv/CV-Muhamad-Rafi-Yulian.pdf" target="_blank" rel="noopener" aria-label="Open CV PDF in a new tab">
+            <div class="contact-pdf-preview cv-document-preview">
+              <span class="pdf-corner"></span>
+              <img class="pdf-preview-image" src="assets/cv/cv-thumbnail.png" alt="Curriculum Vitae first page preview" loading="lazy">
+            </div>
+            <div class="contact-pdf-copy">
+              <span>PDF Preview</span>
+              <h3>Curriculum Vitae</h3>
+              <p>A focused CV for recruiter screening, role matching, and quick background review.</p>
+            </div>
+            <span class="contact-open-icon" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+
+          <a class="contact-pdf-card reveal" href="assets/cv/Online-Portfolio-Muhamad-Rafi-Yulian.pdf" target="_blank" rel="noopener" aria-label="Open full portfolio PDF in a new tab">
+            <div class="contact-pdf-preview portfolio-preview">
+              <span class="pdf-corner"></span>
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+              <strong>Portfolio</strong>
+              <small>Complete project overview</small>
+            </div>
+            <div class="contact-pdf-copy">
+              <span>PDF Preview</span>
+              <h3>Full Portfolio</h3>
+              <p>A complete PDF overview of projects, experience, documentation, and supporting materials.</p>
+            </div>
+            <span class="contact-open-icon" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+        </div>
+
+        <div class="contact-links-grid contact-directory" aria-label="Contact channels">
+          <a class="contact-link-card email-card" href="mailto:rafiyulian@gmail.com">
+            <span class="contact-brand-mark gmail-mark"><img src="assets/icons/Logo%20Gmail.webp" alt="Gmail logo"></span>
+            <div class="contact-link-body">
+              <span>Email</span>
+              <strong>rafiyulian@gmail.com</strong>
+              <p>Best for formal recruitment, portfolio requests, and project discussion.</p>
+            </div>
+            <i class="contact-arrow fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <a class="contact-link-card whatsapp-card" href="https://wa.me/6285777456596" target="_blank" rel="noopener">
+            <span class="contact-brand-mark whatsapp-mark"><img src="assets/icons/Logo%20WA.webp" alt="WhatsApp logo"></span>
+            <div class="contact-link-body">
+              <span>WhatsApp / Phone</span>
+              <strong>+62 857 7745 6596</strong>
+              <p>Quick response for availability<br>and scheduled calls.</p>
+            </div>
+            <i class="contact-arrow fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <a class="contact-link-card linkedin-card" href="https://www.linkedin.com/in/muhamad-rafi-yulian/" target="_blank" rel="noopener">
+            <span class="contact-brand-mark linkedin-mark"><img src="assets/icons/Logo%20Linkedin.png" alt="LinkedIn logo"></span>
+            <div class="contact-link-body">
+              <span>LinkedIn</span>
+              <strong>muhamad-rafi-yulian</strong>
+              <p>Professional profile, education, experience, and career updates.</p>
+            </div>
+            <i class="contact-arrow fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <a class="contact-link-card maps-card" href="https://www.google.com/maps/search/?api=1&query=Kabupaten%20Bogor%2C%20West%20Java%2C%20Indonesia" target="_blank" rel="noopener">
+            <span class="contact-brand-mark maps-mark"><img src="assets/icons/Logo%20Google%20Maps.png" alt="Google Maps logo"></span>
+            <div class="contact-link-body">
+              <span>Google Maps</span>
+              <strong>Kabupaten Bogor, West Java</strong>
+              <p>Current location area for onsite or hybrid coordination.</p>
+            </div>
+            <i class="contact-arrow fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
       </div>
     </section>
   </main>

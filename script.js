@@ -203,8 +203,10 @@ if (!prefersReducedMotion) {
   });
 }
 
-contactForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  alert("Thank you, your message has been noted.");
-  contactForm.reset();
-});
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    alert("Thank you, your message has been noted.");
+    contactForm.reset();
+  });
+}
