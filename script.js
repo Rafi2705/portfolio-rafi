@@ -71,7 +71,7 @@ const updateScrollState = () => {
   progressBar.style.width = `${progress}%`;
 
   let currentSection = "home";
-  sections.forEach((section) => {
+  [...sections].sort((a, b) => a.offsetTop - b.offsetTop).forEach((section) => {
     const sectionTop = section.offsetTop - 130;
     if (window.scrollY >= sectionTop) {
       currentSection = section.getAttribute("id");
